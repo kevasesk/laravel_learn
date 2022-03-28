@@ -1,0 +1,44 @@
+-file upload
+-file extention validate
+-file size validate
+-create user form
+-validate front/backend form
+-send email
+-cron
+-elasticsearch
+-varnish
+- intergate google recapcha
+-google login
+-user registration and admin
+-admin for system
+-crud for any entity
+-di
+-learn artisan posibilities
+-deploy.php
+-eav system?
+-sitemap
+- at least one integration with payment
+-cms
+-caching (not varnish) using code
+-rabbit MQ
+-events
+-testing code
+- image resize + cache
+-pdf
+-multy lang
+-multy currency
+-multy store
+-go to ftp
+-import/export csv
+-console commands
+-pagination
+-redirect|go to 404|return json
+-logging?
+
++ laravel posibilities
++ search on frilance sites for more to learn
++ laravel documentations
+
+
+- add node install to docker image
+
