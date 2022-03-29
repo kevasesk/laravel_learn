@@ -18,19 +18,11 @@
             </div>
             <div class="error-content">
                 <div class="error-img text-center">
-                    <a href="#"><img src="img/about/404.jpg" alt="images" class="img-responsive"></a>
+                    <a href="#"><img src="/img/about/404.jpg" alt="images" class="img-responsive"></a>
                 </div>
                 <div class="error-text text-center">
                     <h2>Oops 404 Again! That Page Can't Be Found.</h2>
                     <p>It looks like nothing was found at this location. Maybe try a search?</p>
-                </div>
-                <div class="error-form text-center">
-                    <form action="#" method="POST" class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter your text">
-                        </div>
-                        <button type="submit" class="btn-search">SEARCH</button>
-                    </form>
                 </div>
             </div>
         </div>

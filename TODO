@@ -7,7 +7,7 @@
 -cron
 -elasticsearch
 -varnish
-- intergate google recapcha
+-intergate google recapcha
 -google login
 -user registration and admin
 -admin for system
@@ -17,13 +17,13 @@
 -deploy.php
 -eav system?
 -sitemap
-- at least one integration with payment
+-at least one integration with payment
 -cms
 -caching (not varnish) using code
 -rabbit MQ
 -events
 -testing code
-- image resize + cache
+-image resize + cache
 -pdf
 -multy lang
 -multy currency
