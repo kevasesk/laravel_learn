@@ -107,4 +107,10 @@ class PagesController extends Controller
     {
         //
     }
+    public function send()
+    {
+        $post = Post::query()->where('id','=',5)->first();
+        \Illuminate\Support\Facades\Mail::to('to@example.com')->send(new \App\Mail\Test($post));
+
+    }
 }

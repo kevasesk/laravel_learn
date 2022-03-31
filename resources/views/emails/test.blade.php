@@ -1,0 +1,2 @@
+
+email template! {{ $post->title }}

@@ -34,7 +34,7 @@ Route::post('/admin/posts/edit', [PagesController::class, 'edit'])->name('admin.
 Route::post('/admin/posts/destroy', [PagesController::class, 'destroy'])->name('admin.posts.destroy');
 Route::post('/admin/posts/store', [PagesController::class, 'store'])->name('admin.posts.store');
 
-Route::post('/admin/posts/send', [PagesController::class, 'send'])->name('admin.posts.send');
+Route::get('/admin/posts/send', [PagesController::class, 'send'])->name('admin.posts.send');
 
 
 #Cms

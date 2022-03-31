@@ -3,22 +3,22 @@
 +file size validate
 +create user form
 +backend form validation
--send email
--cron
++send email
++cron
 -google login
--user registration and admin
--admin for system
--crud for any entity
++user registration and admin
++admin for system
++crud for any entity
 -di
 -learn artisan posibilities
 -deploy.php
 -eav system?
 -sitemap
 -at least one integration with payment
--cms
++cms
 -caching (not varnish) using code
 -events
--testing code
+-testing
 -image resize + cache
 -pdf
 -multy lang
@@ -26,9 +26,9 @@
 -multy store
 -go to ftp
 -import/export csv
--console commands
+-custom console commands
 -pagination
--redirect|go to 404|return json
++redirect|go to 404|return json
 -logging?
 -rabbit MQ
 -intergate google recapcha
@@ -45,5 +45,7 @@
 
 
 
-- add node install to docker image
+-add node install to docker image
+-add install sendmail to docker
+-add cron to docker.
 

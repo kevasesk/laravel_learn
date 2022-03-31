@@ -11,6 +11,7 @@
                 <div class="card-body">
                     <div class="card">
                         <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.posts.create") }}'" >New</button>
+                        <button type="button" class="btn btn-info btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.posts.send") }}'" >Send Email</button>
                     </div>
                     <div class="table-responsive">
                         <table
