@@ -1,6 +1,6 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
-<script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap tether Core JavaScript -->
 <script src="/admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>

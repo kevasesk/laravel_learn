@@ -4,17 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('admin.posts.index');
+        $columns = [
+            'Id',
+            'Is Active',
+            'Title',
+            'Url',
+            'Desc',
+            'Thumbnail',
+        ];
+
+        $posts = Post::all();
+
+        return view('admin.posts.index',[
+            'columns' => $columns,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -24,7 +34,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +45,22 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'url' => 'required|unique:posts',
+            'is_active' => 'required',
+            'thumbnail' => 'required|image|max:20000',
+        ]);
+        $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
+
+        $newPost = new Post();
+        $newPost->title = $request->title;
+        $newPost->desc = $request->desc ?? '' ;
+        $newPost->url = $request->url;
+        $newPost->is_active = $request->is_active;
+        $newPost->thumbnail = $thumbnailPath;
+        $newPost->save();
+        return redirect()->route('admin.posts.index');
     }
 
     /**

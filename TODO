@@ -1,8 +1,8 @@
--file upload
--file extention validate
--file size validate
--create user form
--validate front/backend form
++file upload
++file extention validate
++file size validate
++create user form
++backend form validation
 -send email
 -cron
 -google login
@@ -36,9 +36,13 @@
 -varnish
 -breadcrumbs
 
-+ laravel posibilities
-+ search on frilance sites for more to learn
-+ laravel documentations
+-validate front?
+
+- laravel posibilities
+- search on frilance sites for more to learn
+- laravel documentations
+
+
 
 
 - add node install to docker image

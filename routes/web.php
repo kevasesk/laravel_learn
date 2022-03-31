@@ -28,7 +28,13 @@ Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.cr
 Route::post('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
 #Admin Posts
-Route::get('/admin/posts', [PagesController::class, 'index']);
+Route::get('/admin/posts', [PagesController::class, 'index'])->name('admin.posts.index');
+Route::get('/admin/posts/create', [PagesController::class, 'create'])->name('admin.posts.create');
+Route::post('/admin/posts/edit', [PagesController::class, 'edit'])->name('admin.posts.edit');
+Route::post('/admin/posts/destroy', [PagesController::class, 'destroy'])->name('admin.posts.destroy');
+Route::post('/admin/posts/store', [PagesController::class, 'store'])->name('admin.posts.store');
+
+Route::post('/admin/posts/send', [PagesController::class, 'send'])->name('admin.posts.send');
 
 
 #Cms

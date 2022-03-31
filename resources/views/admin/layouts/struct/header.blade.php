@@ -9,27 +9,7 @@
             <!-- Logo -->
             <!-- ============================================================== -->
             <a class="navbar-brand" href="index.html">
-                <!-- Logo icon -->
-                <b class="logo-icon ps-2">
-                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                    <!-- Dark Logo icon -->
-                    <img
-                        src="/admin/assets/images/logo-icon.png"
-                        alt="homepage"
-                        class="light-logo"
-                        width="25"
-                    />
-                </b>
-                <!--End Logo icon -->
-                <!-- Logo text -->
-                <span class="logo-text ms-2">
-                <!-- dark Logo text -->
-                <img
-                    src="/admin/assets/images/logo-text.png"
-                    alt="homepage"
-                    class="light-logo"
-                />
-              </span>
+                <h5>@yield('title', 'Admin') | {{env('APP_NAME')}}</h5>
                 <!-- Logo icon -->
                 <!-- <b class="logo-icon"> -->
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->

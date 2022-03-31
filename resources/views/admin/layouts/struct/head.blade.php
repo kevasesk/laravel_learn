@@ -24,6 +24,16 @@
     <link href=/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="/admin/dist/css/style.min.css" rel="stylesheet" />
+
+    <script src="/admin/assets/libs/quill/dist/quill.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/admin/assets/libs/quill/dist/quill.snow.css" />
+
+    <link rel="stylesheet" type="text/css" href="/admin/assets/libs/select2/dist/css/select2.min.css" />
+    <script src="/admin/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="/admin/assets/libs/select2/dist/js/select2.min.js"></script>
+
+    <script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
