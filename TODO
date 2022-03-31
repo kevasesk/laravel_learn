@@ -5,27 +5,25 @@
 +backend form validation
 +send email
 +cron
--google login
 +user registration and admin
 +admin for system
 +crud for any entity
--di
++di
++cms
+-breadcrumbs
 -learn artisan posibilities
 -deploy.php
--eav system?
 -sitemap
 -at least one integration with payment
-+cms
 -caching (not varnish) using code
 -events
 -testing
--image resize + cache
--pdf
+-image resize + cache (custom)
+-pdf (custom)
 -multy lang
 -multy currency
 -multy store
 -go to ftp
--import/export csv
 -custom console commands
 -pagination
 +redirect|go to 404|return json
@@ -34,16 +32,12 @@
 -intergate google recapcha
 -elasticsearch
 -varnish
--breadcrumbs
-
--validate front?
+-google login
 
 - laravel posibilities
+- laravel moduels/extentions/deps
 - search on frilance sites for more to learn
 - laravel documentations
-
-
-
 
 -add node install to docker image
 -add install sendmail to docker

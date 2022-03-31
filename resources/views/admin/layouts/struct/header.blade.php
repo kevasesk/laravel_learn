@@ -262,7 +262,7 @@
                         aria-expanded="false"
                     >
                         <img
-                            src="/admin/assets/images/users/1.jpg"
+                            src="/backend/assets/images/users/1.jpg"
                             alt="user"
                             class="rounded-circle"
                             width="31"

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
-class PagesController extends Controller
+class PostsController extends Controller
 {
     public function index()
     {
@@ -47,19 +47,30 @@ class PagesController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'url' => 'required|unique:posts',
+            'url' => 'required',
             'is_active' => 'required',
-            'thumbnail' => 'required|image|max:20000',
+            'thumbnail' => 'image|max:20000',
         ]);
-        $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
 
-        $newPost = new Post();
-        $newPost->title = $request->title;
-        $newPost->desc = $request->desc ?? '' ;
-        $newPost->url = $request->url;
-        $newPost->is_active = $request->is_active;
-        $newPost->thumbnail = $thumbnailPath;
-        $newPost->save();
+        if(!$request->id){
+            $post = new Post();
+        }else{
+            $post = Post::query()->where('id','=', $request->id)->first();
+        }
+
+        if($request->file('thumbnail')){
+            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
+        }else{
+            $thumbnailPath = $post->thumbnail;
+        }
+
+
+        $post->title = $request->title;
+        $post->desc = $request->desc ?? '' ;
+        $post->url = $request->url;
+        $post->is_active = $request->is_active;
+        $post->thumbnail = $thumbnailPath;
+        $post->save();
         return redirect()->route('admin.posts.index');
     }
 
@@ -82,19 +93,8 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $post = Post::query()->where('id','=', $id)->first();
+        return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -105,7 +105,10 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::query()->where('id','=', $id)->first();
+        $post->delete();
+        return redirect()->route('admin.posts.index');
+
     }
     public function send()
     {
