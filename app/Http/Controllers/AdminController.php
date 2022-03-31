@@ -39,4 +39,27 @@ class AdminController extends Controller
         }
 
     }
+    public function register()
+    {
+        return view('admin.register');
+    }
+    public function create(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required'
+        ]);
+        try{
+            $newAdmin = new Admins();
+            $newAdmin->name = $request->name;
+            $newAdmin->password = $request->password;
+            $newAdmin->email = $request->email;
+            $newAdmin->save();
+            return redirect('admin');
+        }catch (\Exception $e){
+            return redirect('register');
+        }
+
+    }
 }

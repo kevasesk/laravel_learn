@@ -1,1 +1,5 @@
-dashboard for admin username: {{ $name }} and email: {{ $email }}
+@extends('admin.layouts.main')
+
+@section('content')
+    dashboard content!
+@endsection

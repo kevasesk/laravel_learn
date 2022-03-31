@@ -5,9 +5,6 @@
 -validate front/backend form
 -send email
 -cron
--elasticsearch
--varnish
--intergate google recapcha
 -google login
 -user registration and admin
 -admin for system
@@ -20,7 +17,6 @@
 -at least one integration with payment
 -cms
 -caching (not varnish) using code
--rabbit MQ
 -events
 -testing code
 -image resize + cache
@@ -34,6 +30,11 @@
 -pagination
 -redirect|go to 404|return json
 -logging?
+-rabbit MQ
+-intergate google recapcha
+-elasticsearch
+-varnish
+-breadcrumbs
 
 + laravel posibilities
 + search on frilance sites for more to learn

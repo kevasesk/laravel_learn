@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,13 @@ Route::get('/pages/generate', [PageController::class, 'generate']);
 #Admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('admin.not.auth');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('admin.auth');
+Route::get('/admin/register', [AdminController::class, 'register']);
+Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
+#Admin Posts
+Route::get('/admin/posts', [PagesController::class, 'index']);
 
-#Auth::routes();
 
 #Cms
 Route::get('/{url}', [PageController::class, 'show']);
