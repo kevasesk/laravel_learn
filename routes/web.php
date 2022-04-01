@@ -5,6 +5,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\PostsController;
 
+use Illuminate\Support\Facades\App;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +52,10 @@ Route::get('admin/posts/send', [PostsController::class, 'send'])->name('admin.po
 #Cms
 Route::get('{url}', [PageController::class, 'show']);
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+#language switcher
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});

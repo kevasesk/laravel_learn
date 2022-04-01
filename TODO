@@ -10,29 +10,22 @@
 +crud for any entity
 +di
 +cms
--breadcrumbs
--learn artisan posibilities
--deploy.php
--sitemap
--at least one integration with payment
--caching (not varnish) using code
++redirect|go to 404|return json
++go to ftp
++custom console commands
++multy lang
+-+caching (not varnish) using code
 -events
 -testing
--image resize + cache (custom)
--pdf (custom)
--multy lang
--multy currency
--multy store
--go to ftp
--custom console commands
 -pagination
-+redirect|go to 404|return json
--logging?
+-+logging?
++custom console commands
 -rabbit MQ
 -intergate google recapcha
 -elasticsearch
 -varnish
--google login
+-learn artisan posibilities
+-deploy.php
 
 - laravel posibilities
 - laravel moduels/extentions/deps

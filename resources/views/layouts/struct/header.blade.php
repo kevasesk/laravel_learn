@@ -52,7 +52,9 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="right-nav">
                         <ul>
-                            <li><a href="#"><i class="ion-ios-heart fa-1a" aria-hidden="true"></i>wishlist</a></li>
+                            <li><a href="{{ url('/language/ru') }}">ru</a></li>
+                            <li><a href="{{ url('/language/en') }}">en</a></li>
+                            <li><a href="#"><i class="ion-ios-heart fa-1a" aria-hidden="true"></i>{{ __('messages.wishlist') }}</a></li>
                             <li><a href="#"><i class="ion-arrow-swap fa-1a" aria-hidden="true"></i>compare</a></li>
                             <li><a href="#"><i class="ion-ios-personadd fa-1a" aria-hidden="true"></i>create account</a></li>
                             <li><a href="#"><i class="ion-log-in fa-1a" aria-hidden="true"></i>login</a></li>
