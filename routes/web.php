@@ -51,6 +51,7 @@ Route::get('admin/posts/send', [PostsController::class, 'send'])->name('admin.po
 
 #Cms
 Route::get('{url}', [PageController::class, 'show']);
+Route::get('page/list', [PageController::class, 'list']);
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #language switcher

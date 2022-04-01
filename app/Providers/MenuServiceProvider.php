@@ -51,8 +51,8 @@ class MenuServiceProvider extends ServiceProvider
                     'url' => '/contact-us',
                 ],
                 [
-                    'title' => 'Blog',
-                    'url' => '/blog',
+                    'title' => 'Pages',
+                    'url' => '/page/list',
                 ],
             ]);
         });

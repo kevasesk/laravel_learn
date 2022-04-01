@@ -17,6 +17,11 @@ class PageController extends Controller
         $page = Page::query()->where('id', '=', 1)->first();
         return view('page.home', compact('page'));
     }
+    public function list()
+    {
+        $pages = Page::paginate(10);
+        return view('page.list', compact('pages'));
+    }
 
     public function generate()
     {

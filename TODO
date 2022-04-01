@@ -14,10 +14,11 @@
 +go to ftp
 +custom console commands
 +multy lang
++pagination
 -+caching (not varnish) using code
 -events
 -testing
--pagination
+
 -+logging?
 +custom console commands
 -rabbit MQ
