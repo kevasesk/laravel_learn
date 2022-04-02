@@ -14,4 +14,8 @@ class Page extends Model
         'content',
         'url'
     ];
+
+    public static function sum($a, $b){
+        return $a+$b;
+    }
 }

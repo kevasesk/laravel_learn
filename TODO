@@ -21,11 +21,9 @@
 -+events
 -+testing
 +integrate google recapcha
--queue
--elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
--varnish
+-+queue
 -learn artisan possibilities
--deploy to ftp and config.
+-elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
 -RabbitMQ
 
 - search on freelance sites for more to learn

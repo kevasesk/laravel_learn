@@ -50,12 +50,12 @@
                             @if(!isset($child['role']))
                                 <li class=" menu-homepage menu-item-has-child dropdown">
                                     <a href="{{ url($child['url']) }}" title="{{ $child['title'] }}">{{ $child['title'] }}</a>
-                                    <span class="plus js-plus-icon"></span>
-                                    <ul class="dropdown-menu menu-level">
-                                        <li><a href="index.html" title="home 1">Home 1</a></li>
-                                        <li><a href="home-2.html" title="home 2">Home 2</a></li>
-                                        <li><a href="home-3.html" title="home 3">Home 3</a></li>
-                                    </ul>
+{{--                                    <span class="plus js-plus-icon"></span>--}}
+{{--                                    <ul class="dropdown-menu menu-level">--}}
+{{--                                        <li><a href="index.html" title="home 1">Home 1</a></li>--}}
+{{--                                        <li><a href="home-2.html" title="home 2">Home 2</a></li>--}}
+{{--                                        <li><a href="home-3.html" title="home 3">Home 3</a></li>--}}
+{{--                                    </ul>--}}
                                 </li>
                             @endif
                         @endforeach

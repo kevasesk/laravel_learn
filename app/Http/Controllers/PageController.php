@@ -19,6 +19,7 @@ class PageController extends Controller
     }
     public function list()
     {
+        \App\Events\TestEvent::dispatch();
         $pages = Page::paginate(10);
         return view('page.list', compact('pages'));
     }

@@ -46,13 +46,17 @@ class MenuServiceProvider extends ServiceProvider
                     'title' => 'Home',
                     'url' => '/',
                 ],
-                [
-                    'title' => 'Contact Us',
-                    'url' => '/contact-us',
-                ],
+//                [
+//                    'title' => 'Contact Us',
+//                    'url' => '/contact-us',
+//                ],
                 [
                     'title' => 'Pages',
                     'url' => '/page/list',
+                ],
+                [
+                    'title' => 'Recaptcha',
+                    'url' => '/recaptcha',
                 ],
             ]);
         });
