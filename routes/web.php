@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\RecaptchaController;
 
 use Illuminate\Support\Facades\App;
 
@@ -48,6 +49,9 @@ Route::get('admin/posts/send', [PostsController::class, 'send'])->name('admin.po
 //    });
 //});
 
+#google recaptcha
+Route::get('recaptcha', [RecaptchaController::class, 'index']);
+Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('recaptcha.sended');
 
 #Cms
 Route::get('{url}', [PageController::class, 'show']);
@@ -60,3 +64,5 @@ Route::get('language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+

@@ -13,24 +13,22 @@
 +redirect|go to 404|return json
 +go to ftp
 +custom console commands
-+multy lang
++multi lang
 +pagination
--+caching (not varnish) using code
--events
--testing
-
--+logging?
 +custom console commands
--rabbit MQ
--intergate google recapcha
--elasticsearch
+-+caching (not varnish) using code
+-+logging?
+-+events
+-+testing
++integrate google recapcha
+-queue
+-elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
 -varnish
--learn artisan posibilities
--deploy.php
+-learn artisan possibilities
+-deploy to ftp and config.
+-RabbitMQ
 
-- laravel posibilities
-- laravel moduels/extentions/deps
-- search on frilance sites for more to learn
+- search on freelance sites for more to learn
 - laravel documentations
 
 -add node install to docker image
