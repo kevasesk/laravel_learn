@@ -38,7 +38,8 @@ class DebugCommand extends Command
      */
     public function handle()
     {
-        \App\Jobs\TestPodcast::dispatch();
+        #\App\Jobs\TestPodcast::dispatch();
+        \Illuminate\Support\Facades\Mail::to('testsender@gmail.com')->send(new \App\Mail\Test());
 
         return 0;
     }

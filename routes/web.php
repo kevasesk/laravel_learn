@@ -49,6 +49,9 @@ Route::get('admin/posts/send', [PostsController::class, 'send'])->name('admin.po
 //    });
 //});
 
+#RabiitMQ
+Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);
+
 #google recaptcha
 Route::get('recaptcha', [RecaptchaController::class, 'index']);
 Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('recaptcha.sended');
@@ -64,5 +67,4 @@ Route::get('language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
-
 

@@ -16,20 +16,23 @@
 +multi lang
 +pagination
 +custom console commands
++integrate google recapcha
 -+caching (not varnish) using code
 -+logging?
 -+events
 -+testing
-+integrate google recapcha
 -+queue
--learn artisan possibilities
+-+learn artisan possibilities
+
++add node install to docker image
++add install sendmail to docker
++add cron to docker.
++add rabbitmq docker
++add elasticsearch docker
+
 -elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
 -RabbitMQ
 
 - search on freelance sites for more to learn
 - laravel documentations
-
--add node install to docker image
--add install sendmail to docker
--add cron to docker.
 
