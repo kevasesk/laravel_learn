@@ -4,26 +4,29 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Product;
 
-class PostsController extends Controller
+class ProductsController extends Controller
 {
     public function index()
     {
         $columns = [
             'Id',
-            'Is Active',
+            'Sku',
             'Title',
             'Url',
-            'Desc',
+            'Price',
+            'Qty',
+            'Is In Stock',
+            'Is Active',
             'Thumbnail',
         ];
 
-        $posts = Post::all();
+        $products = Product::all();
 
-        return view('admin.posts.index',[
+        return view('admin.products.list',[
             'columns' => $columns,
-            'posts' => $posts
+            'products' => $products
         ]);
     }
 
@@ -34,8 +37,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $post = new Post();
-        return view('admin.posts.create', compact('post'));
+        $product = new Product();
+        return view('admin.products.create', compact('product'));
     }
 
     /**
@@ -46,6 +49,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
         $request->validate([
             'title' => 'required',
             'url' => 'required',
@@ -54,36 +58,20 @@ class PostsController extends Controller
         ]);
 
         if(!$request->id){
-            $post = new Post();
+            $product = new Product($data);
         }else{
-            $post = Post::query()->where('id','=', $request->id)->first();
+            $product = Product::query()->where('id','=', $request->id)->first();
+            $product->fill($data);
         }
 
         if($request->file('thumbnail')){
             $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
         }else{
-            $thumbnailPath = $post->thumbnail;
+            $thumbnailPath = $product->thumbnail;
         }
-
-
-        $post->title = $request->title;
-        $post->desc = $request->desc ?? '' ;
-        $post->url = $request->url;
-        $post->is_active = $request->is_active;
-        $post->thumbnail = $thumbnailPath;
-        $post->save();
-        return redirect()->route('admin.posts.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $product->thumbnail = $thumbnailPath;
+        $product->save();
+        return redirect()->route('admin.products.list');
     }
 
     /**
@@ -94,8 +82,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::query()->where('id','=', $id)->first();
-        return view('admin.posts.create', compact('post'));
+        $product = Product::query()->where('id','=', $id)->first();
+        return view('admin.products.create', compact('product'));
     }
 
     /**
@@ -106,15 +94,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::query()->where('id','=', $id)->first();
-        $post->delete();
-        return redirect()->route('admin.posts.index');
-
-    }
-    public function send()
-    {
-        $post = Post::query()->where('id','=',5)->first();
-        \Illuminate\Support\Facades\Mail::to('to@example.com')->send(new \App\Mail\Test($post));
+        $product = Product::query()->where('id','=', $id)->first();
+        $product->delete();
+        return redirect()->route('admin.products.list');
 
     }
 }

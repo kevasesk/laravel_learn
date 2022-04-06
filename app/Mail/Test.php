@@ -20,9 +20,11 @@ class Test extends Mailable
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(
+    //    Post $post
+    )
     {
-        $this->post = $post;
+        //$this->post = $post;
     }
 
     /**
@@ -35,7 +37,7 @@ class Test extends Mailable
         return $this
             ->from('post@example.com', 'Post sender')
             ->view('emails.test')
-            ->attach(storage_path('app/public/'). $this->post->thumbnail)//TODO learn all methods, not only direct path
+            //->attach(storage_path('app/public/'). $this->post->thumbnail)//TODO learn all methods, not only direct path
         ;
     }
 }

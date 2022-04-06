@@ -13,7 +13,7 @@
                             class="sidebar-link waves-effect waves-dark sidebar-link"
                             href="{{ '/admin/' . $item['url'] }}"
                             aria-expanded="false"
-                        ><i class="mdi mdi-view-dashboard"></i
+                        ><i class="mdi {{ isset($item['icon']) ? $item['icon'] : 'mdi-view-dashboard'}}"></i
                             ><span class="hide-menu">{{ $item['title'] }}</span></a
                         >
                     </li>

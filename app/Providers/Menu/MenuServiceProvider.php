@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers\Menu;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -46,18 +46,18 @@ class MenuServiceProvider extends ServiceProvider
                     'title' => 'Home',
                     'url' => '/',
                 ],
+                [
+                    'title' => 'About Us',
+                    'url' => '/about-us',
+                ],
 //                [
-//                    'title' => 'Contact Us',
-//                    'url' => '/contact-us',
+//                    'title' => 'Pages',
+//                    'url' => '/page/list',
 //                ],
-                [
-                    'title' => 'Pages',
-                    'url' => '/page/list',
-                ],
-                [
-                    'title' => 'Recaptcha',
-                    'url' => '/recaptcha',
-                ],
+//                [
+//                    'title' => 'Recaptcha',
+//                    'url' => '/recaptcha',
+//                ],
             ]);
         });
     }

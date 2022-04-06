@@ -23,7 +23,7 @@
 -+testing
 -+queue
 -+learn artisan possibilities
-
+-+RabbitMQ
 +add node install to docker image
 +add install sendmail to docker
 +add cron to docker.
@@ -31,8 +31,16 @@
 +add elasticsearch docker
 
 -elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
--RabbitMQ
+-image resize
+
+- api routes?
+- channels.php
 
 - search on freelance sites for more to learn
 - laravel documentations
+
+-------------------------------------
+
+- add new column in migration - how to migrate only that
+-create 404 for admin style
 

@@ -15,7 +15,9 @@ class Page extends Model
         'url'
     ];
 
-    public static function sum($a, $b){
-        return $a+$b;
+    public function getContentFormatted()
+    {
+        $formatted = substr(strip_tags($this->content), 0, 255 * 4);//TODO can be improved (remove spaces, tabs, new lines correctly)
+        return $formatted . (strlen($formatted) > 255 * 4 ? '...' : '');
     }
 }

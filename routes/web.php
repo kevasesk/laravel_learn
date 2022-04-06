@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\RecaptchaController;
+
+use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\ProductsController;
 
 use Illuminate\Support\Facades\App;
 
@@ -30,24 +33,31 @@ Route::post('admin/create', [AdminController::class, 'create'])->name('admin.cre
 Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
 #Admin Posts
-Route::get('admin/posts', [PostsController::class, 'index'])->name('admin.posts.index');
-Route::get('admin/posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
-Route::get('admin/posts/edit/{id}', [PostsController::class, 'edit'])->name('admin.posts.edit');
-Route::get('admin/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('admin.posts.destroy');
-Route::post('admin/posts/store', [PostsController::class, 'store'])->name('admin.posts.store');
+Route::middleware(['admin.auth'])->group(function () {
+    Route::get('admin/posts', [PostsController::class, 'index'])->name('admin.posts.index');
+    Route::get('admin/posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
+    Route::get('admin/posts/edit/{id}', [PostsController::class, 'edit'])->name('admin.posts.edit');
+    Route::get('admin/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('admin.posts.destroy');
+    Route::post('admin/posts/store', [PostsController::class, 'store'])->name('admin.posts.store');
+});
 
-Route::get('admin/posts/send', [PostsController::class, 'send'])->name('admin.posts.send');
+#Admin Pages
+Route::middleware(['admin.auth'])->group(function () {
+    Route::get('admin/pages', [PagesController::class, 'index'])->name('admin.pages.index');
+    Route::get('admin/pages/create', [PagesController::class, 'create'])->name('admin.pages.create');
+    Route::get('admin/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit');
+    Route::get('admin/pages/destroy/{id}', [PagesController::class, 'destroy'])->name('admin.pages.destroy');
+    Route::post('admin/pages/store', [PagesController::class, 'store'])->name('admin.pages.store');
+});
 
-#Grouped - TODO improve:
-//Route::middleware(['first', 'second'])->group(function () {
-//    Route::get('/', function () {
-//        // Uses first & second middleware...
-//    });
-//
-//    Route::get('/user/profile', function () {
-//        // Uses first & second middleware...
-//    });
-//});
+#Admin Products
+Route::middleware(['admin.auth'])->group(function () {
+    Route::get('admin/products', [ProductsController::class, 'index'])->name('admin.products.list');
+    Route::get('admin/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
+    Route::get('admin/products/edit/{id}', [ProductsController::class, 'edit'])->name('admin.products.edit');
+    Route::get('admin/products/destroy/{id}', [ProductsController::class, 'destroy'])->name('admin.products.destroy');
+    Route::post('admin/products/store', [ProductsController::class, 'store'])->name('admin.products.store');
+});
 
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);
@@ -58,7 +68,6 @@ Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('r
 
 #Cms
 Route::get('{url}', [PageController::class, 'show']);
-Route::get('page/list', [PageController::class, 'list']);
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #language switcher

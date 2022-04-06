@@ -1,9 +1,19 @@
 @extends('layouts.main')
 
-@section('title')
-    {{ $page['title'] }}
-@endsection
+@isset($page['title'])
+    @section('title')
+        {{ $page['title'] }}
+    @endsection
+@endisset
 
 @section('content')
-    <p>{!! $page['content'] !!}</p>
+    @if($page['content'])
+        <p>{!! $page['content'] !!}</p>
+    @else
+        <div class="container" style="min-height: 100px;">
+            <h1>No content</h1>
+        </div>
+    @endif
 @endsection
+
+

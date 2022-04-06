@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    Posts
+    Products
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card" style="display: grid;justify-items: end;">
-                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.posts.create") }}'" >New</button>
+                    <div class="card buttons">
+                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.products.create") }}'" >New</button>
                     </div>
                     <div class="table-responsive">
                         <table
@@ -27,21 +27,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($posts as $post)
+                                @foreach($products as $product)
                                     <tr>
-                                        <td>{{$post['id']}}</td>
-                                        <td>{{$post['is_active'] ? 'Yes' : 'No'}}</td>
-                                        <td>{{$post['title']}}</td>
-                                        <td>{{$post['url']}}</td>
-                                        <td>{{$post['desc']}}</td>
+                                        <td>{{$product['id']}}</td>
+                                        <td>{{$product['sku']}}</td>
+                                        <td>{{$product['title']}}</td>
+                                        <td>{{$product['url']}}</td>
+                                        <td>{{$product['price']}}</td>
+                                        <td>{{$product['qty']}}</td>
+                                        <td>{{$product['is_in_stock'] ? 'Yes' : 'No'}}</td>
+                                        <td>{{$product['is_active'] ? 'Yes' : 'No'}}</td>
                                         <td>
-                                            <img src="{{ asset('storage/'.$post['thumbnail']) }}" alt="no img" width="100" height="100"/>
+                                            <img src="{{ asset('storage/'.$product['thumbnail']) }}" alt="no image" width="50" height="50"/>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.posts.edit',['id' => $post['id']]) }}">Edit</a>
+                                            <a href="{{ route('admin.products.edit',['id' => $product['id']]) }}">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.posts.destroy',['id' => $post['id']]) }}">Delete</a>
+                                            <a href="{{ route('admin.products.destroy',['id' => $product['id']]) }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

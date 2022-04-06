@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    Posts
+    Pages
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card" style="display: grid;justify-items: end;">
-                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.posts.create") }}'" >New</button>
+                    <div class="card buttons">
+                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.pages.create") }}'" >New</button>
                     </div>
                     <div class="table-responsive">
                         <table
@@ -27,21 +27,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($posts as $post)
+                                @foreach($pages as $page)
                                     <tr>
-                                        <td>{{$post['id']}}</td>
-                                        <td>{{$post['is_active'] ? 'Yes' : 'No'}}</td>
-                                        <td>{{$post['title']}}</td>
-                                        <td>{{$post['url']}}</td>
-                                        <td>{{$post['desc']}}</td>
+                                        <td>{{$page['id']}}</td>
+                                        <td>{{$page['is_active'] ? 'Yes' : 'No'}}</td>
+                                        <td>{{$page['title']}}</td>
+                                        <td>{{$page['url']}}</td>
+                                        <td>{{ $page->getContentFormatted() }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/'.$post['thumbnail']) }}" alt="no img" width="100" height="100"/>
+                                            <a href="{{ route('admin.pages.edit',['id' => $page['id']]) }}">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.posts.edit',['id' => $post['id']]) }}">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.posts.destroy',['id' => $post['id']]) }}">Delete</a>
+                                            <a href="{{ route('admin.pages.destroy',['id' => $page['id']]) }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

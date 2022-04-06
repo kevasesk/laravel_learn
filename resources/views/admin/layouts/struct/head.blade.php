@@ -12,7 +12,7 @@
         content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>@yield('title', 'Admin') | {{env('APP_NAME')}}</title>
+    <title>@yield('title', 'Admin') | Admin {{env('APP_NAME')}}</title>
     <!-- Favicon icon -->
     <link
         rel="icon"
@@ -21,9 +21,10 @@
         href="/img/favicon.png"
     />
     <!-- Custom CSS -->
-    <link href=/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+    <link href="/backend/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="/backend/dist/css/style.min.css" rel="stylesheet" />
+    <link href="/backend/dist/css/custom.css" rel="stylesheet" />
 
     <script src="/backend/assets/libs/quill/dist/quill.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/backend/assets/libs/quill/dist/quill.snow.css" />
@@ -34,6 +35,7 @@
     <script src="/backend/assets/libs/select2/dist/js/select2.full.min.js"></script>
     <script src="/backend/assets/libs/select2/dist/js/select2.min.js"></script>
 
+    <script src="/backend/dist/js/ckeditor.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

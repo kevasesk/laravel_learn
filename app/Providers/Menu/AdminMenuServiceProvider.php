@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers\Menu;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -18,10 +18,17 @@ class AdminMenuServiceProvider extends ServiceProvider
                 [
                     'title' => 'Blog',
                     'url' => 'posts',
+                    'icon' => 'mdi-newspaper'
                 ],
                 [
                     'title' => 'Pages',
                     'url' => 'pages',
+                    'icon' => 'mdi-book-open-page-variant'
+                ],
+                [
+                    'title' => 'Products',
+                    'url' => 'products',
+                    'icon' => 'mdi-laptop'
                 ],
             ]);
         });

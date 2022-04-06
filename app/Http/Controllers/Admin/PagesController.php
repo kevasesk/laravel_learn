@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Page;
 
-class PostsController extends Controller
+class PagesController extends Controller
 {
     public function index()
     {
@@ -15,15 +15,14 @@ class PostsController extends Controller
             'Is Active',
             'Title',
             'Url',
-            'Desc',
-            'Thumbnail',
+            'Content',
         ];
 
-        $posts = Post::all();
+        $pages = Page::all();
 
-        return view('admin.posts.index',[
+        return view('admin.pages.index',[
             'columns' => $columns,
-            'posts' => $posts
+            'pages' => $pages
         ]);
     }
 
@@ -34,8 +33,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $post = new Post();
-        return view('admin.posts.create', compact('post'));
+        $page = new Page();
+        return view('admin.pages.create', compact('page'));
     }
 
     /**
@@ -50,29 +49,20 @@ class PostsController extends Controller
             'title' => 'required',
             'url' => 'required',
             'is_active' => 'required',
-            'thumbnail' => 'image|max:20000',
         ]);
 
         if(!$request->id){
-            $post = new Post();
+            $page = new Page();
         }else{
-            $post = Post::query()->where('id','=', $request->id)->first();
+            $page = Page::query()->where('id','=', $request->id)->first();
         }
 
-        if($request->file('thumbnail')){
-            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
-        }else{
-            $thumbnailPath = $post->thumbnail;
-        }
-
-
-        $post->title = $request->title;
-        $post->desc = $request->desc ?? '' ;
-        $post->url = $request->url;
-        $post->is_active = $request->is_active;
-        $post->thumbnail = $thumbnailPath;
-        $post->save();
-        return redirect()->route('admin.posts.index');
+        $page->title = $request->title;
+        $page->content = $request->get('content') ?? '' ;
+        $page->url = $request->url;
+        $page->is_active = $request->is_active;
+        $page->save();
+        return redirect()->route('admin.pages.index');
     }
 
     /**
@@ -94,8 +84,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::query()->where('id','=', $id)->first();
-        return view('admin.posts.create', compact('post'));
+        $page = Page::query()->where('id','=', $id)->first();
+        return view('admin.pages.create', compact('page'));
     }
 
     /**
@@ -106,15 +96,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::query()->where('id','=', $id)->first();
-        $post->delete();
-        return redirect()->route('admin.posts.index');
-
-    }
-    public function send()
-    {
-        $post = Post::query()->where('id','=',5)->first();
-        \Illuminate\Support\Facades\Mail::to('to@example.com')->send(new \App\Mail\Test($post));
+        $page = Page::query()->where('id','=', $id)->first();
+        $page->delete();
+        return redirect()->route('admin.pages.index');
 
     }
 }
