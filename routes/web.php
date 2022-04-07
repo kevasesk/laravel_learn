@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RecaptchaController;
 
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 use Illuminate\Support\Facades\App;
 
@@ -22,8 +23,7 @@ use Illuminate\Support\Facades\App;
 |
 */
 
-Route::get('/', [PageController::class, 'index']);
-Route::get('pages/generate', [PageController::class, 'generate']);
+Route::get('/', [MainController::class, 'index']);
 
 #Admin
 Route::get('admin', [AdminController::class, 'index'])->name('admin')->middleware('admin.not.auth');
@@ -59,6 +59,15 @@ Route::middleware(['admin.auth'])->group(function () {
     Route::post('admin/products/store', [ProductsController::class, 'store'])->name('admin.products.store');
 });
 
+#Admin Categories
+Route::middleware(['admin.auth'])->group(function () {
+    Route::get('admin/categories', [CategoriesController::class, 'index'])->name('admin.categories.list');
+    Route::get('admin/categories/create', [CategoriesController::class, 'create'])->name('admin.categories.create');
+    Route::get('admin/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
+    Route::get('admin/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
+    Route::post('admin/categories/store', [CategoriesController::class, 'store'])->name('admin.categories.store');
+});
+
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);
 
@@ -67,7 +76,7 @@ Route::get('recaptcha', [RecaptchaController::class, 'index']);
 Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('recaptcha.sended');
 
 #Cms
-Route::get('{url}', [PageController::class, 'show']);
+Route::get('{url}', [MainController::class, 'show']);
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #language switcher

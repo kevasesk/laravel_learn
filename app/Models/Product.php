@@ -25,6 +25,19 @@ class Product extends Model
         'thumbnail',
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_products');
+    }
+    public function getCategoryIds()
+    {
+        $ids = [];
+        foreach ($this->categories as $category){
+            $ids[] = $category->id;
+        }
+        return '['.implode(',', $ids).']';
+    }
+
     public function getOldPrice()
     {
         if($this->sale_price){

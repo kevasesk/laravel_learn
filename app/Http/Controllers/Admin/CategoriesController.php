@@ -4,29 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Category;
 
-class ProductsController extends Controller
+class CategoriesController extends Controller
 {
     public function index()
     {
         $columns = [
             'Id',
-            'Sku',
             'Title',
             'Url',
-            'Price',
-            'Qty',
-            'Is In Stock',
             'Is Active',
+            'Parent ID',
             'Thumbnail',
         ];
 
-        $products = Product::all();
+        $entities = Category::all();
 
-        return view('admin.products.list',[
+        return view('admin.categories.list',[
             'columns' => $columns,
-            'products' => $products
+            'entities' => $entities
         ]);
     }
 
@@ -37,8 +34,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $product = new Product();
-        return view('admin.products.create', compact('product'));
+        $entity = new Category();
+        return view('admin.categories.create', compact('entity'));
     }
 
     /**
@@ -58,22 +55,22 @@ class ProductsController extends Controller
         ]);
 
         if(!$request->id){
-            $product = new Product($data);
+            $entity = new Category($data);
         }else{
-            $product = Product::query()->where('id','=', $request->id)->first();
-            $product->fill($data);
+            $entity = Category::query()->where('id','=', $request->id)->first();
+            $entity->fill($data);
         }
 
         if($request->file('thumbnail')){
-            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
+            $thumbnailPath = $request->file('thumbnail')->store('categories', 'public');
         }else{
-            $thumbnailPath = $product->thumbnail;
+            $thumbnailPath = $entity->thumbnail;
         }
-        $product->thumbnail = $thumbnailPath;
-        $product->categories()->detach();
-        $product->categories()->attach($data['categories']);
-        $product->save();
-        return redirect()->route('admin.products.list');
+        $entity->thumbnail = $thumbnailPath;
+//        $entity->products()->detach();
+//        $entity->products()->attach($data['products']);
+        $entity->save();
+        return redirect()->route('admin.categories.list');
     }
 
     /**
@@ -84,8 +81,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::query()->where('id','=', $id)->first();
-        return view('admin.products.create', compact('product'));
+        $entity = Category::query()->where('id','=', $id)->first();
+        return view('admin.categories.create', compact('entity'));
     }
 
     /**
@@ -96,9 +93,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::query()->where('id','=', $id)->first();
-        $product->delete();
-        return redirect()->route('admin.products.list');
+        $entity = Category::query()->where('id','=', $id)->first();
+        $entity->delete();
+        return redirect()->route('admin.categories.list');
 
     }
 }

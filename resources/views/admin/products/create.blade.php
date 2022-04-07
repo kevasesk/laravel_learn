@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    Products Form
+    Products
 @endsection
 
 @section('content')
@@ -37,6 +37,16 @@
                        <select name="is_in_stock" class="select2 form-select shadow-none">
                            <option value="1" {{ $product->is_in_stock ? 'selected': '' }}>Yes</option>
                            <option value="0" {{ !$product->is_in_stock ? 'selected': '' }}>No</option>
+                       </select>
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label>Categories</label>
+                   <div class="col-md-9">
+                       <select name="categories[]" class="categories-select form-select shadow-none">
+                           @foreach($categories as $category)
+                               <option value="{{$category['id']}}" >{{$category['title']}}</option>
+                           @endforeach
                        </select>
                    </div>
                </div>
@@ -109,6 +119,9 @@
            </div>
            <script>
                $(".select2").select2();
+
+               $(".categories-select").select2({multiple: true});
+               $(".categories-select").val({{$product->getCategoryIds()}}).trigger('change');
 
                ClassicEditor.create( document.querySelector( '#desc' ) )
                ClassicEditor.create( document.querySelector( '#short_desc' ) )

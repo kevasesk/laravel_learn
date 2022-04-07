@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class MainController extends Controller
 {
     public function index()
     {
@@ -26,6 +27,12 @@ class PageController extends Controller
         $product = Product::query()->where('url', '=', $url)->first();
         if($product){
             return view('product.view', compact('product'));
+        }
+
+        #Search in categories
+        $category = Category::query()->where('url', '=', $url)->first();
+        if($category){
+            return view('category.view', compact('category'));
         }
 
         return abort(404);

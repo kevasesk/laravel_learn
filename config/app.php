@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\Menu\MenuServiceProvider::class,
         App\Providers\Menu\AdminMenuServiceProvider::class,
+        App\Providers\CategoriesServiceProvider::class,
 
     ],
 

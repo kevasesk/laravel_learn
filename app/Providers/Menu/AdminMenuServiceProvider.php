@@ -30,6 +30,11 @@ class AdminMenuServiceProvider extends ServiceProvider
                     'url' => 'products',
                     'icon' => 'mdi-laptop'
                 ],
+                [
+                    'title' => 'Categories',
+                    'url' => 'categories',
+                    'icon' => 'mdi-receipt'
+                ],
             ]);
         });
     }
