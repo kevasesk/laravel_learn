@@ -65,7 +65,7 @@ class ProductsController extends Controller
         }
 
         if($request->file('thumbnail')){
-            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
+            $thumbnailPath = $request->file('thumbnail')->store('products', 'public');
         }else{
             $thumbnailPath = $product->thumbnail;
         }

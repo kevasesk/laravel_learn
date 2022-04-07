@@ -41,6 +41,25 @@
 
 -------------------------------------
 
-- add new column in migration - how to migrate only that
 -create 404 for admin style
+-pagination
+-breadcrumps
+-blog:
+    +posts
+    -categories
+    -cat_posts
+    -comments?
+-cart
+-checkout
+-coupons
+-home page blocks
+-maintenance page
+-contact us form
+-product panel editor
+-menu customizer
+-media customizer for admin
+-customer
+-wishlist
+-search products|posts|categories
+-newsletter
 

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="card">
-       <form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
+       <form method="POST" action="{{ route('admin.blog.posts.store') }}" enctype="multipart/form-data">
            @csrf
            <input type="hidden" name="id" value="{{ $post->id }}"/>
            <div class="card-body">
@@ -52,7 +52,7 @@
                        Save
                    </button>
                    <button type="button" class="btn btn-danger text-white"
-                           onclick="window.location='{{ route("admin.posts.index") }}'"
+                           onclick="window.location='{{ route("admin.blog.posts.index") }}'"
                    >
                        Cancel
                    </button>

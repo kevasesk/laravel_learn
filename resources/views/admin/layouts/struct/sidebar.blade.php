@@ -10,12 +10,24 @@
                 @foreach($adminMenu as $item)
                     <li class="sidebar-item">
                         <a
-                            class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ '/admin/' . $item['url'] }}"
+                            class="sidebar-link waves-effect waves-dark sidebar-link {{isset($item['children']) ? 'has-arrow' : ''}}"
+                            href="{{ $item['url'] ?? '#' }}"
                             aria-expanded="false"
                         ><i class="mdi {{ isset($item['icon']) ? $item['icon'] : 'mdi-view-dashboard'}}"></i
                             ><span class="hide-menu">{{ $item['title'] }}</span></a
                         >
+                        @isset($item['children'])
+                            <ul aria-expanded="false" class="collapse first-level">
+                                @foreach($item['children'] as $child)
+                                    <li class="sidebar-item">
+                                        <a href="{{$child['url']}}" class="sidebar-link">
+                                            <i class="mdi mdi-note-outline"></i>
+                                            <span class="hide-menu">{{$child['title']}}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endisset
                     </li>
                 @endforeach
 

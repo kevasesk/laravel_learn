@@ -13,26 +13,37 @@ class AdminMenuServiceProvider extends ServiceProvider
             $view->with('adminMenu', [
                 [
                     'title' => 'Dashboard',
-                    'url' => 'dashboard',
+                    'url' => '/admin/dashboard',
                 ],
                 [
                     'title' => 'Blog',
-                    'url' => 'posts',
-                    'icon' => 'mdi-newspaper'
+                    'icon' => 'mdi-newspaper',
+                    'children' => [
+                        [
+                            'title' => 'Posts',
+                            'url' => '/admin/blog/posts',
+                            'icon' => 'mdi-book-open-page-variant'
+                        ],
+                        [
+                            'title' => 'Categories',
+                            'url' => '/admin/blog/categories',
+                            'icon' => 'mdi-book-open-page-variant'
+                        ],
+                    ]
                 ],
                 [
                     'title' => 'Pages',
-                    'url' => 'pages',
+                    'url' => '/admin/pages',
                     'icon' => 'mdi-book-open-page-variant'
                 ],
                 [
                     'title' => 'Products',
-                    'url' => 'products',
+                    'url' => '/admin/products',
                     'icon' => 'mdi-laptop'
                 ],
                 [
                     'title' => 'Categories',
-                    'url' => 'categories',
+                    'url' => '/admin/categories',
                     'icon' => 'mdi-receipt'
                 ],
             ]);

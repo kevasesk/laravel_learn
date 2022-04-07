@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class PostsController extends Controller
 
         $posts = Post::all();
 
-        return view('admin.posts.index',[
+        return view('admin.blog.posts.index',[
             'columns' => $columns,
             'posts' => $posts
         ]);
@@ -35,7 +35,7 @@ class PostsController extends Controller
     public function create()
     {
         $post = new Post();
-        return view('admin.posts.create', compact('post'));
+        return view('admin.blog.posts.create', compact('post'));
     }
 
     /**
@@ -72,18 +72,7 @@ class PostsController extends Controller
         $post->is_active = $request->is_active;
         $post->thumbnail = $thumbnailPath;
         $post->save();
-        return redirect()->route('admin.posts.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.blog.posts.index');
     }
 
     /**
@@ -95,7 +84,7 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::query()->where('id','=', $id)->first();
-        return view('admin.posts.create', compact('post'));
+        return view('admin.blog.posts.create', compact('post'));
     }
 
     /**
@@ -108,7 +97,7 @@ class PostsController extends Controller
     {
         $post = Post::query()->where('id','=', $id)->first();
         $post->delete();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.blog.posts.index');
 
     }
     public function send()

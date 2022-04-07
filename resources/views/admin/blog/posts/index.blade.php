@@ -9,8 +9,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card" style="display: grid;justify-items: end;">
-                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.posts.create") }}'" >New</button>
+                    <div class="card">
+                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route("admin.blog.posts.create") }}'" >New</button>
                     </div>
                     <div class="table-responsive">
                         <table
@@ -38,10 +38,10 @@
                                             <img src="{{ asset('storage/'.$post['thumbnail']) }}" alt="no img" width="100" height="100"/>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.posts.edit',['id' => $post['id']]) }}">Edit</a>
+                                            <a href="{{ route('admin.blog.posts.edit',['id' => $post['id']]) }}">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.posts.destroy',['id' => $post['id']]) }}">Delete</a>
+                                            <a href="{{ route('admin.blog.posts.destroy',['id' => $post['id']]) }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

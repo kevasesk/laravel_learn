@@ -34,7 +34,7 @@ class CategoriesServiceProvider extends ServiceProvider
                     'title' => $category->title
                 ];
             }
-            $view->with('categories', $result);
+            $view->with('product_categories_all', $result);
         });
     }
 }

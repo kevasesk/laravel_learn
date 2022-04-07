@@ -44,7 +44,7 @@
                    <label>Categories</label>
                    <div class="col-md-9">
                        <select name="categories[]" class="categories-select form-select shadow-none">
-                           @foreach($categories as $category)
+                           @foreach($product_categories_all as $category)
                                <option value="{{$category['id']}}" >{{$category['title']}}</option>
                            @endforeach
                        </select>

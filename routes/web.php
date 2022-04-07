@@ -5,7 +5,9 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RecaptchaController;
 
-use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\Blog\PostsController;
+use App\Http\Controllers\Admin\Blog\CategoriesController as BlogCategoriesController;
+
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoriesController;
@@ -32,13 +34,23 @@ Route::get('admin/register', [AdminController::class, 'register']);
 Route::post('admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
-#Admin Posts
+#Admin Blog
 Route::middleware(['admin.auth'])->group(function () {
-    Route::get('admin/posts', [PostsController::class, 'index'])->name('admin.posts.index');
-    Route::get('admin/posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
-    Route::get('admin/posts/edit/{id}', [PostsController::class, 'edit'])->name('admin.posts.edit');
-    Route::get('admin/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('admin.posts.destroy');
-    Route::post('admin/posts/store', [PostsController::class, 'store'])->name('admin.posts.store');
+    #Admin Posts
+    Route::get('admin/blog/posts', [PostsController::class, 'index'])->name('admin.blog.posts.index');
+    Route::get('admin/blog/posts/create', [PostsController::class, 'create'])->name('admin.blog.posts.create');
+    Route::get('admin/blog/posts/edit/{id}', [PostsController::class, 'edit'])->name('admin.blog.posts.edit');
+    Route::get('admin/blog/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('admin.blog.posts.destroy');
+    Route::post('admin/blog/posts/store', [PostsController::class, 'store'])->name('admin.blog.posts.store');
+
+    #Admin Categories
+    $categoriesRoutes = new \App\Routes\Blog\CategoriesRoutes();
+    $categoriesRoutes->routes();
+//    Route::get('admin/blog/categories', [BlogCategoriesController::class, 'index'])->name('admin.blog.categories.index');
+//    Route::get('admin/blog/categories/create', [BlogCategoriesController::class, 'create'])->name('admin.blog.categories.create');
+//    Route::get('admin/blog/categories/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('admin.blog.categories.edit');
+//    Route::get('admin/blog/categories/destroy/{id}', [BlogCategoriesController::class, 'destroy'])->name('admin.blog.categories.destroy');
+//    Route::post('admin/blog/categories/store', [BlogCategoriesController::class, 'store'])->name('admin.blog.categories.store');
 });
 
 #Admin Pages
