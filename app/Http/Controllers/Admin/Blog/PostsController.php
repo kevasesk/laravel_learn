@@ -2,108 +2,42 @@
 
 namespace App\Http\Controllers\Admin\Blog;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Http\Controllers\Admin\CrudController;
 
-class PostsController extends Controller
+class PostsController extends CrudController
 {
-    public function index()
-    {
-        $columns = [
-            'Id',
-            'Is Active',
-            'Title',
-            'Url',
-            'Desc',
-            'Thumbnail',
-        ];
+    protected $modelClass = \App\Models\Post::class;
 
-        $posts = Post::all();
+    protected $routeClass = \App\Routes\Blog\PostsRoutes::class;
 
-        return view('admin.blog.posts.index',[
-            'columns' => $columns,
-            'posts' => $posts
-        ]);
-    }
+    protected $modelTitle = 'Blog Posts';
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $post = new Post();
-        return view('admin.blog.posts.create', compact('post'));
-    }
+    protected $columns = [
+        [ 'column' => 'id', 'title' => 'Id'],
+        [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
+        [ 'column' => 'title', 'title' => 'Title' ],
+        [ 'column' => 'url', 'title' => 'Url' ],
+        [ 'column' => 'desc', 'title' => 'Description', 'type' => 'text' ],
+        [ 'column' => 'thumbnail', 'title' => 'Thumbnail', 'type' => 'image' ],
+        [ 'column' => 'categories', 'title' => 'Categories', 'type' => 'relation', 'hidden' => true, 'all' =>  [
+            ['id' => 1, 'title' => 'cat1'],
+            ['id' => 2, 'title' => 'cat2'],
+            ['id' => 3, 'title' => 'cat3'],
+        ]],
+    ];
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'is_active' => 'required',
-            'thumbnail' => 'image|max:20000',
-        ]);
+    protected $validateRules = [
+        'title' => 'required',
+        'url' => 'required',
+        'is_active' => 'required',
+        'thumbnail' => 'image|max:20000',
+    ];
 
-        if(!$request->id){
-            $post = new Post();
-        }else{
-            $post = Post::query()->where('id','=', $request->id)->first();
-        }
+    protected $fileAttributes = [
+        'thumbnail'
+    ];
 
-        if($request->file('thumbnail')){
-            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
-        }else{
-            $thumbnailPath = $post->thumbnail;
-        }
+    protected $fileDir = 'blog/posts';
 
-
-        $post->title = $request->title;
-        $post->desc = $request->desc ?? '' ;
-        $post->url = $request->url;
-        $post->is_active = $request->is_active;
-        $post->thumbnail = $thumbnailPath;
-        $post->save();
-        return redirect()->route('admin.blog.posts.index');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $post = Post::query()->where('id','=', $id)->first();
-        return view('admin.blog.posts.create', compact('post'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $post = Post::query()->where('id','=', $id)->first();
-        $post->delete();
-        return redirect()->route('admin.blog.posts.index');
-
-    }
-    public function send()
-    {
-        $post = Post::query()->where('id','=',5)->first();
-        \Illuminate\Support\Facades\Mail::to('to@example.com')->send(new \App\Mail\Test($post));
-
-    }
+    protected $relations = 'categories';
 }

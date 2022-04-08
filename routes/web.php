@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Blog\CategoriesController as BlogCategoriesContro
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\ContactUsController;
 
 use Illuminate\Support\Facades\App;
 
@@ -37,20 +39,12 @@ Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin'
 #Admin Blog
 Route::middleware(['admin.auth'])->group(function () {
     #Admin Posts
-    Route::get('admin/blog/posts', [PostsController::class, 'index'])->name('admin.blog.posts.index');
-    Route::get('admin/blog/posts/create', [PostsController::class, 'create'])->name('admin.blog.posts.create');
-    Route::get('admin/blog/posts/edit/{id}', [PostsController::class, 'edit'])->name('admin.blog.posts.edit');
-    Route::get('admin/blog/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('admin.blog.posts.destroy');
-    Route::post('admin/blog/posts/store', [PostsController::class, 'store'])->name('admin.blog.posts.store');
+    $posts = new \App\Routes\Blog\PostsRoutes();
+    $posts->routes();
 
     #Admin Categories
     $categoriesRoutes = new \App\Routes\Blog\CategoriesRoutes();
     $categoriesRoutes->routes();
-//    Route::get('admin/blog/categories', [BlogCategoriesController::class, 'index'])->name('admin.blog.categories.index');
-//    Route::get('admin/blog/categories/create', [BlogCategoriesController::class, 'create'])->name('admin.blog.categories.create');
-//    Route::get('admin/blog/categories/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('admin.blog.categories.edit');
-//    Route::get('admin/blog/categories/destroy/{id}', [BlogCategoriesController::class, 'destroy'])->name('admin.blog.categories.destroy');
-//    Route::post('admin/blog/categories/store', [BlogCategoriesController::class, 'store'])->name('admin.blog.categories.store');
 });
 
 #Admin Pages
@@ -87,14 +81,22 @@ Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText'
 Route::get('recaptcha', [RecaptchaController::class, 'index']);
 Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('recaptcha.sended');
 
-#Cms
-Route::get('{url}', [MainController::class, 'show']);
-Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 #language switcher
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+#Blog
+Route::get('blog', [BlogController::class, 'index']);
+
+Route::get('contact-us', [ContactUsController::class, 'index']);
+Route::get('contact-us/send', [ContactUsController::class, 'send']);
+
+#Cms
+Route::get('{url}', [MainController::class, 'show']);
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 

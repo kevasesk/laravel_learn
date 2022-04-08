@@ -16,4 +16,9 @@ class BlogCategory extends Model
         'desc',
         'thumbnail',
     ];
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'blog_category_posts');
+    }
 }

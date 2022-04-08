@@ -75,10 +75,10 @@ class CrudController extends Controller
             }
             $entity->{$fileAttribute} = $filePath;
         }
-        if($this->relations){
-            $entity->products()->detach();
-            $entity->products()->attach($data[$this->relations]);
-        }
+//        if($this->relations){
+//            $entity->{$this->relations}()->detach();
+//            $entity->{$this->relations}()->attach($data[$this->relations]);
+//        }
 
         $entity->save();
         return redirect()->route($route->routeSuffixName.'.list');

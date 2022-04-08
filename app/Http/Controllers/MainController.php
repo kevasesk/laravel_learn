@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Post;
+
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -33,6 +35,12 @@ class MainController extends Controller
         $category = Category::query()->where('url', '=', $url)->first();
         if($category){
             return view('category.view', compact('category'));
+        }
+
+        #Search in blog posts
+        $post = Post::query()->where('url', '=', $url)->first();
+        if($post){
+            return view('blog.post.view', compact('post'));
         }
 
         return abort(404);

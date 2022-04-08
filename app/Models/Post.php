@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'is_active',
+        'title',
+        'url',
+        'desc',
+        'thumbnail',
+    ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(BlogCategory::class, 'blog_category_posts', 'post_id', 'post_id');
+    }
+    public function getImage($width, $height)
+    {
+        return $this->thumbnail ? asset('storage/'.$this->thumbnail) : "https://picsum.photos/$width/$height?".uniqid();
+    }
 }

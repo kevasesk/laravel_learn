@@ -50,10 +50,14 @@ class MenuServiceProvider extends ServiceProvider
                     'title' => 'About Us',
                     'url' => '/about-us',
                 ],
-//                [
-//                    'title' => 'Pages',
-//                    'url' => '/page/list',
-//                ],
+                [
+                    'title' => 'Blog',
+                    'url' => '/blog',
+                ],
+                [
+                    'title' => 'Contact Us',
+                    'url' => '/contact-us',
+                ],
 //                [
 //                    'title' => 'Recaptcha',
 //                    'url' => '/recaptcha',

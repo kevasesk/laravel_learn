@@ -34,5 +34,5 @@ class CategoriesController extends CrudController
 
     protected $fileDir = 'blog/categories';
 
-//    protected $relations = 'posts';
+    protected $relations = 'posts';
 }

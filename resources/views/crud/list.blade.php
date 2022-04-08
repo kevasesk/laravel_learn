@@ -20,6 +20,7 @@
                             <thead>
                                 <tr>
                                     @foreach($columns as $column)
+                                        @continue(isset($column['hidden']) && $column['hidden'])
                                         <th>{{$column['title']}}</th>
                                     @endforeach
                                     <th>Edit</th>
@@ -30,6 +31,7 @@
                                 @foreach($entities as $entity)
                                     <tr>
                                         @foreach($columns as $column)
+                                            @continue(isset($column['hidden']) && $column['hidden'])
                                             @if(!isset($column['type']))
                                                 <td>{{$entity[$column['column']]}}</td>
                                             @elseif($column['type'] == 'boolean')
