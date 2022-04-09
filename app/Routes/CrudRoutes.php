@@ -12,6 +12,11 @@ class CrudRoutes
 
     public $routeSuffixName = '';
 
+    public function __construct()
+    {
+        $this->routes();
+    }
+
     public function routes()
     {
         Route::get($this->routeSuffix, [$this->crudControllerClass, 'index'])->name($this->routeSuffixName.'.list');

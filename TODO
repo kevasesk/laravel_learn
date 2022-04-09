@@ -42,12 +42,14 @@
 -------------------------------------
 
 view new:
--cart
+-+cart:
+    -remove empty cart from lost session
 -checkout
--contact us form
 -customer
 -wishlist
 -search products|posts|categories
+
+- global messages for actions
 
 
 -pagination

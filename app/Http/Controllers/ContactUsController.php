@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Page;
-use App\Models\Product;
-use App\Models\Post;
+use App\Models\Ticket;
 
 use Illuminate\Http\Request;
 
@@ -17,6 +14,16 @@ class ContactUsController extends Controller
     }
     public function send(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'fullname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
+        ]);
+        $data = $request->all();
+        $ticket = new Ticket($data);
+        $ticket->save();
+        return redirect()->route('contact-us');
+
     }
 }

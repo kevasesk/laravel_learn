@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\ContactUsController;
 
+use App\Http\Controllers\CartController;
+
 use Illuminate\Support\Facades\App;
 
 /*
@@ -38,13 +40,8 @@ Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin'
 
 #Admin Blog
 Route::middleware(['admin.auth'])->group(function () {
-    #Admin Posts
-    $posts = new \App\Routes\Blog\PostsRoutes();
-    $posts->routes();
-
-    #Admin Categories
-    $categoriesRoutes = new \App\Routes\Blog\CategoriesRoutes();
-    $categoriesRoutes->routes();
+    new \App\Routes\Blog\PostsRoutes();
+    new \App\Routes\Blog\CategoriesRoutes();
 });
 
 #Admin Pages
@@ -91,8 +88,18 @@ Route::get('language/{locale}', function ($locale) {
 #Blog
 Route::get('blog', [BlogController::class, 'index']);
 
-Route::get('contact-us', [ContactUsController::class, 'index']);
+Route::get('contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 Route::get('contact-us/send', [ContactUsController::class, 'send']);
+
+#Cart
+Route::get('cart', [CartController::class, 'index'])->name('cart');
+Route::get('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('cart/back', [CartController::class, 'back'])->name('cart.back');
+Route::get('cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('cart/success', [CartController::class, 'success'])->name('cart.success');
+Route::get('cart/coupon/add/{id}', [CartController::class, 'couponAdd'])->name('cart.coupon.add');
+
 
 #Cms
 Route::get('{url}', [MainController::class, 'show']);

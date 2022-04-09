@@ -29,6 +29,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_products');
     }
+
+    public function cartItems()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_item', 'product_id', 'product_id');
+    }
+
     public function getCategoryIds()
     {
         $ids = [];
@@ -58,5 +64,9 @@ class Product extends Model
             }
         }
         return $status;
+    }
+    public function getImage($width = 100, $height = 50)
+    {
+        return $this->thumbnail ? asset('storage/'.$this->thumbnail) : "https://picsum.photos/$width/$height?".uniqid();
     }
 }

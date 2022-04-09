@@ -54,20 +54,23 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
-                                        <strong>Name</strong>
+                                        <strong>Name *</strong>
                                         <input type="text" name="fullname" class="form-control" value="">
+                                        <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                                     </div>
                                     <div class="col-md-6 col-xs-12">
                                         <strong>Email *</strong>
                                         <input type="text" name="email" class="form-control" value="">
+                                        <span class="text-danger">@error('email'){{$message}}@enderror</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
-                                        <strong>Phone Number</strong>
+                                        <strong>Phone Number *</strong>
                                         <input type="text" name="phone" class="form-control" value="">
+                                        <span class="text-danger">@error('phone'){{$message}}@enderror</span>
                                     </div>
                                     <div class="col-md-6 col-xs-12">
                                         <strong>Subject</strong>
@@ -78,12 +81,13 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <strong>Your Message</strong>
+                                        <strong>Your Message *</strong>
                                         <textarea name="message" id="message" tabindex="2" class="form-control"></textarea>
+                                        <span class="text-danger">@error('message'){{$message}}@enderror</span>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn-send-message">SEND MESSENGE</button>
+                            <button type="submit" class="btn-send-message">SEND MESSAGE</button>
                         </form>
                     </div>
                     <div class="col-md-6">

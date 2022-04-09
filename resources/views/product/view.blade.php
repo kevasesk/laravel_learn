@@ -47,7 +47,7 @@
                                     </div>
                                 </form>
                                 <div class="button-ver2">
-                                    <a href="#" class="link-ver1 addcart-ver2"><span class="icon"></span>ADD TO CART</a>
+                                    <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="link-ver1 addcart-ver2"><span class="icon"></span>ADD TO CART</a>
                                     <a href="#" class="link-ver1 addcart-ver2"><span class="icon"></span>ADD TO wishlist</a>
                                 </div>
                             </div>
