@@ -23,11 +23,11 @@ class ProductsController extends Controller
         ];
 
         $products = Product::all();
+        $breadcrumbs = [
+            ['url' => 'admin/products', 'title' => 'Products']
+        ];
 
-        return view('admin.products.list',[
-            'columns' => $columns,
-            'products' => $products
-        ]);
+        return view('admin.products.list', compact('columns', 'products', 'breadcrumbs'));
     }
 
     /**
@@ -85,7 +85,11 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::query()->where('id','=', $id)->first();
-        return view('admin.products.create', compact('product'));
+        $breadcrumbs = [
+            ['url' => 'admin/products', 'title' => 'Products'],
+            ['title' => $product->title],
+        ];
+        return view('admin.products.create', compact('product', 'breadcrumbs'));
     }
 
     /**

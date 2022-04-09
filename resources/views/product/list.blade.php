@@ -7,7 +7,7 @@
             @include('product.list.filter-header')
             <div class="product-list">
                 <div class="product-list grid_full grid_sidebar grid-uniform">
-                    @foreach($category->products as $product)
+                    @foreach($products as $product)
                         <div class="product-list-item">
                             @if($product->thumbnail)
                                 <div class="product-item-img">
@@ -31,17 +31,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="product-pagination">
-                    <ul class="pagination">
-                        <li><a href="#"><i class="ion-chevron-left"></i></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#"><i class="ion-chevron-right"></i></a></li>
-                    </ul>
-                </div>
+                {{$products->links('layouts.struct.paginator')}}
             </div>
         </div>
     </div>

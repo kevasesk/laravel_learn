@@ -8,7 +8,7 @@ class BlogController extends \App\Http\Controllers\Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::query()->paginate(6);
         $page = ['title' => 'Blog'];
         return view('blog.index', compact('posts', 'page'));
     }

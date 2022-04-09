@@ -4,7 +4,16 @@
     <body>
         @include('layouts.struct.modal')
         @include('layouts.struct.header')
-        @yield('content', 'No content specified')
+        <section>
+            <div class="container">
+                <div class="heading-sub">
+                    <h3 class="pull-left">@yield('title', 'Page')</h3>
+                    @include('layouts.struct.breadcrumbs')
+                    <div class="clearfix"></div>
+                </div>
+                @yield('content', 'No content specified')
+            </div>
+        </section>
         @include('layouts.features')
         @include('layouts.struct.footer')
         @include('layouts.struct.js')

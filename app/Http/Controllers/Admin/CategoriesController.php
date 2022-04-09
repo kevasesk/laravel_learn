@@ -21,9 +21,14 @@ class CategoriesController extends Controller
 
         $entities = Category::all();
 
+        $breadcrumbs = [
+            ['url' => 'admin/categories', 'title' => 'Categories'],
+        ];
+
         return view('admin.categories.list',[
             'columns' => $columns,
-            'entities' => $entities
+            'entities' => $entities,
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 
@@ -35,7 +40,10 @@ class CategoriesController extends Controller
     public function create()
     {
         $entity = new Category();
-        return view('admin.categories.create', compact('entity'));
+        $breadcrumbs = [
+            ['url' => 'admin/categories', 'title' => 'Categories'],
+        ];
+        return view('admin.categories.create', compact('entity', 'breadcrumbs'));
     }
 
     /**
@@ -82,7 +90,11 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $entity = Category::query()->where('id','=', $id)->first();
-        return view('admin.categories.create', compact('entity'));
+        $breadcrumbs = [
+            ['url' => 'admin/categories', 'title' => 'Categories'],
+            [ 'title' => $entity->title],
+        ];
+        return view('admin.categories.create', compact('entity', 'breadcrumbs'));
     }
 
     /**

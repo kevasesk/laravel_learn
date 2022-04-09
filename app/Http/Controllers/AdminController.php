@@ -18,6 +18,9 @@ class AdminController extends Controller
             $data = [
                 'name' => $admin->name,
                 'email' => $admin->email,
+                'breadcrumbs' => [
+                    ['url' => 'breadcrumbs', 'title' => 'Dashboard']
+                ],
             ];
         }
         return view('admin.dashboard', $data);

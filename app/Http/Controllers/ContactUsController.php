@@ -10,7 +10,7 @@ class ContactUsController extends Controller
 {
     public function index()
     {
-        return view('page.contact-us');
+        return view('page.contact-us', ['page' => ['title' => 'Contact Us']]);
     }
     public function send(Request $request)
     {

@@ -36,11 +36,16 @@ class CrudController extends Controller
         $entities = $this->modelClass::all();
         $route = new $this->routeClass();
 
+        $breadcrumbs = [
+            ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
+        ];
+
         return view('crud.list',[
             'columns' => $this->columns,
             'entities' => $entities,
             'title' => $this->modelTitle,
-            'routeSuffix' => $route->routeSuffixName
+            'routeSuffix' => $route->routeSuffixName,
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 
@@ -51,7 +56,10 @@ class CrudController extends Controller
         $title = $this->modelTitle;
         $columns = $this->columns;
         $routeSuffix = $route->routeSuffixName;
-        return view('crud.create', compact('entity', 'title','columns', 'routeSuffix'));
+        $breadcrumbs = [
+            ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
+        ];
+        return view('crud.create', compact('entity', 'title','columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function store(Request $request)
@@ -91,7 +99,11 @@ class CrudController extends Controller
         $entity = $this->modelClass::query()->where('id','=', $id)->first();
         $title = $this->modelTitle;
         $routeSuffix = $route->routeSuffixName;
-        return view('crud.create', compact('entity', 'title', 'columns', 'routeSuffix'));
+        $breadcrumbs = [
+            ['url' => $route->routeSuffix, 'title' => $this->modelTitle],
+            ['title' => $entity->title]
+        ];
+        return view('crud.create', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function destroy($id)

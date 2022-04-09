@@ -20,9 +20,14 @@ class PagesController extends Controller
 
         $pages = Page::all();
 
+        $breadcrumbs = [
+            ['url' => 'admin/pages', 'title' => 'Pages']
+        ];
+
         return view('admin.pages.index',[
             'columns' => $columns,
-            'pages' => $pages
+            'pages' => $pages,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -34,7 +39,10 @@ class PagesController extends Controller
     public function create()
     {
         $page = new Page();
-        return view('admin.pages.create', compact('page'));
+        $breadcrumbs = [
+            ['url' => 'admin/pages', 'title' => 'Pages']
+        ];
+        return view('admin.pages.create', compact('page', 'breadcrumbs'));
     }
 
     /**
@@ -66,17 +74,6 @@ class PagesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -85,7 +82,11 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Page::query()->where('id','=', $id)->first();
-        return view('admin.pages.create', compact('page'));
+        $breadcrumbs = [
+            ['url' => 'admin/pages', 'title' => 'Pages'],
+            ['title' => $page->title],
+        ];
+        return view('admin.pages.create', compact('page', 'breadcrumbs'));
     }
 
     /**
