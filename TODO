@@ -41,15 +41,11 @@
 -------------------------------------
 
 view new:
--+cart:
-    -remove empty cart from lost session
+-+cart: -remove empty cart from lost session
 -checkout
 -search products|posts|categories(elastic)
--global messages for actions
 -menu customizer
-
--blog:
-    -comments?
+-blog: -comments?
 
 -----------------------
 - import categories and products from kiril data

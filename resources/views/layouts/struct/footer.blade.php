@@ -51,13 +51,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <h3>Newsletter</h3>
-                    <p class="news-desc">Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et.</p>
-                    <form action="{{ route('subscriber.new') }}" class="news-letter-form" method="POST">
-                        @csrf
-                        <input type="text" name="email" class="form-control" placeholder="Enter your e-mail">
-                        <button type="submit" class="btnsub">Subscribe</button>
-                    </form>
+                    @include('layouts.struct.subscriber')
                     <h3 class="titles">FIND US ON:</h3>
                     <ul class="social">
                         <li><a href="#"><i class="ion-social-facebook fa-3" aria-hidden="true"></i></a></li>
