@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    {{ $page['title'] }}
+    {{env('APP_NAME')}}
 @endsection
 
 @section('content')
@@ -55,13 +55,15 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="sub-banner">
-                                <a href="#"><img src="img/banner/banner-2.jpg" alt="images" class="img-reponsive"></a>
+                                <a href="{{$images['home-page-top-left']['url']}}">
+                                    <img src="{{ asset('storage/'.$images['home-page-top-left']['image']) }}" alt="images" class="img-reponsive">
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="sub-banner">
-                                <a href="#"><img src="img/banner/banner-3.jpg" alt="images" class="img-reponsive"></a>
-                            </div>
+                            <a href="{{$images['home-page-top-right']['url']}}">
+                                <img src="{{ asset('storage/'.$images['home-page-top-right']['image']) }}" alt="images" class="img-reponsive">
+                            </a>
                         </div>
                     </div>
                 </div>

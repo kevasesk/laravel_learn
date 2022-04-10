@@ -21,7 +21,7 @@
                                 @foreach($item['children'] as $child)
                                     <li class="sidebar-item">
                                         <a href="{{$child['url']}}" class="sidebar-link">
-                                            <i class="mdi mdi-note-outline"></i>
+                                            <i class="mdi {{ isset($child['icon']) ? $child['icon'] : 'mdi-note-outline'}}"></i>
                                             <span class="hide-menu">{{$child['title']}}</span>
                                         </a>
                                     </li>

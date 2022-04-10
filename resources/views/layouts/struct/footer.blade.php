@@ -53,8 +53,9 @@
                 <div class="col-md-4 col-xs-12">
                     <h3>Newsletter</h3>
                     <p class="news-desc">Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et.</p>
-                    <form action="#" class="news-letter-form">
-                        <input type="text" name="e" class="form-control" placeholder="Enter your e-mail">
+                    <form action="{{ route('subscriber.new') }}" class="news-letter-form" method="POST">
+                        @csrf
+                        <input type="text" name="email" class="form-control" placeholder="Enter your e-mail">
                         <button type="submit" class="btnsub">Subscribe</button>
                     </form>
                     <h3 class="titles">FIND US ON:</h3>

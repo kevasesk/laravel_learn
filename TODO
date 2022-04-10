@@ -33,7 +33,6 @@
 -elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
 -image resize
 
-- api routes?
 - channels.php
 
 - search on freelance sites for more to learn
@@ -45,19 +44,13 @@ view new:
 -+cart:
     -remove empty cart from lost session
 -checkout
--customer add crud to admin
--search products|posts|categories
-
-- global messages for actions
-
-
-
--home page blocks
--product panel editor
+-search products|posts|categories(elastic)
+-global messages for actions
 -menu customizer
--newsletter
-- url unique in all site system
 
 -blog:
     -comments?
+
+-----------------------
+- import categories and products from kiril data
 

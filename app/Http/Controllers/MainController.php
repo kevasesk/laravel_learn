@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Post;
+use App\Models\ImageBlock;
 
 use Illuminate\Http\Request;
 
@@ -13,8 +14,12 @@ class MainController extends Controller
 {
     public function index()
     {
-        $page = Page::query()->where('id', '=', 1)->first();
-        return view('page.home', compact('page'));
+        $imageBlocks = ImageBlock::all();
+        $images = [];
+        foreach ($imageBlocks as $imageBlock){
+            $images[$imageBlock['key']] = $imageBlock;
+        }
+        return view('page.home', compact('images'));
     }
 
     public function show($url)

@@ -101,7 +101,7 @@ class CrudController extends Controller
         $routeSuffix = $route->routeSuffixName;
         $breadcrumbs = [
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle],
-            ['title' => $entity->title]
+            ['title' => $entity->title ?? $entity->firstname]
         ];
         return view('crud.create', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
     }

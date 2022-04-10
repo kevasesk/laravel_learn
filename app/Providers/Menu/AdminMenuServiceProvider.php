@@ -16,6 +16,24 @@ class AdminMenuServiceProvider extends ServiceProvider
                     'url' => '/admin/dashboard',
                 ],
                 [
+                    'title' => 'Customers',
+                    'url' => '/admin/customers',
+                    'icon' => 'mdi-account'
+                ],
+                [
+                    'title' => 'Pages',
+                    'url' => '/admin/pages',
+                    'icon' => 'mdi-book-open-page-variant'
+                ],
+                [
+                    'title' => 'Image Blocks',
+                    'url' => '/admin/image_blocks',
+                ],
+                [
+                    'title' => 'Subscribers',
+                    'url' => '/admin/subscribers',
+                ],
+                [
                     'title' => 'Blog',
                     'icon' => 'mdi-newspaper',
                     'children' => [
@@ -31,21 +49,24 @@ class AdminMenuServiceProvider extends ServiceProvider
                         ],
                     ]
                 ],
+
                 [
-                    'title' => 'Pages',
-                    'url' => '/admin/pages',
-                    'icon' => 'mdi-book-open-page-variant'
+                    'title' => 'Catalog',
+                    'icon' => 'mdi-laptop',
+                    'children' => [
+                        [
+                            'title' => 'Products',
+                            'url' => '/admin/products',
+                            'icon' => 'mdi-laptop'
+                        ],
+                        [
+                            'title' => 'Categories',
+                            'url' => '/admin/categories',
+                            'icon' => 'mdi-receipt'
+                        ],
+                    ]
                 ],
-                [
-                    'title' => 'Products',
-                    'url' => '/admin/products',
-                    'icon' => 'mdi-laptop'
-                ],
-                [
-                    'title' => 'Categories',
-                    'url' => '/admin/categories',
-                    'icon' => 'mdi-receipt'
-                ],
+
             ]);
         });
     }

@@ -16,6 +16,7 @@ use App\Http\Controllers\ContactUsController;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SubscriberController;
 
 use Illuminate\Support\Facades\App;
 
@@ -39,11 +40,15 @@ Route::get('admin/register', [AdminController::class, 'register']);
 Route::post('admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
-#Admin Blog
 Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\Blog\PostsRoutes();
     new \App\Routes\Blog\CategoriesRoutes();
+    new \App\Routes\CustomersRoutes();
+    new \App\Routes\ImageBlockRoutes();
+    new \App\Routes\SubscribersRoutes();
 });
+
+//TODO remake to abstract crud entities
 
 #Admin Pages
 Route::middleware(['admin.auth'])->group(function () {
@@ -89,6 +94,7 @@ Route::get('language/{locale}', function ($locale) {
 #Blog
 Route::get('blog', [BlogController::class, 'index']);
 
+#Contact us
 Route::get('contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 Route::get('contact-us/send', [ContactUsController::class, 'send']);
 
@@ -109,10 +115,13 @@ Route::post('customer/create', [CustomerController::class, 'create'])->name('cus
 Route::post('customer/auth', [CustomerController::class, 'auth'])->name('customer.auth');
 Route::get('customer/logout', [CustomerController::class, 'logout'])->name('customer.logout');
 
+#Subscriber // TODO add recaptcha
+Route::post('subscriber/new', [SubscriberController::class, 'new'])->name('subscriber.new');
+
+
 
 #Cms
 Route::get('{url}', [MainController::class, 'show']);
-Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 

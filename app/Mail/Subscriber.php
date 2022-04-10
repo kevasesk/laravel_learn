@@ -3,17 +3,18 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-use App\Models\Post;
+use App\Models\Subscriber as SubscriberModel;
 
-class Test extends Mailable
+class Subscriber extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $post;
+    public $subscriber;
+
+    public $type;
 
     /**
      * Create a new message instance.
@@ -21,10 +22,11 @@ class Test extends Mailable
      * @return void
      */
     public function __construct(
-    //    Post $post
-    )
-    {
-        //$this->post = $post;
+        SubscriberModel $subscriber,
+        string $type = 'welcome'
+    ) {
+        $this->subscriber = $subscriber;
+        $this->type = $type;
     }
 
     /**
@@ -35,8 +37,10 @@ class Test extends Mailable
     public function build()
     {
         return $this
-            ->from('post@example.com', 'Post sender')
-            ->view('emails.test')
+            ->from('post@example.com', 'Welcome')
+            ->view('emails.subscriber.'.$this->type, [
+                'subscriber' => $this->subscriber
+            ])
             //->attach(storage_path('app/public/'). $this->post->thumbnail)//TODO learn all methods, not only direct path
         ;
     }
