@@ -52,12 +52,20 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="right-nav">
                         <ul>
-                            <li><a href="{{ url('/language/ru') }}">ru</a></li>
-                            <li><a href="{{ url('/language/en') }}">en</a></li>
-                            <li><a href="#"><i class="ion-ios-heart fa-1a" aria-hidden="true"></i>{{ __('messages.wishlist') }}</a></li>
-                            <li><a href="#"><i class="ion-arrow-swap fa-1a" aria-hidden="true"></i>compare</a></li>
-                            <li><a href="#"><i class="ion-ios-personadd fa-1a" aria-hidden="true"></i>create account</a></li>
-                            <li><a href="#"><i class="ion-log-in fa-1a" aria-hidden="true"></i>login</a></li>
+                            <li><a href="{{route('customer.register')}}"><i class="ion-ios-personadd fa-1a" aria-hidden="true"></i>create account</a></li>
+                            <li>
+                                @if(isset($customer))
+                                    <a href="{{route('customer.logout')}}">
+                                        <i class="ion-log-in fa-1a" aria-hidden="true"></i>
+                                        Logout ( {{ $customer->email }})
+                                    </a>
+                                @else
+                                    <a href="{{route('customer.login')}}">
+                                        <i class="ion-log-in fa-1a" aria-hidden="true"></i>
+                                        Login
+                                    </a>
+                                @endif
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -68,7 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-8 col-xs-7 logo">
-                    <a href="#" title="Clickbuy"><img src="img/logo.png" alt="images" class="img-reponsive"></a>
+                    <a href="#" title="Clickbuy"><img src="/img/logo.png" alt="images" class="img-reponsive"></a>
                 </div>
                 <div class="col-md-9 col-sm-4 col-xs-5 nextlogo">
                     <div class="block block-2">

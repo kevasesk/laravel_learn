@@ -2,3 +2,7 @@
 {
     border: none !important;
 }
+.customer-register-form .form-group
+{
+    padding: 0px 20px;
+}

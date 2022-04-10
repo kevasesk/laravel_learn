@@ -177,6 +177,7 @@ return [
         App\Providers\Menu\MenuServiceProvider::class,
         App\Providers\Menu\AdminMenuServiceProvider::class,
         App\Providers\CategoriesServiceProvider::class,
+        App\Providers\CustomerServiceProvider::class,
 
     ],
 

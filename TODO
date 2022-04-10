@@ -45,21 +45,19 @@ view new:
 -+cart:
     -remove empty cart from lost session
 -checkout
--customer
+-customer add crud to admin
 -search products|posts|categories
 
 - global messages for actions
 
--blog:
-    +posts
-    +categories
-    +cat_posts
-    -comments?
+
 
 -home page blocks
 -product panel editor
 -menu customizer
 -newsletter
 - url unique in all site system
-- turn back fonts from google
+
+-blog:
+    -comments?
 

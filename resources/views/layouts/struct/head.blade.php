@@ -12,8 +12,19 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/custom.css">
-    {{--    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">--}}
-    {{--    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">--}}
-    {{--    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">--}}
+    <link href="/css/fonts/OpenSans.css" rel="stylesheet">
+    <link href="/css/fonts/Ubuntu.css" rel="stylesheet">
+    <link href="/css/fonts/Ubuntu.css" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.noty.packaged.min.js"></script>
+    <script>
+      var notify = function (text, type = 'success'){
+          noty({
+              text: text,
+              theme: 'relax',
+              type: type, // success, error, warning, information, notification
+              timeout: 3000,
+          });
+      }
+    </script>
 </head>
