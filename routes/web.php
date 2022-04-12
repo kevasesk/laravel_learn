@@ -17,6 +17,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SearchController;
 
 use Illuminate\Support\Facades\App;
 
@@ -117,6 +118,9 @@ Route::get('customer/logout', [CustomerController::class, 'logout'])->name('cust
 
 #Subscriber // TODO add recaptcha
 Route::post('subscriber/new', [SubscriberController::class, 'new'])->name('subscriber.new');
+
+#Search
+Route::get('search', [SearchController::class, 'search'])->name('search');
 
 
 

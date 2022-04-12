@@ -109,8 +109,9 @@
                         </div>
                     </div>
                     <div class="search hidden-xs hidden-sm">
-                        <form action="#" class="search-form">
-                            <input type="text" name="s" class="form-control" placeholder="Search entrie store here">
+                        <form action="{{route('search')}}" class="search-form" method="GET">
+                            @csrf
+                            <input type="text" name="query" class="form-control" placeholder="Search entrie store here">
                             <button type="submit" class="search-icon"></button>
                         </form>
                     </div>
