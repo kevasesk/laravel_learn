@@ -11,7 +11,7 @@ class CustomerController extends CrudController
     protected $modelTitle = 'Customers';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id'],
+        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
         [ 'column' => 'firstname', 'title' => 'Firstname' ],
         [ 'column' => 'lastname', 'title' => 'Lastname' ],
         [ 'column' => 'email', 'title' => 'Email' ],

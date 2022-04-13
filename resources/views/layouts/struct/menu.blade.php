@@ -4,19 +4,19 @@
             <div class="col-md-3 col-sm-4 col-xs-6 column-left">
                 <aside id="column-left">
                     <nav class="navbar-default">
-                        <div class="menu-heading js-nav-menu ">{{ $menu[0]['title'] }}</div>
+                        <div class="menu-heading js-nav-menu ">All Categories</div>
                         <div class="vertical-wrapper v3 js-dropdown-menu">
                             <ul class="level0">
-                                @foreach($menu[0]['children'] as $child)
+                                @foreach($categoriesMenu as $category)
                                     <li>
-                                        <a href="{{ url($child['url']) }}">{{$child['title']}}</a>
-                                        @isset($child['icon'])
-                                            <span class="icon {{ $child['icon'] }}"></span>
+                                        <a href="{{ url($category['url']) }}">{{$category['title']}}</a>
+                                        @isset($category['icon'])
+                                            <span class="icon {{ $category['icon'] }}"></span>
                                         @endisset
-                                        @isset($child['children'])
+                                        @isset($category['children'])
                                             <div class="dropdown-content">
                                                 <ul class="level1">
-                                                    @foreach($child['children'] as $subChild)
+                                                    @foreach($category['children'] as $subChild)
                                                         <li class="sub-menu col-3">
                                                             <a href="#">ACCESSORIES</a>
                                                             <ul class="level2">

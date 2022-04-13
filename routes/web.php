@@ -47,6 +47,7 @@ Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\CustomersRoutes();
     new \App\Routes\ImageBlockRoutes();
     new \App\Routes\SubscribersRoutes();
+    new \App\Routes\MenuItemsRoutes();
 });
 
 //TODO remake to abstract crud entities
@@ -77,6 +78,7 @@ Route::middleware(['admin.auth'])->group(function () {
     Route::get('admin/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
     Route::post('admin/categories/store', [CategoriesController::class, 'store'])->name('admin.categories.store');
 });
+
 
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);

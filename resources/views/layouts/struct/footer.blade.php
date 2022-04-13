@@ -27,25 +27,17 @@
                         <div class="col-md-6 col-xs-12">
                             <h3>let us help you</h3>
                             <ul class="fmenu">
-                                <li><a href="#">your account</a></li>
-                                <li><a href="#">your orders</a></li>
-                                <li><a href="#">shipping rates & policies</a></li>
-                                <li><a href="#">clickShop prime</a></li>
-                                <li><a href="#">return & Replacements</a></li>
-                                <li><a href="#">Manage Your Content and Devices</a></li>
-                                <li><a href="#">ClickShop Assistant</a></li>
-                                <li><a href="#">Help</a></li>
+                                @foreach($helpMenu as $item)
+                                    <li><a href="{{url($item['url'])}}">{{$item['title']}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="col-md-6 col-xs-12 pd-left">
                             <h3>useful links</h3>
                             <ul class="fmenu">
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">About ClickShop</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Our Devices</a></li>
-                                <li><a href="#">Apps & Download</a></li>
-                                <li><a href="#">Thinking</a></li>
+                                @foreach($usefullMenu as $item)
+                                    <li><a href="{{url($item['url'])}}">{{$item['title']}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -207,7 +199,7 @@
     </div>
     <div class="copyright">
         <div class="container">
-            <span>© <a href="#" title="">ClickBuy</a> - All Rights Reserved.</span>
+            <span>© <a href="#" title="">{{env('APP_NAME')}}</a> - All Rights Reserved.</span>
             <ul class="payment">
                 <li><a href="#"><img src="img/paypal.png" alt="images" class="img-responsive"></a></li>
                 <li><a href="#"><img src="img/visa.png" alt="images" class="img-responsive"></a></li>

@@ -11,7 +11,7 @@ class SubscriberController extends CrudController
     protected $modelTitle = 'Subscribers';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id'],
+        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
         [ 'column' => 'email', 'title' => 'Email' ],
     ];
 

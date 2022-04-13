@@ -43,8 +43,8 @@
 view new:
 -+cart: -remove empty cart from lost session
 -checkout
+
 -filters elastic
--menu customizer
 
 -----------------------
 - import categories and products from kiril data

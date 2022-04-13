@@ -11,7 +11,9 @@
                     @include('layouts.struct.breadcrumbs')
                     <div class="clearfix"></div>
                 </div>
-                @yield('content', 'No content specified')
+                <div style="margin-bottom: 40px; ">
+                    @yield('content', 'No content specified')
+                </div>
             </div>
         </section>
         @include('layouts.features')
