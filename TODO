@@ -30,22 +30,13 @@
 +add rabbitmq docker
 +add elasticsearch docker
 
--elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
--image resize
-
+-+elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
 - channels.php
-
 - search on freelance sites for more to learn
-- laravel documentations
-
--------------------------------------
-
-view new:
--+cart: -remove empty cart from lost session
--checkout
-
--filters elastic
 
 -----------------------
+-image resize
+-filters elastic
 - import categories and products from kiril data
-
+- remove empty cart from lost session (cron delete if to old)
+- add recapcha on forms where it is needed

@@ -41,7 +41,8 @@ class MainController extends Controller
                 ['url' => '/', 'title' => 'Home'],
                 ['title' => $product->title]
             ];
-            return view('product.view', compact('product', 'breadcrumbs'));
+            $addToCartAttribute = !$product->getIsInStock() ? 'disabled' : '';
+            return view('product.view', compact('product', 'breadcrumbs', 'addToCartAttribute'));
         }
 
         #Search in categories

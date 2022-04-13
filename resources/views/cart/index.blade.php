@@ -45,22 +45,22 @@
                                     <tr class="cart_item">
                                         <td class="product-thumbnail">
                                             <a href="{{url($product->url)}}">
-                                                <img src="{{$product->getImage()}}" alt="{{$product->title}}" class="img-responsive">
+                                                <img src="{{$product->getImage(100,75)}}" alt="{{$product->title}}" class="img-responsive">
                                             </a>
                                         </td>
                                         <td class="product-name">
-                                            <a href="#">{{$product->title}}</a>
+                                            <a href="{{url($product->url)}}">{{$product->title}}</a>
                                         </td>
                                         <td class="product-price">
                                             <p class="price">{{$product->price}}</p>
                                         </td>
                                         <td class="product-quantity">
                                             <div class="quantity">
-                                                <input type="text" name="quantity" value="{{$product->qty}}">
+                                                <input type="text" name="quantity" value="{{$cart['items'][$product->id]['qty']}}">
                                             </div>
                                         </td>
                                         <td class="product-price product-subtotal">
-                                            <p class="price">{{$product->qty * $product->price}}</p>
+                                            <p class="price">{{$cart['items'][$product->id]['qty'] * $product->price}}</p>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,8 +74,7 @@
                                 <li><span class="text">Subtotal:</span><span class="cart-number">{{$cart['subtotal']}}</span></li>
                                 <li><span class="text">Shipping:</span>
                                     <div class="shipping">
-                                        <form method="get" action="{{route('cart.checkout')}}" role="search">
-                                            @csrf
+                                        <form method="get" action="#" role="search">
                                             <input type="radio" name="gender" value="Flat" id="radio1" checked="checked">
                                             <label for="radio1">FLAT RATE: $12.00</label>
                                             <input type="radio" name="gender" value="Free" id="radio2">
@@ -89,10 +88,14 @@
                                 </li>
                                 <li><span class="text calculate">Calculate shipping</span>
                                 </li>
-                                <li><span class="text">Total:</span><span class="cart-number big-total-number">$1,750.00</span></li>
+{{--                                need to add shiping--}}
+                                <li><span class="text">Total:</span><span class="cart-number big-total-number">{{$cart['subtotal']}}</span></li>
                             </ul>
                             <div class="process">
-                                <button type="submit" class="btn-checkout">PROCEED TO CHECKOUT</button>
+                                <form method="GET" action="{{route('cart.checkout')}}">
+                                    @csrf
+                                    <button type="submit" class="btn-checkout">PROCEED TO CHECKOUT</button>
+                                </form>
                             </div>
                         </div>
                     </div>

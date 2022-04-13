@@ -37,7 +37,7 @@ Route::get('/', [MainController::class, 'index']);
 #Admin
 Route::get('admin', [AdminController::class, 'index'])->name('admin')->middleware('admin.not.auth');
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('admin.auth');
-Route::get('admin/register', [AdminController::class, 'register']);
+Route::get('admin/register', [AdminController::class, 'register'])->middleware('admin.auth');
 Route::post('admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
@@ -48,6 +48,7 @@ Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\ImageBlockRoutes();
     new \App\Routes\SubscribersRoutes();
     new \App\Routes\MenuItemsRoutes();
+    new \App\Routes\OrdersRoutes();
 });
 
 //TODO remake to abstract crud entities
@@ -103,11 +104,12 @@ Route::get('contact-us/send', [ContactUsController::class, 'send']);
 
 #Cart
 Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::get('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('cart/back', [CartController::class, 'back'])->name('cart.back');
 Route::get('cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::post('cart/success', [CartController::class, 'success'])->name('cart.success');
+Route::get('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('cart/create', [CartController::class, 'create'])->name('cart.create');
+Route::get('cart/success', [CartController::class, 'success'])->name('cart.success');
 Route::get('cart/coupon/add/{id}', [CartController::class, 'couponAdd'])->name('cart.coupon.add');
 
 #Customer
