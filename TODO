@@ -1,42 +1,55 @@
-+file upload
-+file extention validate
-+file size validate
-+create user form
-+backend form validation
-+send email
-+cron
-+user registration and admin
-+admin for system
-+crud for any entity
-+di
-+cms
-+redirect|go to 404|return json
-+go to ftp
-+custom console commands
-+multi lang
-+pagination
-+custom console commands
-+integrate google recapcha
--+caching (not varnish) using code
--+logging?
--+events
--+testing
--+queue
--+learn artisan possibilities
--+RabbitMQ
-+add node install to docker image
-+add install sendmail to docker
-+add cron to docker.
-+add rabbitmq docker
-+add elasticsearch docker
-
--+elasticsearch (https://laravel.demiart.ru/configuring-elasticsearch-in-laravel/)
-- channels.php
-- search on freelance sites for more to learn
-
------------------------
--image resize
--filters elastic
+- global image resize
+- product lists filters
 - import categories and products from kiril data
 - remove empty cart from lost session (cron delete if to old)
 - add recapcha on forms where it is needed
+- create global config system
+- add logo(config)
+- fix search result page template
+- fix minicart data
+- global messages on customer actions
+- fix sessions and products
+
+homepage:
+    - add slider crud
+    - brand slider
+    - footer texts, contacts, social links (config)
+    - add top attribute for categories
+customer dashdboard
+products:
+    - add statuses hot,new
+    - color
+    - FEATURED PRODUCTS for homepage
+    - popular attribute for homepage
+    - top rated attr for homepage
+    - newest attr for homepage
+    - brand
+    - gallery
+    - info tabs
+    - upsell products
+cart:
+    - add coupons
+    - fix shippings
+    - add login popup on checkout
+    - add payments
+
+admin:
+    - add create admin command
+    - fix header icons
+    - add icons to menu
+    - add info to dashboard page
+    - add pagination, filter, (massaction) to all cruds
+    - fix displaying fields more comfortable
+    - adding images to content editor
+    - url generator and global validator
+    - menu tree
+    - add order data to review, add button to change status
+    - category tree
+
+code:
+    - remake all to abstract crud
+    - move all front templates to front dir
+    - check middleware permissions
+    - fix bugs
+
+
