@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImageBlocksTable extends Migration
+class CreateConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateImageBlocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_blocks', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->string('key');
-            $table->string('first_title')->nullable();
-            $table->string('second_title')->nullable();
-            $table->string('url')->nullable();
-            $table->text('thumbnail');
+            $table->text('value');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateImageBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_blocks');
+        Schema::dropIfExists('configs');
     }
 }

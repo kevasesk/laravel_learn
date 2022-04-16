@@ -6,10 +6,10 @@
 
 @section('content')
     <div class="widget-banner">
-        <a href="#" class="images"><img src="{{asset('storage/'.$category['thumbnail'])}}" alt="images" class="img-responsive" style="max-height: 200px;"></a>
+        <a href="#" class="images"><img src="{{ Resizer::get($category->thumbnail, 1170, 270) }}" alt="images" class="img-responsive"></a>
         <div class="banner-text">
             <h2>{{$category->title}}</h2>
-            <p>Mini camera by Instax(hardcode)</p>
+            <p>{{$category->desc}}</p>
         </div>
         <div class="banner-button">
             <a class="btn-getit">Get It</a>

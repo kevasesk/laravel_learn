@@ -13,7 +13,6 @@ class SubscriberController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:subscribers',
         ]);
-
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()->all()]);
         }

@@ -42,6 +42,10 @@ class AdminMenuServiceProvider extends ServiceProvider
                     'url' => '/admin/orders',
                 ],
                 [
+                    'title' => 'Config',
+                    'url' => '/admin/config',
+                ],
+                [
                     'title' => 'Blog',
                     'icon' => 'mdi-newspaper',
                     'children' => [

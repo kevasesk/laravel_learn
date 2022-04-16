@@ -178,6 +178,8 @@ return [
         App\Providers\Menu\AdminMenuServiceProvider::class,
         App\Providers\CategoriesServiceProvider::class,
         App\Providers\CustomerServiceProvider::class,
+        App\Providers\RecaptchaServiceProvider::class,
+        \Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -233,6 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Resizer' => App\Helpers\Resizer::class,
 
     ],
 

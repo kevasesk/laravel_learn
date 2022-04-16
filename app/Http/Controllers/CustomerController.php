@@ -33,6 +33,7 @@ class CustomerController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha]
         ]);
         $customer = Customer::query()
             ->where('email', '=', $request->email)
@@ -58,6 +59,7 @@ class CustomerController extends Controller
             'lastname' => 'required',
             'email' => 'required|email|unique:customers',
             'password' => 'required|confirmed',
+            'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha]
         ]);
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);

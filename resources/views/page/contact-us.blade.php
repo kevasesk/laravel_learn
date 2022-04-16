@@ -76,9 +76,11 @@
                             </div>
                         </div>
                     </div>
+                    @recaptcha
                     <button type="submit" class="btn-send-message">SEND MESSAGE</button>
                 </form>
             </div>
+{{--            TODO google maps--}}
             <div class="col-md-6">
                 <div id="googlemap1" style="height: 370px;"></div>
             </div>

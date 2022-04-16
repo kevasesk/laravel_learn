@@ -66,8 +66,4 @@ class Product extends Model
         }
         return $status;
     }
-    public function getImage($width = 100, $height = 50)
-    {
-        return $this->thumbnail ? asset('storage/'.$this->thumbnail) : "https://picsum.photos/$width/$height?".uniqid();
-    }
 }

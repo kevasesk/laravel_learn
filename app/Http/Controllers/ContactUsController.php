@@ -19,6 +19,7 @@ class ContactUsController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
+            'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha]
         ]);
         $data = $request->all();
         $ticket = new Ticket($data);

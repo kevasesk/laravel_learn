@@ -45,7 +45,7 @@
                                     <tr class="cart_item">
                                         <td class="product-thumbnail">
                                             <a href="{{url($product->url)}}">
-                                                <img src="{{$product->getImage(100,75)}}" alt="{{$product->title}}" class="img-responsive">
+                                                <img src="{{ Resizer::get($product->thumbnail, 100, 75) }}" alt="{{$product->title}}" class="img-responsive">
                                             </a>
                                         </td>
                                         <td class="product-name">

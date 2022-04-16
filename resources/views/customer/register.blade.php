@@ -45,8 +45,8 @@
                             <span class="text-danger">@error('password_confirm'){{$message}}@enderror</span>
                         </div>
                     </div>
+                    @recaptcha
                     <div class="row">
-{{--                        TODO add recaptcha--}}
                         <button type="submit" class="btn-send-message">REGISTER</button>
                     </div>
                 </div>

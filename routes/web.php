@@ -18,6 +18,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Admin\ConfigController;
 
 use Illuminate\Support\Facades\App;
 
@@ -49,6 +50,10 @@ Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\SubscribersRoutes();
     new \App\Routes\MenuItemsRoutes();
     new \App\Routes\OrdersRoutes();
+
+    Route::get('admin/config', [ConfigController::class, 'config'])->name('admin.config');
+    Route::post('admin/config/save', [ConfigController::class, 'save'])->name('admin.config.save');
+
 });
 
 //TODO remake to abstract crud entities
@@ -83,10 +88,6 @@ Route::middleware(['admin.auth'])->group(function () {
 
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);
-
-#google recaptcha
-Route::get('recaptcha', [RecaptchaController::class, 'index']);
-Route::post('recaptcha/sended', [RecaptchaController::class, 'sended'])->name('recaptcha.sended');
 
 #language switcher
 Route::get('language/{locale}', function ($locale) {

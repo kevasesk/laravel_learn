@@ -90,7 +90,7 @@
         </div>
         <div class="main-content col-sm-12 col-lg-8 col-md-8">
             <div class="blog-slide">
-                <a href="#"><img src="{{$post->getImage(770,400)}}" alt="images" class="img-responsive"></a>
+                <a href="#"><img src="{{ Resizer::get($post->thumbnail, 770, 400) }}" alt="images" class="img-responsive"></a>
                 <div class="blog-slide-title">
                     <div class="tag">
                         <ul>

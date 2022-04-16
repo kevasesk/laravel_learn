@@ -4,7 +4,7 @@
             <div class="row ">
                 <div class="col-md-3 col-xs-12 ">
                     <div class="photo">
-                        <a href="#"><img src="img/logo.png" alt="images" class="img-responsive"></a>
+                        <a href="#"><img src="{{ Resizer::get($logo, 260, 87) }}" alt="images" class="img-responsive"></a>
                     </div>
                     <p class="info-desc">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant...</p>
                     <div class="widget-info">
@@ -200,12 +200,12 @@
     <div class="copyright">
         <div class="container">
             <span>© <a href="#" title="">{{env('APP_NAME')}}</a> - All Rights Reserved.</span>
-            <ul class="payment">
-                <li><a href="#"><img src="img/paypal.png" alt="images" class="img-responsive"></a></li>
-                <li><a href="#"><img src="img/visa.png" alt="images" class="img-responsive"></a></li>
-                <li><a href="#"><img src="img/american.png" alt="images" class="img-responsive"></a></li>
-                <li><a href="#"><img src="img/mastercard.png" alt="images" class="img-responsive"></a></li>
-            </ul>
+{{--            <ul class="payment">--}}
+{{--                <li><a href="#"><img src="img/paypal.png" alt="images" class="img-responsive"></a></li>--}}
+{{--                <li><a href="#"><img src="img/visa.png" alt="images" class="img-responsive"></a></li>--}}
+{{--                <li><a href="#"><img src="img/american.png" alt="images" class="img-responsive"></a></li>--}}
+{{--                <li><a href="#"><img src="img/mastercard.png" alt="images" class="img-responsive"></a></li>--}}
+{{--            </ul>--}}
             <div class="clearfix"></div>
         </div>
     </div>

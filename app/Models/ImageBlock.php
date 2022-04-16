@@ -14,6 +14,6 @@ class ImageBlock extends Model
         'first_title',
         'second_title',
         'url',
-        'image',
+        'thumbnail',
     ];
 }

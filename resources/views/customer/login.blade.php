@@ -24,6 +24,7 @@
                             <span class="text-danger">@error('password'){{$message}}@enderror</span>
                         </div>
                     </div>
+                    @recaptcha
                     <div class="row">
                         <button type="submit" class="btn-send-message">LOG IN</button>
                     </div>

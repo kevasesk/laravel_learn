@@ -16,18 +16,18 @@ class ImageBlockController extends CrudController
         [ 'column' => 'first_title', 'title' => 'First Title'],
         [ 'column' => 'second_title', 'title' => 'Second Title'],
         [ 'column' => 'url', 'title' => 'Url'],
-        [ 'column' => 'image', 'title' => 'Image', 'type' => 'image'],
+        [ 'column' => 'thumbnail', 'title' => 'Thumbnail', 'type' => 'image'],
     ];
 
     protected $validateRules = [
         'key' => 'required|unique:image_blocks',
-        'image' => 'required|image',
+        'thumbnail' => 'required|image',
     ];
 
     protected $fileDir = 'image_blocks';
 
     protected $fileAttributes = [
-        'image'
+        'thumbnail'
     ];
 //
 //    protected $relations = 'categories';

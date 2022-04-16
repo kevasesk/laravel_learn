@@ -32,7 +32,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="blog-item-ver2">
                         <div class="blog-item img">
-                            <a href="{{$post['url']}}"><img src="{{ $post->getImage(370,260) }}" alt="images" class="img-responsive"></a>
+                            <a href="{{$post['url']}}"><img src="{{ Resizer::get($post->thumbnail, 370, 260) }}" alt="images" class="img-responsive"></a>
                         </div>
                         <div class="blog-info">
                             <h3><a href="{{$post['url']}}" title="">{{$post['title']}}</a></h3>

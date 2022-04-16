@@ -1,34 +1,47 @@
 @extends('layouts.main')
 
 @section('title')
-    Search Results
+Search Results
 @endsection
 
 @section('content')
-    <div class="widget-product-collection">
-        <div class="row">
-            <h2>Some title</h2>
-        </div>
-        <div class="row">
-            @foreach($results as $resultType => $items)
-                @if(count($items))
-                    <p>{{$resultType}}</p>
-                    @foreach($items as $item)
-                        <div class="col-md-12 col-sm-12 col-xs-12 ">
-                            <div class="product-item ver2">
-                                <div class="prod-item img">
-                                    <a href="#"><img src="img/product-collection/product1.png" alt="images" class="img-responsive"></a>
-                                </div>
-                                <div class="prod-info-ver2">
-                                    <h3><a href="#" title="">{{$item->title}}</a></h3>
-                                </div>
+    <div>
+        @if($isAny)
+            <div class="row">
+                @foreach($results as $resultType => $items)
+                    @if(count($items))
+                        <div class="results-section">
+                            <div class="header">
+                                <h3>{{ucfirst($resultType)}}s:</h3>
                             </div>
+                            @php $number = 1 @endphp
+                            @foreach($items as $item)
+                                @if($number == 4)
+                                    @php $number = 1 @endphp
+                                @endif
+                                <div class="item{{$number}}">
+                                    <div class="product-item ver2">
+                                        <div class="prod-item img">
+                                            <a href="{{url($item->url)}}"><img src="{{ Resizer::get($item->thumbnail, 370, 170) }}" alt="images" class="img-responsive"></a>
+                                        </div>
+                                        <div class="prod-info-ver2">
+                                            <h6><a href="{{url($item->url)}}" title="">{{$item->title}}</a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                @php $number++ @endphp
+                            @endforeach
                         </div>
-                    @endforeach
-                @endif
-            @endforeach
-        </div>
+                    @endif
+                @endforeach
+            </div>
+        @else
+            <div class="row">
+                No results
+            </div>
+        @endif
     </div>
 @endsection
+{{--TODO add pagination--}}
 
 

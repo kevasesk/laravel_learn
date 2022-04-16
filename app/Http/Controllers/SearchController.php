@@ -12,6 +12,10 @@ class SearchController extends Controller
         $searchModel = new ElasticsearchRepository();
         $query = $request->get('query');
         $results = $searchModel->search($query);
-        return view('search.results', compact('results'));
+        $isAny = false;
+        foreach ($results as $result){
+            $isAny = $isAny || count($result);
+        }
+        return view('search.results', compact('results', 'isAny'));
     }
 }

@@ -1,11 +1,6 @@
-- global image resize
 - product lists filters
 - import categories and products from kiril data
 - remove empty cart from lost session (cron delete if to old)
-- add recapcha on forms where it is needed
-- create global config system
-- add logo(config)
-- fix search result page template
 - fix minicart data
 - global messages on customer actions
 - fix sessions and products
@@ -15,7 +10,9 @@ homepage:
     - brand slider
     - footer texts, contacts, social links (config)
     - add top attribute for categories
-customer dashdboard
+customer dashboard
+    - improve password validation
+    - google  maps in contact us page
 products:
     - add statuses hot,new
     - color
@@ -51,5 +48,10 @@ code:
     - move all front templates to front dir
     - check middleware permissions
     - fix bugs
+    - fix email template, add new ones
+    - refactor routes
+    - split models, controllers to subdirs
+    - make input form fields abstract and divide it to files and re use it in forms
+    - check TODOs in code and fix it
 
 

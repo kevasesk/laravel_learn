@@ -9,14 +9,12 @@
                 <div class="product-list grid_full grid_sidebar grid-uniform">
                     @foreach($products as $product)
                         <div class="product-list-item">
-                            @if($product->thumbnail)
-                                <div class="product-item-img">
-                                    <a href="{{ url($product->url) }}">
-                                        <img src="{{asset('storage/'.$product->thumbnail)}}" alt="images" class="img-responsive">
-                                    </a>
-                                    <div class="label label-2 red label-top-20">Hot</div>
-                                </div>
-                            @endif
+                            <div class="product-item-img">
+                                <a href="{{ url($product->url) }}">
+                                    <img src="{{Resizer::get($product->thumbnail, 370, 170)}}" alt="images" class="img-responsive">
+                                </a>
+                                <div class="label label-2 red label-top-20">Hot</div>
+                            </div>
                             <div class="product-item-info">
                                 <h3><a href="{{ url($product->url) }}" title="">{{$product->title}}</a></h3>
                                 <div class="prod-price">

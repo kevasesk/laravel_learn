@@ -50,7 +50,6 @@ class ElasticsearchRepository implements \App\Search\SearchRepository
                 'query' => [
                     'multi_match' => [
                         'fields' => ['title'],
-                        //'fields' => ['title', 'desc'],
                         'query' => $query,
                     ],
                 ],

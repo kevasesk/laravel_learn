@@ -19,7 +19,7 @@ class ReindexCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'search:reindex';
+    protected $signature = 'elasticsearch:reindex';
 
     /**
      * The console command description.
@@ -52,7 +52,7 @@ class ReindexCommand extends Command
      */
     public function handle()
     {
-        $this->info('Indexing all posts. This might take a while...');
+        $this->info('Indexing all models. This might take a while...');
 
         $entities = [
             Post::class,

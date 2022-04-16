@@ -76,7 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-8 col-xs-7 logo">
-                    <a href="#" title="Clickbuy"><img src="/img/logo.png" alt="images" class="img-reponsive"></a>
+                    <a href="/" title="{{env('APP_NAME')}}"><img src="{{ Resizer::get($logo, 260, 87) }}" alt="images" class="img-reponsive"></a>
                 </div>
                 <div class="col-md-9 col-sm-4 col-xs-5 nextlogo">
                     <div class="block block-2">
