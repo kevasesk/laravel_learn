@@ -24,11 +24,20 @@ class Product extends Model
         'desc',
         'short_desc',
         'thumbnail',
+        'status',
+        'color',
+        'is_popular',
+        'is_top_rated',
+        'is_new',
     ];
 
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_products');
+    }
+    public function galleryImages()
+    {
+        return $this->hasMany(GalleryImages::class);
     }
 
     public function cartItems()

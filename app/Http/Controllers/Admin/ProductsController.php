@@ -2,107 +2,58 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
-class ProductsController extends Controller
+class ProductsController extends CrudController
 {
-    public function index()
-    {
-        $columns = [
-            'Id',
-            'Sku',
-            'Title',
-            'Url',
-            'Price',
-            'Qty',
-            'Is In Stock',
-            'Is Active',
-            'Thumbnail',
-        ];
 
-        $products = Product::all();
-        $breadcrumbs = [
-            ['url' => 'admin/products', 'title' => 'Products']
-        ];
 
-        return view('admin.products.list', compact('columns', 'products', 'breadcrumbs'));
-    }
+    protected $modelClass = \App\Models\Product::class;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $product = new Product();
-        return view('admin.products.create', compact('product'));
-    }
+    protected $routeClass = \App\Routes\ProductsRoutes::class;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        $request->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'is_active' => 'required',
-            'thumbnail' => 'image|max:20000',
-        ]);
+    protected $modelTitle = 'Products';
 
-        if(!$request->id){
-            $product = new Product($data);
-        }else{
-            $product = Product::query()->where('id','=', $request->id)->first();
-            $product->fill($data);
-        }
+    protected $columns = [
+        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'sku', 'title' => 'Sku' ],
+        [ 'column' => 'title', 'title' => 'Title' ],
+        [ 'column' => 'url', 'title' => 'Url' ],
+        [ 'column' => 'price', 'title' => 'Price' ],
+        [ 'column' => 'qty', 'title' => 'Qty' ],
+        [ 'column' => 'brand', 'title' => 'Brand' ],
+        [ 'column' => 'is_in_stock', 'title' => 'Is In Stock', 'type' => 'boolean' ],
+        [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
+        [ 'column' => 'thumbnail', 'title' => 'Image', 'type' => 'image' ],
 
-        if($request->file('thumbnail')){
-            $thumbnailPath = $request->file('thumbnail')->store('products', 'public');
-        }else{
-            $thumbnailPath = $product->thumbnail;
-        }
-        $product->thumbnail = $thumbnailPath;
-        $product->categories()->detach();
-        $product->categories()->attach($data['categories']);
-        $product->save();
-        return redirect()->route('admin.products.list');
-    }
+        [ 'column' => 'status', 'title' => 'Status',],//select
+        [ 'column' => 'color', 'title' => 'Color',],//select
+        [ 'column' => 'is_popular', 'title' => 'Is Popular', 'type' => 'boolean' ],
+        [ 'column' => 'is_top_rated', 'title' => 'Is Top Rated', 'type' => 'boolean' ],
+        [ 'column' => 'is_new', 'title' => 'Is New', 'type' => 'boolean' ],
+        [ 'column' => 'gallery', 'title' => 'Gallery', 'type' => 'container', 'child' => 'galleryImages', 'contentType' => 'images'],
+    ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $product = Product::query()->where('id','=', $id)->first();
-        $breadcrumbs = [
-            ['url' => 'admin/products', 'title' => 'Products'],
-            ['title' => $product->title],
-        ];
-        return view('admin.products.create', compact('product', 'breadcrumbs'));
-    }
+    protected $validateRules = [
+        'title' => 'required',
+        'url' => 'required',
+        'is_active' => 'required',
+        'thumbnail' => 'image|max:20000',
+    ];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $product = Product::query()->where('id','=', $id)->first();
-        $product->delete();
-        return redirect()->route('admin.products.list');
+    protected $fileDir = 'products';
 
-    }
+    protected $fileAttributes = [
+        'thumbnail'
+    ];
+
+    protected $relations = [
+        'onetomany'  => [
+            ['key' => 'product_id', 'relationField' => 'galleryImages', 'type' => 'images']
+         ],
+        'manytomany' => 'categories'
+    ];//TODO relation select
+
+
 }

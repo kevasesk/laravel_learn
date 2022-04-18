@@ -50,6 +50,8 @@ Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\SubscribersRoutes();
     new \App\Routes\MenuItemsRoutes();
     new \App\Routes\OrdersRoutes();
+    new \App\Routes\SliderRoutes();
+    new \App\Routes\ProductsRoutes();
 
     Route::get('admin/config', [ConfigController::class, 'config'])->name('admin.config');
     Route::post('admin/config/save', [ConfigController::class, 'save'])->name('admin.config.save');
@@ -65,15 +67,6 @@ Route::middleware(['admin.auth'])->group(function () {
     Route::get('admin/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit');
     Route::get('admin/pages/destroy/{id}', [PagesController::class, 'destroy'])->name('admin.pages.destroy');
     Route::post('admin/pages/store', [PagesController::class, 'store'])->name('admin.pages.store');
-});
-
-#Admin Products
-Route::middleware(['admin.auth'])->group(function () {
-    Route::get('admin/products', [ProductsController::class, 'index'])->name('admin.products.list');
-    Route::get('admin/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
-    Route::get('admin/products/edit/{id}', [ProductsController::class, 'edit'])->name('admin.products.edit');
-    Route::get('admin/products/destroy/{id}', [ProductsController::class, 'destroy'])->name('admin.products.destroy');
-    Route::post('admin/products/store', [ProductsController::class, 'store'])->name('admin.products.store');
 });
 
 #Admin Categories

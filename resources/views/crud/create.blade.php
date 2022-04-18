@@ -51,6 +51,33 @@
                                </select>
                            </div>
                        </div>
+                   @elseif($column['type'] == 'container')
+                       <div class="accordion" id="accordion{{$column['column']}}">
+                           <div class="accordion-item">
+                               <h2 class="accordion-header" id="panelsStayOpen-id-{{$column['column']}}">
+                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-{{$column['column']}}" aria-expanded="true" aria-controls="panelsStayOpen-{{$column['column']}}">
+                                       {{$column['title']}}
+                                   </button>
+                               </h2>
+                               <div id="panelsStayOpen-{{$column['column']}}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-id-{{$column['column']}}">
+                                   <div class="accordion-body">
+                                       @if($column['contentType'] == 'images')
+                                           @foreach($entity->{$column['child']} as $image)
+                                               <div class="image">
+                                                   <img src="{{asset('storage/'.$image['thumbnail'])}}" width="50" height="50" alt="no img"/>
+                                                   <button onclick="$(this).parent('.image').remove()">delete</button>
+{{--                                                   TODO delete--}}
+                                                   <br/>
+                                               </div>
+                                           @endforeach
+                                           <img src="" width="50" height="50" alt="no img"/>
+                                           <input type="file" name="{{$column['child']}}[]"/>
+                                           <br/>
+                                       @endif
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
                    @endif
                @endforeach
                <script>

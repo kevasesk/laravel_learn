@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use App\Models\Slider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view){
             $logoPath  = \App\Models\Admin\Config::config('global_logo');
+            $homeSlider =  Slider::query()->orderBy('position')->get();
             $view->with('logo', $logoPath);
+            $view->with('homeSlider', $homeSlider);
         });
     }
 }

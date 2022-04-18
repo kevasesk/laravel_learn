@@ -28,22 +28,32 @@ class AdminMenuServiceProvider extends ServiceProvider
                 [
                     'title' => 'Image Blocks',
                     'url' => '/admin/image_blocks',
+                    'icon' => 'mdi-file-image'
                 ],
                 [
                     'title' => 'Subscribers',
                     'url' => '/admin/subscribers',
+                    'icon' => 'mdi-hackernews'
                 ],
                 [
                     'title' => 'Menu',
                     'url' => '/admin/menu',
+                    'icon' => 'mdi-playlist-minus'
                 ],
                 [
                     'title' => 'Orders',
                     'url' => '/admin/orders',
+                    'icon' => 'mdi-spellcheck'
                 ],
                 [
                     'title' => 'Config',
                     'url' => '/admin/config',
+                    'icon' => 'mdi-account-settings-variant'
+                ],
+                [
+                    'title' => 'Homepage Slider',
+                    'url' => '/admin/slider',
+                    'icon' => 'mdi-format-paint'
                 ],
                 [
                     'title' => 'Blog',

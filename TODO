@@ -1,12 +1,12 @@
 - product lists filters
-- import categories and products from kiril data
+
 - remove empty cart from lost session (cron delete if to old)
 - fix minicart data
 - global messages on customer actions
 - fix sessions and products
+- import categories and products from kiril data
 
 homepage:
-    - add slider crud
     - brand slider
     - footer texts, contacts, social links (config)
     - add top attribute for categories
@@ -14,31 +14,22 @@ customer dashboard
     - improve password validation
     - google  maps in contact us page
 products:
-    - add statuses hot,new
-    - color
-    - FEATURED PRODUCTS for homepage
-    - popular attribute for homepage
-    - top rated attr for homepage
-    - newest attr for homepage
-    - brand
+    - add attributes statuses hot,new, color, popular, top rated, newest, brand
     - gallery
     - info tabs
-    - upsell products
+    - upsell, FEATURED products
 cart:
     - add coupons
     - fix shippings
     - add login popup on checkout
     - add payments
-
 admin:
-    - add create admin command
-    - fix header icons
-    - add icons to menu
+    - make admin profile pages and settings
     - add info to dashboard page
     - add pagination, filter, (massaction) to all cruds
     - fix displaying fields more comfortable
     - adding images to content editor
-    - url generator and global validator
+    - url generator and global url validator
     - menu tree
     - add order data to review, add button to change status
     - category tree
@@ -53,5 +44,7 @@ code:
     - split models, controllers to subdirs
     - make input form fields abstract and divide it to files and re use it in forms
     - check TODOs in code and fix it
+db:
+    - check struct, relations, uniques
 
 
