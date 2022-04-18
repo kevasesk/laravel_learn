@@ -29,7 +29,7 @@
                         </div>
                     @endforeach
                 </div>
-                {{$products->links('layouts.struct.paginator')}}
+                {{$products->links('frontend.layouts.struct.paginator')}}
             </div>
         </div>
     </div>

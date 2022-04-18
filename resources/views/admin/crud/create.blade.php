@@ -18,6 +18,20 @@
                            <input type="text" name="{{$column['column']}}" class="form-control" value="{{ $entity->{$column['column']} }}">
                            <span class="text-danger">@error($column['column']){{$message}}@enderror</span>
                        </div>
+                   @elseif($column['type'] == 'select')
+                       <div class="form-group">
+                           <label>{{$column['title']}}</label>
+                           <div class="col-md-9">
+                               <select name="{{$column['column']}}" class="select2 form-select shadow-none">
+                                   <option value="0">--Please Select--</option>
+                                   @foreach($column['options'] as $option)
+                                       <option value="{{$option['value']}}" {{ $entity->{$column['column']} == $option['value'] ? 'selected': '' }}>
+                                           {{$option['title']}}
+                                       </option>
+                                   @endforeach
+                               </select>
+                           </div>
+                       </div>
                    @elseif($column['type'] == 'boolean')
                        <div class="form-group">
                            <label>{{$column['title']}}</label>

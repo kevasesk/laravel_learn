@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Traits\Options;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Search\Searchable;
@@ -74,5 +75,38 @@ class Product extends Model
             }
         }
         return $status;
+    }
+    public function getColorOptions()
+    {
+        return \App\Options\Colors::getOptions();
+    }
+    public function getBrandOptions()
+    {
+        return Product::query()->select('brand')->where('brand', '!=', null)->get();
+    }
+    public function getCategoriesFilter()
+    {
+        $categories = Category::query()->where('id','!=', 1)->get();
+        $result = [];
+        foreach ($categories as $category) {
+            if($category->products()){
+                $result[] = [
+                    'id' => $category['id'],
+                    'title' => $category['title'],
+                    'url' => url($category['url']),
+                    'total' => count($category->products)
+                ];
+            }
+        }
+        return $result;
+    }
+    public function getPriceFilter()
+    {
+        $products = Product::query()->orderBy('price')->get();
+        return [
+            'min' => $products[0]['price'],
+            'max' => $products[count($products)-1]['price']
+        ];
+
     }
 }

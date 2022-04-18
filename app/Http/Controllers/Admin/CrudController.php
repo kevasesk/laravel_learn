@@ -14,13 +14,6 @@ class CrudController extends Controller
 
     protected $modelTitle = '';
 
-//    protected $columns = [
-//        [
-//            'column' => 'id',
-//            'title' => 'Id',
-//        ]
-//    ];
-
     protected $columns = [];
 
     protected $validateRules = [];

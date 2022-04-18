@@ -1,4 +1,4 @@
-- product lists filters
+-+ product lists filters, add elastic, add product data
 
 - fix minicart data
 - global messages on customer actions
@@ -35,6 +35,7 @@ code:
     - split models, controllers to subdirs
     - make input form fields abstract and divide it to files and re use it in forms
     - check TODOs in code and fix it
+    - global urls conficts
 db:
     - check struct, relations, uniques
 

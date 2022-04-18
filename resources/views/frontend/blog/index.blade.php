@@ -44,5 +44,5 @@
             @endforeach
         </div>
     </div>
-    {{ $posts->links('layouts.struct.paginator') }}
+    {{ $posts->links('frontend.layouts.struct.paginator') }}
 @endsection

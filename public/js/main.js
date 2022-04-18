@@ -28,12 +28,12 @@
     });
 
     function toggleMenu() {
-        
+
         if ($(window).width() < 769) {
             //initially hide navigation
             $(".js-dropdown-menu").removeClass('active');
             $(document).on("click", function(e){
-                 
+
                 var p = $(e.target).closest('.navbar-default').length
                 if (!p) {
                     $(".js-dropdown-menu").removeClass('active');
@@ -62,7 +62,7 @@
     });
 
     $(document).on("mouseup", function(e) {
-        
+
         var container = $(".js-navbar-wrapper #bars,.js-navbar-wrapper .js-navbar-button .js-bars ");
 
         if (!container.is(e.target) // if the target of the click isn't the container...
@@ -78,7 +78,7 @@
         e.stopPropagation();
     });
    $(document).on("mouseup", function(e) {
-        
+
         var container = $(".js-navbar-wrapper #cart,.js-navbar-wrapper .js-navbar-button .js-cart ");
 
         if (!container.is(e.target) // if the target of the click isn't the container...
@@ -89,7 +89,7 @@
         }
     });
     //SHOP LISTING FILTER
-    // ======== ADD CLASS ACTIVE 
+    // ======== ADD CLASS ACTIVE
     $(".filter-cate ul li").on("click", function() {
         $('li.active').removeClass('active');
         $(this).addClass('active');
@@ -106,7 +106,7 @@
         $(".button-view .col").removeClass("active");
     });
     // SHOPPING CART Quantity increment buttons
-    
+
     var quantitiy = 0;
     $('.quantity-right-plus').on("click", function(e) {
 
@@ -120,7 +120,7 @@
         $('#quantity').val(quantity + 1);
 
 
-        // Increment    
+        // Increment
     });
 
     $('.quantity-left-minus').on("click", function(e) {
@@ -137,17 +137,6 @@
         }
     });
 
-    // Price Slider
-    if ($('.price-slider').length > 0) {
-        $('.price-slider').slider({
-            min: 100,
-            max: 700,
-            step: 10,
-            value: [100, 400],
-
-
-        });
-    }
 
     // brand carousel
     $('.js-owl-brand').owlCarousel({
@@ -191,7 +180,7 @@
         focusOnSelect: true
     });
     $('.portfolio-thumb-slider').on('afterChange', function(event, slick, currentSlide, nextSlide) {
-    
+
         //remove all active class
         $('.portfolio-thumb-slider .slick-slide').removeClass('slick-current');
         //set active class for current slide
@@ -235,7 +224,7 @@
             }
         }
     })
-    // COUNTDOWN 
+    // COUNTDOWN
     $.fn.ENGO_CountDown = function(options) {
         return this.each(function() {
             // get instance of the ENGO_CountDown.

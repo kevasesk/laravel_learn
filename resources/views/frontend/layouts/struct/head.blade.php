@@ -5,6 +5,7 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.png">
     <title>@yield('title', 'Page') | {{ env('APP_NAME') }}</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-slider.css">
     <link rel="stylesheet" href="/css/font-awesome.css">
     <link rel="stylesheet" href="/css/ionicons.min.css">
     <link rel="stylesheet" href="/css/slick.css">
@@ -17,6 +18,7 @@
     <link href="/css/fonts/Ubuntu.css" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/jquery.noty.packaged.min.js"></script>
+
     <script>
       var notify = function (text, type = 'success'){
           noty({

@@ -7,90 +7,73 @@
             <div class="price-range-holder">
                 <input type="text" class="price-slider" value="">
                 <span class="min-max">
-                                            Price: $990 - $3450
-                                        </span>
+                    Price: {{$products[0]->getPriceFilter()['min']}} - {{$products[0]->getPriceFilter()['max']}}
+                </span>
                 <span class="filter-button">
-                                            <a href="#">Filter</a>
-                                        </span>
+                    <a href="#">Filter</a>
+                </span>
             </div>
         </div>
+        <script>
+            window.addEventListener("load", function(){
+                // Price Slider
+                if ($('.price-slider').length > 0) {
+                    $('.price-slider').slider({
+                        min: {{$products[0]->getPriceFilter()['min']}},
+                        max: {{$products[0]->getPriceFilter()['max']}},
+                        step: 100,
+                        value: [0, {{(int)($products[0]->getPriceFilter()['max']/2)}}],
+                    });
+                }
+            });
+        </script>
     </div>
-    <div class="filter-block-shop filter-cate">
-        <div class="block-title">
-            <h3>Categories</h3>
+    @if(count($products[0]->getCategoriesFilter()))
+        <div class="filter-block-shop filter-cate">
+            <div class="block-title">
+                <h3>Categories</h3>
+            </div>
+            <div class="block-content">
+                <ul>
+                    @foreach($products[0]->getCategoriesFilter() as $categoryData)
+                        <li class="{{ $category->id == $categoryData['id'] ? 'active': '' }}">
+                            <a href="{{$categoryData['url']}}">{{$categoryData['title']}}</a>
+                            <span class="number">({{$categoryData['total']}})</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        <div class="block-content">
-            <ul>
-                <li class="active">
-                    <a href="#">Laptop & Computer</a>
-                    <span class="number">(08)</span>
-                </li>
-                <li>
-                    <a href="#">Accessories</a>
-                    <span class="number">(16)</span>
-                </li>
-                <li>
-                    <a href="#">Gaming</a>
-                    <span class="number">(20)</span>
-                </li>
-                <li>
-                    <a href="#">Mac Computers</a>
-                    <span class="number">(09)</span>
-                </li>
-                <li>
-                    <a href="#">Ultrabooks</a>
-                    <span class="number">(51)</span>
-                </li>
-                <li>
-                    <a href="#">Printers & Ink</a>
-                    <span class="number">(07)</span>
-                </li>
-            </ul>
+    @endif
+    @if(count($products[0]->getBrandOptions()))
+        <div class="filter-block-shop">
+            <div class="block-title">
+                <h3>BRAND</h3>
+            </div>
+            <div class="block-content">
+                <form>
+                    @foreach($products[0]->getBrandOptions() as $product)
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="{{$product['brand']}}">
+                                {{$product['brand']}}
+                            </label>
+                        </div>
+                    @endforeach
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="filter-block-shop">
-        <div class="block-title">
-            <h3>BRAND</h3>
-        </div>
-        <div class="block-content">
-            <form>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Accesi</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Bikis</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Elle</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Godo</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Jeana</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">Ladora</label>
-                </div>
-            </form>
-        </div>
-    </div>
+    @endif
+
     <div class="filter-block-shop filter-color">
         <div class="block-title">
             <h3>Color</h3>
         </div>
         <div class="block-content">
             <ul>
-                <li><a href="#"><i class="dot black-d"></i>Black </a></li>
-                <li><a href="#"><i class="dot blue-sky"></i>Blue </a></li>
-                <li><a href="#"><i class="dot brown"></i>Brown </a></li>
-                <li><a href="#"><i class="dot"></i>White </a></li>
+                @foreach($products[0]->getColorOptions() as $color)
+                    <li><a href="#">{!! $color['color'] !!} {{$color['title']}} </a></li>
+                @endforeach
             </ul>
         </div>
     </div>
