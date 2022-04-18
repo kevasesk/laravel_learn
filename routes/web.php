@@ -52,32 +52,13 @@ Route::middleware(['admin.auth'])->group(function () {
     new \App\Routes\OrdersRoutes();
     new \App\Routes\SliderRoutes();
     new \App\Routes\ProductsRoutes();
+    new \App\Routes\CategoriesRoutes();
+    new \App\Routes\PagesRoutes();
 
     Route::get('admin/config', [ConfigController::class, 'config'])->name('admin.config');
     Route::post('admin/config/save', [ConfigController::class, 'save'])->name('admin.config.save');
 
 });
-
-//TODO remake to abstract crud entities
-
-#Admin Pages
-Route::middleware(['admin.auth'])->group(function () {
-    Route::get('admin/pages', [PagesController::class, 'index'])->name('admin.pages.index');
-    Route::get('admin/pages/create', [PagesController::class, 'create'])->name('admin.pages.create');
-    Route::get('admin/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit');
-    Route::get('admin/pages/destroy/{id}', [PagesController::class, 'destroy'])->name('admin.pages.destroy');
-    Route::post('admin/pages/store', [PagesController::class, 'store'])->name('admin.pages.store');
-});
-
-#Admin Categories
-Route::middleware(['admin.auth'])->group(function () {
-    Route::get('admin/categories', [CategoriesController::class, 'index'])->name('admin.categories.list');
-    Route::get('admin/categories/create', [CategoriesController::class, 'create'])->name('admin.categories.create');
-    Route::get('admin/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
-    Route::get('admin/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
-    Route::post('admin/categories/store', [CategoriesController::class, 'store'])->name('admin.categories.store');
-});
-
 
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);
@@ -119,8 +100,6 @@ Route::post('subscriber/new', [SubscriberController::class, 'new'])->name('subsc
 
 #Search
 Route::get('search', [SearchController::class, 'search'])->name('search');
-
-
 
 #Cms
 Route::get('{url}', [MainController::class, 'show']);

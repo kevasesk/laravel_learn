@@ -40,7 +40,7 @@ class CrudController extends Controller
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
         ];
 
-        return view('crud.list',[
+        return view('admin.crud.list',[
             'columns' => $this->columns,
             'entities' => $entities,
             'title' => $this->modelTitle,
@@ -59,7 +59,7 @@ class CrudController extends Controller
         $breadcrumbs = [
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
         ];
-        return view('crud.create', compact('entity', 'title','columns', 'routeSuffix', 'breadcrumbs'));
+        return view('admin.crud.create', compact('entity', 'title','columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function store(Request $request)
@@ -121,8 +121,8 @@ class CrudController extends Controller
         }
 
         $entity->save();
-        //return redirect()->route($route->routeSuffixName.'.list');
-        return back();
+        return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
+        //return back();
     }
 
     public function edit($id)
@@ -136,7 +136,7 @@ class CrudController extends Controller
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle],
             ['title' => $entity->title ?? $entity->firstname]
         ];
-        return view('crud.create', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
+        return view('admin.crud.create', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function destroy($id)
@@ -144,6 +144,6 @@ class CrudController extends Controller
         $route = new $this->routeClass();
         $entity = $this->modelClass::query()->where('id','=', $id)->first();
         $entity->delete();
-        return redirect()->route($route->routeSuffixName.'.list');
+        return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Item was deleted');
     }
 }

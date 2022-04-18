@@ -19,7 +19,7 @@ class MainController extends Controller
         foreach ($imageBlocks as $imageBlock){
             $images[$imageBlock['key']] = $imageBlock;
         }
-        return view('page.home', compact('images'));
+        return view('frontend.page.home', compact('images'));
     }
 
     public function show($url)
@@ -31,7 +31,7 @@ class MainController extends Controller
                 ['url' => '/', 'title' => 'Home'],
                 ['title' => $page->title]
             ];
-            return view('page.template', compact('page', 'breadcrumbs'));
+            return view('frontend.page.template', compact('page', 'breadcrumbs'));
         }
 
         #Search in products
@@ -42,7 +42,7 @@ class MainController extends Controller
                 ['title' => $product->title]
             ];
             $addToCartAttribute = !$product->getIsInStock() ? 'disabled' : '';
-            return view('product.view', compact('product', 'breadcrumbs', 'addToCartAttribute'));
+            return view('frontend.product.view', compact('product', 'breadcrumbs', 'addToCartAttribute'));
         }
 
         #Search in categories
@@ -53,7 +53,7 @@ class MainController extends Controller
                 ['url' => '/', 'title' => 'Home'],
                 ['title' => $category->title]
             ];
-            return view('category.view', compact('products', 'category', 'breadcrumbs'));
+            return view('frontend.category.view', compact('products', 'category', 'breadcrumbs'));
         }
 
         #Search in blog posts
@@ -64,7 +64,7 @@ class MainController extends Controller
                 ['url' => 'blog', 'title' => 'Blog'],
                 ['title' => $post->title]
             ];
-            return view('blog.post.view', compact('post', 'breadcrumbs'));
+            return view('frontend.blog.post.view', compact('post', 'breadcrumbs'));
         }
 
         return abort(404);

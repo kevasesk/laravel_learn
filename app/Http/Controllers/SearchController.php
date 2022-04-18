@@ -16,6 +16,6 @@ class SearchController extends Controller
         foreach ($results as $result){
             $isAny = $isAny || count($result);
         }
-        return view('search.results', compact('results', 'isAny'));
+        return view('frontend.search.results', compact('results', 'isAny'));
     }
 }

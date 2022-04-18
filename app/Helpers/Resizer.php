@@ -14,8 +14,10 @@ class Resizer
             if(!Storage::disk('public')->has($resizedPath)){
                 $basicPath = public_path('storage').'/'.$imagePath;
                 $pathParts = explode('/', $imagePath);
-                if(!Storage::disk('public')->has('/resized/'.$pathParts[0])){
-                    Storage::disk('public')->makeDirectory('resized/'.$pathParts[0]);
+                unset($pathParts[count($pathParts)-1]);
+                $fullSubDir = implode('/', $pathParts);
+                if(!Storage::disk('public')->has('/resized/'.$fullSubDir)){
+                    Storage::disk('public')->makeDirectory('resized/'.$fullSubDir);
                 }
                 $newImg = Image::make($basicPath);
                 $newImg->resize($width, $height, function ($constraint) {

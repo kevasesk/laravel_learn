@@ -7,8 +7,6 @@ use App\Models\Product;
 
 class ProductsController extends CrudController
 {
-
-
     protected $modelClass = \App\Models\Product::class;
 
     protected $routeClass = \App\Routes\ProductsRoutes::class;

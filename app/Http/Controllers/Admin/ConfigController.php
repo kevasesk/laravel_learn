@@ -8,55 +8,58 @@ use App\Models\Admin\Config;
 
 class ConfigController extends Controller
 {
-    private $fields;
-
-    private $configsMapping;
-
     public function config()
     {
-        $this->initConfigValues();
         return view('admin.config.form', [
-           'fields' => $this->fields
+           'fields' => $this->getConfigs()
         ]);
     }
-    public function initConfigValues()
+    public function getConfigs()
     {
-        $configs = Config::all();
-        $this->configsMapping = [];
-        foreach ($configs as $config){
-            $this->configsMapping[$config['key']] = $config;
+        $configMap = [];
+        foreach (Config::all() as $config){
+            $configMap[$config['key']] = $config['value'];
         }
-        $this->fields = [
-            [
-                'key' => 'global_logo',
-                'title'=> 'Logo',
-                'type' => 'image',
-                'value'=> $this->configsMapping['global_logo']['value'] ?? ''
-            ],
-        ];
+        $result = [];
+        foreach (Config::$fields as $fieldKey => $fieldData){
+            if(isset($configMap[$fieldKey])){
+                $result[$fieldKey] = $fieldData;
+                $result[$fieldKey]['value'] = $configMap[$fieldKey];
+            }else{
+                $result[$fieldKey] = $fieldData;
+                $result[$fieldKey]['value'] = '';
+            }
+        }
+        return $result;
     }
     public function save(Request $request)
     {
-        $this->initConfigValues();
-        foreach ($this->fields as $field){
-            if(isset($this->configsMapping[$field['key']])){
-                $config = $this->configsMapping[$field['key']];
-                $config->value = $request->get($field['key']);
-            }else{
+        foreach (Config::$fields as $fieldKey => $fieldData){
+            $config = Config::query()->where('key', '=', $fieldKey)->first();
+            if(!$config) {
                 $config = new Config();
-                $config->key = $field['key'];
-                $config->value = $request->get($field['key']);
+                $config->key = $fieldKey;
             }
-            if($field['type'] == 'image'){
-                if($request->file($field['key'])){
-                    $filePath = $request->file($field['key'])->store('config', 'public');//TODO make not public
-                }else{
-                    $filePath = $config->value;
-                }
-                $config->value = $filePath;
-            }
+            $config->value = $this->processValue($request, $config, $fieldKey, $fieldData);
             $config->save();
         }
-        return redirect()->route('admin.config');
+        return redirect()->route('admin.config')->with('success', 'Changes Saved!');
+    }
+    private function processValue(Request $request, $config, $fieldKey, $fieldData)
+    {
+        if(isset($fieldData['type']) && $fieldData['type'] == 'image'){
+            if($request->file($fieldKey)){
+                $filePath = $request->file($fieldKey)->store('config', 'public');//TODO make not public
+            }else{
+                $filePath = $config->value;
+            }
+            $value = $filePath;
+        }else{
+            $value = $request->get($fieldKey);
+        }
+        if(!$value){
+            $value = '';
+        }
+        return $value;
     }
 }

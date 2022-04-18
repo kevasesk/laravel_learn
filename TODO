@@ -1,6 +1,5 @@
 - product lists filters
 
-- remove empty cart from lost session (cron delete if to old)
 - fix minicart data
 - global messages on customer actions
 - fix sessions and products
@@ -8,14 +7,10 @@
 
 homepage:
     - brand slider
-    - footer texts, contacts, social links (config)
     - add top attribute for categories
-customer dashboard
-    - improve password validation
-    - google  maps in contact us page
+    - display panels with products
 products:
-    - add attributes statuses hot,new, color, popular, top rated, newest, brand
-    - gallery
+    -+ gallery
     - info tabs
     - upsell, FEATURED products
 cart:
@@ -35,16 +30,16 @@ admin:
     - category tree
 
 code:
-    - remake all to abstract crud
-    - move all front templates to front dir
     - check middleware permissions
-    - fix bugs
     - fix email template, add new ones
-    - refactor routes
     - split models, controllers to subdirs
     - make input form fields abstract and divide it to files and re use it in forms
     - check TODOs in code and fix it
 db:
     - check struct, relations, uniques
+
+-------------------
+
+- remove empty cart from lost session (cron delete if to old)
 
 

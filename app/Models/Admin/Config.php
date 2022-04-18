@@ -9,9 +9,11 @@ class Config extends Model
 {
     use HasFactory;
 
-    public static function config($key)
-    {
-        $config = Config::query()->where('key', '=', $key)->first();
-        return $config ? $config['value'] : null;
-    }
+    public static $fields = [
+        'logo'    => [ 'title'=> 'Logo', 'type' => 'image', ],
+        'phone'   => [ 'title'=> 'Phone'],
+        'email'   => [ 'title'=> 'Email'],
+        'address' => [ 'title'=> 'Address'],
+    ];
+
 }

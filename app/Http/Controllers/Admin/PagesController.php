@@ -6,100 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
 
-class PagesController extends Controller
+class PagesController extends CrudController
 {
-    public function index()
-    {
-        $columns = [
-            'Id',
-            'Is Active',
-            'Title',
-            'Url',
-            'Content',
-        ];
+    protected $modelClass = \App\Models\Page::class;
 
-        $pages = Page::all();
+    protected $routeClass = \App\Routes\PagesRoutes::class;
 
-        $breadcrumbs = [
-            ['url' => 'admin/pages', 'title' => 'Pages']
-        ];
+    protected $modelTitle = 'Pages';
 
-        return view('admin.pages.index',[
-            'columns' => $columns,
-            'pages' => $pages,
-            'breadcrumbs' => $breadcrumbs,
-        ]);
-    }
+    protected $columns = [
+        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean'],
+        [ 'column' => 'title', 'title' => 'Title'],
+        [ 'column' => 'url', 'title' => 'Url'],
+        [ 'column' => 'content', 'title' => 'Content', 'type'=> 'text'],
+    ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $page = new Page();
-        $breadcrumbs = [
-            ['url' => 'admin/pages', 'title' => 'Pages']
-        ];
-        return view('admin.pages.create', compact('page', 'breadcrumbs'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'is_active' => 'required',
-        ]);
-
-        if(!$request->id){
-            $page = new Page();
-        }else{
-            $page = Page::query()->where('id','=', $request->id)->first();
-        }
-
-        $page->title = $request->title;
-        $page->content = $request->get('content') ?? '' ;
-        $page->url = $request->url;
-        $page->is_active = $request->is_active;
-        $page->save();
-        return redirect()->route('admin.pages.index');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $page = Page::query()->where('id','=', $id)->first();
-        $breadcrumbs = [
-            ['url' => 'admin/pages', 'title' => 'Pages'],
-            ['title' => $page->title],
-        ];
-        return view('admin.pages.create', compact('page', 'breadcrumbs'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $page = Page::query()->where('id','=', $id)->first();
-        $page->delete();
-        return redirect()->route('admin.pages.index');
-
-    }
+    protected $validateRules = [
+        'title' => 'required',
+        'url' => 'required',
+        'is_active' => 'required',
+    ];
 }

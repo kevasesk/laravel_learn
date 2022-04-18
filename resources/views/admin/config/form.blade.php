@@ -5,51 +5,55 @@
 @endsection
 
 @section('content')
-<div class="card">
-    <form method="POST" action="{{route('admin.config.save')}}" enctype="multipart/form-data">
-    @csrf
-    @foreach($fields as $field)
-        @if(!isset($field['type']))
-            <div class="form-group">
-                <label>{{$field['title']}}</label>
-                <input type="text" name="{{$field['key']}}" class="form-control" value="{{ $field['value'] }}">
+    <div class="card">
+        <form method="POST" action="{{route('admin.config.save')}}" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                @include('admin.layouts.struct.notifications')
+                @foreach($fields as $fieldKey => $fieldData)
+                    @if(!isset($fieldData['type']))
+                        <div class="form-group">
+                            <label>{{$fieldData['title']}}</label>
+                            <input type="text" name="{{$fieldKey}}" class="form-control" value="{{ $fieldData['value'] ?? '' }}">
+                        </div>
+                    @elseif($fieldData['type'] == 'boolean')
+                        <div class="form-group">
+                            <label>{{$fieldData['title']}}</label>
+                            <div class="col-md-9">
+                                <select name="{{$fieldKey}}" class="select2 form-select shadow-none">
+                                    <option value="1" {{ $fieldData['value'] ? 'selected': '' }}>Yes</option>
+                                    <option value="0" {{ !$fieldData['value'] ? 'selected': '' }}>No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <script>
+                            $(".select2").select2();
+                        </script>
+                    @elseif($fieldData['type'] == 'text')
+                        <div class="form-group">
+                            <label>{{$fieldData['title']}}</label>
+                            <textarea name="{{$fieldKey}}" style="width: 100%;">{!! trim($fieldData['value']) !!}</textarea>
+                        </div>
+                    @elseif($fieldData['type'] == 'image')
+                        <div class="form-group">
+                            <label>{{$fieldData['title']}}</label>
+                            <img src="{{ asset('storage/'.$fieldData['value']) }}" alt="no image" width="100px" height="100px"/>
+                            <input name="{{$fieldKey}}" type="file">
+                        </div>
+                    @endif
+                @endforeach
             </div>
-        @elseif($field['type'] == 'boolean')
-            <div class="form-group">
-                <label>{{$field['title']}}</label>
-                <div class="col-md-9">
-                    <select name="{{$field['key']}}" class="select2 form-select shadow-none">
-                        <option value="1" {{ $field['value'] ? 'selected': '' }}>Yes</option>
-                        <option value="0" {{ !$field['value'] ? 'selected': '' }}>No</option>
-                    </select>
+
+            <div class="border-top">
+                <div class="card-body">
+                    <button type="submit" class="btn btn-success text-white">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-danger text-white" onclick="location.reload();">
+                        Cancel
+                    </button>
                 </div>
             </div>
-            <script>
-                $(".select2").select2();
-            </script>
-        @elseif($field['type'] == 'text')
-            <div class="form-group">
-                <label>{{$field['title']}}</label>
-                <textarea name="{{$field['key']}}" style="width: 100%;">{!! trim($field['value']) !!}</textarea>
-            </div>
-        @elseif($field['type'] == 'image')
-            <div class="form-group">
-                <label>{{$field['title']}}</label>
-                <img src="{{ asset('storage/'.$field['value']) }}" alt="no image" width="100px" height="100px"/>
-                <input name="{{$field['key']}}" type="file">
-            </div>
-        @endif
-    @endforeach
-    <div class="border-top">
-        <div class="card-body">
-            <button type="submit" class="btn btn-success text-white">
-                Save
-            </button>
-            <button type="button" class="btn btn-danger text-white" onclick="location.reload();">
-                Cancel
-            </button>
-        </div>
+        </form>
     </div>
-</form>
-</div>
 @endsection

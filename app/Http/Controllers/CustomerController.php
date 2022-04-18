@@ -10,29 +10,29 @@ class CustomerController extends Controller
 {
     public function register()
     {
-        return view('customer.register');
+        return view('frontend.customer.register');
     }
     public function login()
     {
-        return view('customer.login');
+        return view('frontend.customer.login');
     }
     public function dashboard(Request $request)
     {
         if($customerId = $request->session()->get('customer_id')){
             $customer = Customer::query()->find($customerId);
             if($customer){
-                return view('customer.dashboard', compact('customer'));
+                return view('frontend.customer.dashboard', compact('customer'));
             }
         }else{
             //error
-            return view('customer.login');
+            return view('frontend.customer.login');
         }
     }
     public function auth(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha]
         ]);
         $customer = Customer::query()
@@ -58,7 +58,7 @@ class CustomerController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email|unique:customers',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:6',
             'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha]
         ]);
         $data = $request->all();

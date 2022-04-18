@@ -13,7 +13,8 @@ class Page extends Model
     protected $fillable = [
         'title',
         'content',
-        'url'
+        'url',
+        'is_active'
     ];
 
     public function getContentFormatted()

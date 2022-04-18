@@ -26,9 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view){
-            $logoPath  = \App\Models\Admin\Config::config('global_logo');
+            $settings = \App\Models\Admin\Config::all()->toArray();
+            $settingsMap = [];
+            foreach ($settings as $setting){
+                $settingsMap[$setting['key']] = $setting['value'];
+            }
             $homeSlider =  Slider::query()->orderBy('position')->get();
-            $view->with('logo', $logoPath);
+            $view->with('settings', $settingsMap);
             $view->with('homeSlider', $homeSlider);
         });
     }

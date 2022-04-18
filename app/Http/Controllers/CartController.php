@@ -29,7 +29,7 @@ class CartController extends \App\Http\Controllers\Controller
             'subtotal' => $subtotal,
             'items' => $cartData
         ];
-        return view('cart.index', compact('products', 'cart'));
+        return view('frontend.cart.index', compact('products', 'cart'));
     }
     public function add(Request $request)
     {
@@ -104,7 +104,7 @@ class CartController extends \App\Http\Controllers\Controller
             $cart[$cartItem['product_id']] = $cartItem;
             $subtotal += $cartItem['qty'] * $cartItem['price'];
         }
-        return view('cart.checkout', compact('products', 'cart', 'subtotal'));
+        return view('frontend.cart.checkout', compact('products', 'cart', 'subtotal'));
     }
     public function create(Request $request)
     {
@@ -144,6 +144,6 @@ class CartController extends \App\Http\Controllers\Controller
         }
         $orderIncrement = $order->increment_id;
         $request->session()->remove('cart_id');
-        return view('cart.success', compact('orderIncrement'));
+        return view('frontend.cart.success', compact('orderIncrement'));
     }
 }
