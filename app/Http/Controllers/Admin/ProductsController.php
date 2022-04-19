@@ -15,7 +15,7 @@ class ProductsController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-        'url' => 'required',
+//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];
@@ -28,7 +28,8 @@ class ProductsController extends CrudController
 
     protected $relations = [
         'onetomany'  => [
-            ['key' => 'product_id', 'relationField' => 'galleryImages', 'type' => 'images']
+            ['key' => 'product_id', 'relationField' => 'galleryImages', 'type' => 'images'],
+            ['key' => 'product_id', 'relationField' => 'tabs', 'type' => 'tabs'],
          ],
         'manytomany' => 'categories'
     ];//TODO relation select
@@ -52,7 +53,11 @@ class ProductsController extends CrudController
             [ 'column' => 'is_popular', 'title' => 'Is Popular', 'type' => 'boolean' ],
             [ 'column' => 'is_top_rated', 'title' => 'Is Top Rated', 'type' => 'boolean' ],
             [ 'column' => 'is_new', 'title' => 'Is New', 'type' => 'boolean' ],
-            [ 'column' => 'gallery', 'title' => 'Gallery', 'type' => 'container', 'child' => 'galleryImages', 'contentType' => 'images'],
+            [ 'column' => 'gallery', 'title' => 'Gallery', 'type' => 'container',
+                'child' => 'galleryImages', 'contentType' => 'images', 'fields' => ['thumbnail']],
+            [ 'column' => 'tabs', 'title' => 'Info Tabs', 'type' => 'container',
+                'child' => 'tabs', 'contentType' => 'tabs', 'fields' => ['title', 'content']
+            ],
         ];;
     }
 

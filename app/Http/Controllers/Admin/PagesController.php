@@ -24,7 +24,7 @@ class PagesController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-        'url' => 'required',
+//        'url' => 'required',
         'is_active' => 'required',
     ];
 }

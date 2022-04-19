@@ -28,7 +28,7 @@ class PostsController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-        'url' => 'required',
+//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];
@@ -39,5 +39,5 @@ class PostsController extends CrudController
 
     protected $fileDir = 'blog/posts';
 
-    protected $relations = 'categories';
+//    protected $relations = 'categories';
 }

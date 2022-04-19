@@ -1,35 +1,27 @@
 - fix minicart data
-- global messages on customer actions
+- global messages on customer actions +++
 - fix sessions and products
 - import categories and products from kiril data
 
 products:
-    -+ gallery
-    - info tabs
-    - upsell, FEATURED products
+    -+ gallery, info tabs, upsell, FEATURED products (vue?)
 cart:
-    - add coupons
     - fix shippings
-    - add login popup on checkout
     - add payments
+    - add login popup on checkout
 admin:
     - make admin profile pages and settings
     - add info to dashboard page
-    - add pagination, filter, (massaction) to all cruds
-    - fix displaying fields more comfortable
+    - add pagination, filter, (massaction) to all cruds +++
     - adding images to content editor
-    - url generator and global url validator
-    - menu tree
-    - add order data to review, add button to change status
-    - category tree
-
+    - menu tree, category tree
+    - add order data to review, add button to change status +++
 code:
-    - check middleware permissions
     - fix email template, add new ones
     - split models, controllers to subdirs
     - make input form fields abstract and divide it to files and re use it in forms
     - check TODOs in code and fix it
-    - global urls conficts
+    - global urls conflicts
 db:
     - check struct, relations, uniques
 

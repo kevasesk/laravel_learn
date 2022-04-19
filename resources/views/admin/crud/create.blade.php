@@ -87,6 +87,20 @@
                                            <img src="" width="50" height="50" alt="no img"/>
                                            <input type="file" name="{{$column['child']}}[]"/>
                                            <br/>
+                                       @elseif($column['contentType'] == 'tabs')
+                                           @foreach($entity->{$column['child']} as $tab)
+                                               <div class="tab">
+                                                   <input type="text" name="{{$tab['title']}}[]"/>
+                                                   <input type="text" name="{{$tab['content']}}[]"/>
+                                                   <br/>
+                                               </div>
+                                           @endforeach
+                                           <div class="tab">
+                                               @foreach($column['fields'] as $childField)
+                                                   <input type="text" name="{{$column['child']}}_{{$childField}}[]"/>
+                                               @endforeach
+                                                   <br/>
+                                           </div>
                                        @endif
                                    </div>
                                </div>

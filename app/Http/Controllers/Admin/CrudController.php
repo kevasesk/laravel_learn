@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
 
 class CrudController extends Controller
 {
@@ -59,7 +58,11 @@ class CrudController extends Controller
     {
         $data = $request->all();
         $route = new $this->routeClass();
+        if(!$data['url']){
+            $data['url'] = \Illuminate\Support\Str::slug($data['title'], '-');
+        }
         $request->validate($this->validateRules);
+
 
         if(!$request->id){
             $entity = new $this->modelClass($data);
@@ -77,36 +80,39 @@ class CrudController extends Controller
             $entity->{$fileAttribute} = $filePath;
         }
         if($this->relations){
-            foreach ($this->relations as $relationType => $relationData){
-                if($relationType == 'onetomany'){
-                    $relationField = $relationData[0]['relationField'];
-                    $oldValues = $entity->{$relationField};
-                    $entity->{$relationField}()->delete();
-                    // TODO remove unused images from file system
-                    $relationItems = [];
-                    $images = $request->file($relationField);
-
-                    $position = 0;
-                    foreach ($oldValues as $oldValue){
-                        $relationItems[] = [
-                            $relationData[0]['key'] => $entity->id,
-                            'thumbnail' => $oldValue->thumbnail,
-                            'position' => $oldValue->position
-                        ];
-                        $position++;
-                    }
-                    if($images){
-                        foreach ($images as $image){
-                            $relationItems[] = [
-                                $relationData[0]['key'] => $entity->id,
-                                'thumbnail' => $image->store($this->fileDir.'/'.$relationField, 'public'),
-                                'position' => $position
-                            ];
-                            $position++;
-                        }
-                    }
-                    $entity->{$relationField}()->createMany($relationItems);
-                }
+            foreach ($this->relations as $relationType => $relationFields){
+//                foreach ($relationFields as $relationFieldData){
+//                    if($relationType == 'onetomany'){
+//                        $relationField = $relationFieldData['relationField'];
+//                        $oldValues = $entity->{$relationField};
+//                        $entity->{$relationField}()->delete();
+//                        // TODO remove unused images from file system
+//                        $relationItems = [];
+//
+//                        $position = 0;
+//                        foreach ($oldValues as $oldValue){
+//                            $relationItems[] = [
+//                                $relationFieldData['key'] => $entity->id,
+//                                'thumbnail' => $oldValue->thumbnail,
+//                                'position' => $oldValue->position
+//                            ];
+//                            $position++;
+//                        }
+//
+//                        $images = $request->file($relationField);
+//                        if($images){
+//                            foreach ($images as $image){
+//                                $relationItems[] = [
+//                                    $relationFieldData['key'] => $entity->id,
+//                                    'thumbnail' => $image->store($this->fileDir.'/'.$relationField, 'public'),
+//                                    'position' => $position
+//                                ];
+//                                $position++;
+//                            }
+//                        }
+//                        $entity->{$relationField}()->createMany($relationItems);
+//                    }
+//                }
 
             }
 //            $entity->{$this->relations}()->detach();

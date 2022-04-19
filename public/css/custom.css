@@ -38,3 +38,6 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2em;
 }
+.checkout-cart-form {
+     padding-bottom: 0;
+}

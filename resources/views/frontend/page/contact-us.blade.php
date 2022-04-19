@@ -38,7 +38,7 @@
     <div class="contact-info-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{url('contact-us/send')}}" class="contact-form">
+                <form action="{{url('contact-us/send')}}" class="contact-form" method="post">
                     @csrf
                     <div class="form-group">
                         <div class="row">

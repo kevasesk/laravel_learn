@@ -40,6 +40,10 @@ class Product extends Model
     {
         return $this->hasMany(GalleryImages::class);
     }
+    public function tabs()
+    {
+        return $this->hasMany(ProductTabs::class);
+    }
 
     public function cartItems()
     {

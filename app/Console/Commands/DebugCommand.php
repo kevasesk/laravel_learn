@@ -12,7 +12,7 @@ class DebugCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'debug:exec';
+    protected $signature = 'dd';
 
     /**
      * The console command description.
@@ -41,9 +41,12 @@ class DebugCommand extends Command
         #\App\Jobs\TestPodcast::dispatch();
         #\Illuminate\Support\Facades\Mail::to('testsender@gmail.com')->send(new \App\Mail\Test());
         #\App\Models\Product::factory()->count(1)->create();
-        $searchModel = new \App\Search\ElasticsearchRepository();
-        $results = $searchModel->filterProducts('brand', 'Apple');
-        dd(count($results));
+
+//        $searchModel = new \App\Search\ElasticsearchRepository();
+//        $results = $searchModel->filterProducts('brand', 'Apple');
+//        dd(count($results));
+
+        echo \Illuminate\Support\Str::slug('', '-');
 
 
         return 0;
