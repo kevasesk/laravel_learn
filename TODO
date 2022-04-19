@@ -1,14 +1,8 @@
--+ product lists filters, add elastic, add product data
-
 - fix minicart data
 - global messages on customer actions
 - fix sessions and products
 - import categories and products from kiril data
 
-homepage:
-    - brand slider
-    - add top attribute for categories
-    - display panels with products
 products:
     -+ gallery
     - info tabs
@@ -42,5 +36,6 @@ db:
 -------------------
 
 - remove empty cart from lost session (cron delete if to old)
+-+ build filter query on js and show results, filter by category
 
 

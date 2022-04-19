@@ -24,16 +24,19 @@ class ProductFactory extends Factory
             'url' => Str::slug($name),
             'is_active' => 1,
             'is_in_stock' => 1,
-            'qty' => $this->faker->numberBetween(0,100),
-            'price' => $this->faker->numberBetween(0,1000),
+            'qty' => $this->faker->numberBetween(1,100),
+            'price' => $this->faker->numberBetween(200,500),
+            'sale_price' => $this->faker->numberBetween(1,300),
+            'sale_price_from' => $this->faker->date(),
+            'sale_price_to' => null,
             'desc' => $this->faker->text,
             'short_desc' => $this->faker->text,
-            'status' => $this->faker->realTextBetween(0,5),
-            'color' => $this->faker->numberBetween(0,4),
+            'status' => $this->faker->numberBetween(1,10),
+            'color' => $this->faker->numberBetween(1,4),
             'is_popular' => $this->faker->numberBetween(0,1),
             'is_top_rated' => $this->faker->numberBetween(0,1),
             'is_new' => $this->faker->numberBetween(0,1),
-            'brand' => $this->faker->realTextBetween(0,5),
+            'brand' => $this->faker->randomElement(['Apple', 'Sumsung', 'Tesla', 'Google', 'SpaceX', 'HP', 'Lazer', 'Win'])
         ];
     }
 }

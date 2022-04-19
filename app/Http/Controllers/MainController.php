@@ -19,7 +19,12 @@ class MainController extends Controller
         foreach ($imageBlocks as $imageBlock){
             $images[$imageBlock['key']] = $imageBlock;
         }
-        return view('frontend.page.home', compact('images'));
+        $popular = Product::query()->where('is_popular', '=', 1)->limit(6)->get();
+        $topRated = Product::query()->where('is_top_rated', '=', 1)->limit(6)->get();
+        $newest = Product::query()->where('is_new', '=', 1)->limit(6)->get();
+        $branded = Product::query()->orderBy('brand')->limit(6)->get();// ??
+
+        return view('frontend.page.home', compact('images', 'popular', 'topRated', 'newest', 'branded'));
     }
 
     public function show($url)
@@ -46,14 +51,9 @@ class MainController extends Controller
         }
 
         #Search in categories
-        $category = Category::query()->where('url', '=', $url)->first();
-        if($category){
-            $products = $category->products()->paginate(15);
-            $breadcrumbs = [
-                ['url' => '/', 'title' => 'Home'],
-                ['title' => $category->title]
-            ];
-            return view('frontend.category.view', compact('products', 'category', 'breadcrumbs'));
+        $result = \App\Http\Controllers\Catalog\Category::process($url);
+        if($result){
+            return $result;
         }
 
         #Search in blog posts

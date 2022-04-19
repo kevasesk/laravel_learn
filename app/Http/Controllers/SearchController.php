@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Search\Posts\ElasticsearchRepository;
+use App\Search\ElasticsearchRepository;
 
 class SearchController extends Controller
 {

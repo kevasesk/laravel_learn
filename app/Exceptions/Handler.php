@@ -48,6 +48,11 @@ class Handler extends ExceptionHandler
                 'errors',
                 realpath(base_path('resources/views/admin/errors'))
             );
+        }else{
+            View::prependNamespace(
+                'errors',
+                realpath(base_path('resources/views/frontend/errors'))
+            );
         }
     }
 }

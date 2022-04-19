@@ -9,6 +9,7 @@ class Resizer
 {
     public static function get($imagePath, $width = 100, $height = 50)
     {
+        return "https://picsum.photos/$width/$height?".uniqid();// TODO remove - debug only
         if($imagePath){
             $resizedPath = public_path('storage').'/resized/'.$imagePath;
             if(!Storage::disk('public')->has($resizedPath)){

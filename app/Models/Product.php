@@ -82,7 +82,7 @@ class Product extends Model
     }
     public function getBrandOptions()
     {
-        return Product::query()->select('brand')->where('brand', '!=', null)->get();
+        return Product::query()->select('brand')->where('brand', '!=', null)->groupBy('brand')->get();
     }
     public function getCategoriesFilter()
     {

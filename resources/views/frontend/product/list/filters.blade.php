@@ -54,10 +54,8 @@
                 <form>
                     @foreach($products[0]->getBrandOptions() as $product)
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="{{$product['brand']}}">
-                                {{$product['brand']}}
-                            </label>
+                            <input type="radio" value="{{$product['brand']}}" name="brand">
+                            {{$product['brand']}}
                         </div>
                     @endforeach
                 </form>

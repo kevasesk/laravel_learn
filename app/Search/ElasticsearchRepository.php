@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Search\Posts;
+namespace App\Search;
 
 use Elasticsearch\Client;
 use Illuminate\Support\Arr;
@@ -40,6 +40,31 @@ class ElasticsearchRepository implements \App\Search\SearchRepository
         }
         return $results;
     }
+    public function filterProducts($category)//TODO filter by category
+    {
+        $request = app(\Illuminate\Http\Request::class);
+        $params = $request->query->all();
+        $matches = [];
+        foreach ($params as $param => $value){
+            $matches[] = [
+                'match' => [ $param => $value ]
+            ];
+        }
+        $model = new Product();
+        $items = $this->elasticsearch->search([
+            'index' => $model->getSearchIndex(),
+            'type' => $model->getSearchType(),
+            'body' => [
+                'size' => 10000,
+                'query' => [
+                    'bool' => [
+                        'must' => $matches
+                    ],
+                ],
+            ],
+        ]);
+        return $this->buildQuery($items);
+    }
     private function searchOnElasticsearch(string $query = '', $entity): array
     {
         $model = new $entity();
@@ -56,6 +81,11 @@ class ElasticsearchRepository implements \App\Search\SearchRepository
             ],
         ]);
         return $items;
+    }
+    private function buildQuery(array $items)
+    {
+        $ids = Arr::pluck($items['hits']['hits'], '_id');
+        return Product::query()->whereIn('id', $ids);
     }
     private function buildCollection(array $items, $entity): Collection
     {
