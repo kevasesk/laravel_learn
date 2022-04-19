@@ -25,7 +25,7 @@ class CrudController extends Controller
 
     public function index()
     {
-        $entities = $this->modelClass::all();
+        $entities = $this->modelClass::query()->paginate(10);
         $route = new $this->routeClass();
 
         $breadcrumbs = [

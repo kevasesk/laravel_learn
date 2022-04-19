@@ -20,6 +20,7 @@
                         >
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     @foreach($columns as $column)
                                         @continue(isset($column['hidden']) && $column['hidden'])
                                         <th>{{$column['title']}}</th>
@@ -29,8 +30,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @php $number = 1 @endphp
                                 @foreach($entities as $entity)
                                     <tr>
+                                        <td>{{$number}}</td>@php $number++ @endphp
                                         @foreach($columns as $column)
                                             @continue(isset($column['hidden']) && $column['hidden'])
                                             @if(!isset($column['type']))
@@ -56,6 +59,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{$entities->links('admin.layouts.struct.paginator')}}
                     </div>
                 </div>
             </div>

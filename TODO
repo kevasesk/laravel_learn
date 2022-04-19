@@ -12,7 +12,7 @@ cart:
 admin:
     - make admin profile pages and settings
     - add info to dashboard page
-    - add pagination, filter, (massaction) to all cruds +++
+    - add filter, (massaction) to all cruds +++
     - adding images to content editor
     - menu tree, category tree
     - add order data to review, add button to change status +++
