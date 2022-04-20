@@ -23,8 +23,18 @@ class MainController extends Controller
         $topRated = Product::query()->where('is_top_rated', '=', 1)->limit(6)->get();
         $newest = Product::query()->where('is_new', '=', 1)->limit(6)->get();
         $branded = Product::query()->orderBy('brand')->limit(6)->get();// ??
+        $featured = Product::query()->where('is_featured', '=', 1)->get();// ??
+        $featuredMap = [];
+        foreach ($featured as $product){
+            if(!isset($featuredMap['All']) || count($featuredMap['All']) < 5){
+                $featuredMap['All'][] = $product;
+            }
+            if(!isset($featuredMap[$product->brand]) || count($featuredMap[$product->brand]) < 5){
+                $featuredMap[$product->brand][] = $product;
+            }
+        }
 
-        return view('frontend.page.home', compact('images', 'popular', 'topRated', 'newest', 'branded'));
+        return view('frontend.page.home', compact('images', 'popular', 'topRated', 'newest', 'branded', 'featuredMap'));
     }
 
     public function show($url)

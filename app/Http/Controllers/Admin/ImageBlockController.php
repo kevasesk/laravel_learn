@@ -11,7 +11,7 @@ class ImageBlockController extends CrudController
     protected $modelTitle = 'Image Blocks';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'key', 'title' => 'Key'],
         [ 'column' => 'first_title', 'title' => 'First Title'],
         [ 'column' => 'second_title', 'title' => 'Second Title'],

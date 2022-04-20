@@ -50,7 +50,7 @@ class CustomerController extends Controller
     public function logout(Request $request)
     {
         $request->session()->remove('customer_id');
-        return redirect()->route('customer.login');
+        return redirect()->route('customer.login')->with('success', 'You have been logout');
     }
     public function create(Request $request)
     {
@@ -66,7 +66,7 @@ class CustomerController extends Controller
 
         $customer = new Customer($data);
         $customer->save();
-        return redirect()->route('customer.login');
+        return redirect()->route('customer.login')->with('success', 'You have registered a new account');
 
     }
 }

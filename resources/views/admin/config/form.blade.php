@@ -9,7 +9,7 @@
         <form method="POST" action="{{route('admin.config.save')}}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
-                @include('admin.layouts.struct.notifications')
+                @include('common.notifications')
                 @foreach($fields as $fieldKey => $fieldData)
                     @if(!isset($fieldData['type']))
                         <div class="form-group">

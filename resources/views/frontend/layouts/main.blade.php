@@ -12,6 +12,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div style="margin-bottom: 40px; ">
+                    @include('common.notifications')
                     @yield('content', 'No content specified')
                 </div>
             </div>

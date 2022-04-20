@@ -11,7 +11,7 @@ class SliderController extends CrudController
     protected $modelTitle = 'Slider Images';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'title', 'title' => 'Title' ],
         [ 'column' => 'desc', 'title' => 'Desc' ],
         [ 'column' => 'url', 'title' => 'Url' ],

@@ -9,33 +9,46 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @include('admin.layouts.struct.notifications')
-                    <div class="card">
-                        <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route($routeSuffix.".create") }}'" >New</button>
-                    </div>
-                    <div class="table-responsive">
-                        <table
-                            id="zero_config"
-                            class="table table-striped table-bordered"
-                        >
-                            <thead>
+                    @include('common.notifications')
+                    <form action="{{route($routeSuffix.".list")}}" method="get">
+                        <div style="padding: 20px 0px;">
+                            <button type="button" class="btn btn-success btn-lg text-white" style="width:200px;" onclick="window.location='{{ route($routeSuffix.".create") }}'" >New</button>
+                            <button type="submit" class="btn btn-info btn-lg text-white" style="width:200px;float: right;" name="filter">Filter/Clear</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table
+                                id="zero_config"
+                                class="table table-striped table-bordered"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        @foreach($columns as $column)
+                                            @continue(isset($column['hiddenInList']) && $column['hiddenInList'])
+                                            <th>{{$column['title']}}</th>
+                                        @endforeach
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <tr>
-                                    <th>#</th>
+                                    <td></td>
                                     @foreach($columns as $column)
-                                        @continue(isset($column['hidden']) && $column['hidden'])
-                                        <th>{{$column['title']}}</th>
+                                        @continue(isset($column['hiddenInList']) && $column['hiddenInList'])
+                                        <td>
+                                            <input name="{{$column['column']}}" data-role="filter"/>
+                                        </td>
                                     @endforeach
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                            @php $number = 1 @endphp
+                                @php $number = 1 @endphp
                                 @foreach($entities as $entity)
                                     <tr>
                                         <td>{{$number}}</td>@php $number++ @endphp
                                         @foreach($columns as $column)
-                                            @continue(isset($column['hidden']) && $column['hidden'])
+                                            @continue(isset($column['hiddenInList']) && $column['hiddenInList'])
                                             @if(!isset($column['type']))
                                                 <td>{{$entity[$column['column']]}}</td>
                                             @elseif($column['type'] == 'boolean')
@@ -57,10 +70,11 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
-                        {{$entities->links('admin.layouts.struct.paginator')}}
-                    </div>
+                                </tbody>
+                            </table>
+                            {{$entities->links('admin.layouts.struct.paginator')}}
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

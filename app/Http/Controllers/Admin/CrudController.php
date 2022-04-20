@@ -23,21 +23,29 @@ class CrudController extends Controller
 
     protected $relations = [];
 
-    public function index()
+    public function index(Request $request)
     {
-        $entities = $this->modelClass::query()->paginate(10);
+        $entities = $this->modelClass::query();
+        if($request->has('filter')){
+            foreach ($request->all() as $column => $value){
+                if($column != 'filter' && $value){
+                    $entities->where($column, 'like', '%'.$value.'%');
+                }
+            }
+        }
+        $entities = $entities->paginate(10);
         $route = new $this->routeClass();
 
-        $breadcrumbs = [
-            ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
-        ];
+//        $breadcrumbs = [
+//            ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
+//        ];
 
         return view('admin.crud.list',[
             'columns' => $this->columns,
             'entities' => $entities,
             'title' => $this->modelTitle,
             'routeSuffix' => $route->routeSuffixName,
-            'breadcrumbs' => $breadcrumbs
+            //'breadcrumbs' => $breadcrumbs
         ]);
     }
 
@@ -51,7 +59,7 @@ class CrudController extends Controller
         $breadcrumbs = [
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle]
         ];
-        return view('admin.crud.create', compact('entity', 'title','columns', 'routeSuffix', 'breadcrumbs'));
+        return view('admin.crud.form', compact('entity', 'title','columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function store(Request $request)
@@ -79,49 +87,84 @@ class CrudController extends Controller
             }
             $entity->{$fileAttribute} = $filePath;
         }
+        $this->processRelationFields($request, $entity);
+        $entity->save();
+        return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
+        //return back();
+    }
+    public function processRelationFields($request, $entity)
+    {
         if($this->relations){
             foreach ($this->relations as $relationType => $relationFields){
-//                foreach ($relationFields as $relationFieldData){
-//                    if($relationType == 'onetomany'){
-//                        $relationField = $relationFieldData['relationField'];
-//                        $oldValues = $entity->{$relationField};
-//                        $entity->{$relationField}()->delete();
-//                        // TODO remove unused images from file system
-//                        $relationItems = [];
-//
-//                        $position = 0;
-//                        foreach ($oldValues as $oldValue){
-//                            $relationItems[] = [
-//                                $relationFieldData['key'] => $entity->id,
-//                                'thumbnail' => $oldValue->thumbnail,
-//                                'position' => $oldValue->position
-//                            ];
-//                            $position++;
-//                        }
-//
-//                        $images = $request->file($relationField);
-//                        if($images){
-//                            foreach ($images as $image){
-//                                $relationItems[] = [
-//                                    $relationFieldData['key'] => $entity->id,
-//                                    'thumbnail' => $image->store($this->fileDir.'/'.$relationField, 'public'),
-//                                    'position' => $position
-//                                ];
-//                                $position++;
-//                            }
-//                        }
-//                        $entity->{$relationField}()->createMany($relationItems);
-//                    }
-//                }
+                foreach ($relationFields as $relationFieldData){
+                    if($relationType == 'onetomany'){
+                        $relationField = $relationFieldData['relationField'];
+                        $relationChildFields = $relationFieldData['fields'];
+                        $type = $relationFieldData['type'];
+
+                        $oldValues = $entity->{$relationField};
+                        $entity->{$relationField}()->delete();// TODO remove unused images from file system
+                        $relationItems = [];
+
+
+                        $position = 0;
+                        foreach ($oldValues as $oldValue){
+                            $row = [];
+                            $row[$relationFieldData['key']] = $entity->id;
+                            foreach ($relationChildFields as $childField){
+                                $row[$childField] = $oldValue->{$childField};
+                            }
+                            $relationItems[] = $row;
+                            $position++;
+                        }
+
+                        if($type == 'images'){
+                            $images = $request->file($relationField);
+                            if($images){
+                                foreach ($images as $image){
+                                    $relationItems[] = [
+                                        $relationFieldData['key'] => $entity->id,
+                                        'thumbnail' => $image->store($this->fileDir.'/'.$relationField, 'public'),
+                                        'position' => $position
+                                    ];
+                                    $position++;
+                                }
+                            }
+                        }
+                        if($type == 'tabs'){
+                            $relationItems = [];
+                            $row[$relationFieldData['key']] = $entity->id;
+                            foreach ($request->{$relationField} as $tab){
+                                $row = [];
+                                $row[$relationFieldData['key']] = $entity->id;
+                                foreach ($relationChildFields as $childField){
+                                    if($childField == 'position'){
+                                        $row[$childField] = $position;
+                                    }else{
+                                        $row[$childField] = $tab[$childField];
+                                    }
+                                }
+                                $toAdd = true;
+                                foreach ($row as $val){
+                                    if($val === null){
+                                        $toAdd = false;
+                                        break;
+                                    }
+                                }
+                                if($toAdd){
+                                    $relationItems[] = $row;
+                                    $position++;
+                                }
+                            }
+                        }
+                        $entity->{$relationField}()->createMany($relationItems);
+                    }
+                }
 
             }
 //            $entity->{$this->relations}()->detach();
 //            $entity->{$this->relations}()->attach($data[$this->relations]);
         }
-
-        $entity->save();
-        return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
-        //return back();
     }
 
     public function edit($id)
@@ -135,7 +178,7 @@ class CrudController extends Controller
             ['url' => $route->routeSuffix, 'title' => $this->modelTitle],
             ['title' => $entity->title ?? $entity->firstname]
         ];
-        return view('admin.crud.create', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
+        return view('admin.crud.form', compact('entity', 'title', 'columns', 'routeSuffix', 'breadcrumbs'));
     }
 
     public function destroy($id)

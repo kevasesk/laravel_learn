@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'url' => Str::slug($name),
             'is_active' => 1,
             'is_in_stock' => 1,
+            'is_featured' => $this->faker->numberBetween(0,1),
             'qty' => $this->faker->numberBetween(1,100),
             'price' => $this->faker->numberBetween(200,500),
             'sale_price' => $this->faker->numberBetween(1,300),

@@ -15,7 +15,7 @@ class CategoriesController extends CrudController
     protected $modelTitle = 'Categories';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'title', 'title' => 'Title' ],
         [ 'column' => 'url', 'title' => 'Url' ],
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
@@ -25,7 +25,7 @@ class CategoriesController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-        'url' => 'required',
+//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];

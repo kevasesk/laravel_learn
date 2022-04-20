@@ -55,8 +55,8 @@ class ReindexCommand extends Command
         $this->info('Indexing all models. This might take a while...');
 
         $entities = [
-            Post::class,
             Product::class,
+            Post::class,
             Page::class,
             Category::class,
             BlogCategory::class,

@@ -17,6 +17,7 @@ class Product extends Model
         'url',
         'qty',
         'is_active',
+        'is_featured',
         'is_in_stock',
         'price',
         'sale_price',
@@ -43,6 +44,10 @@ class Product extends Model
     public function tabs()
     {
         return $this->hasMany(ProductTabs::class);
+    }
+    public function upsells()
+    {
+        return $this->hasMany(ProductUpsell::class);
     }
 
     public function cartItems()
@@ -112,5 +117,10 @@ class Product extends Model
             'max' => $products[count($products)-1]['price']
         ];
 
+    }
+    public function getUpsellProducts()
+    {
+        $upsellIds = array_unique(array_column($this->upsells->toArray(), 'child_id'));
+        return Product::query()->whereIn('id', $upsellIds)->get();;
     }
 }

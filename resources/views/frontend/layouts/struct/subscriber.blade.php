@@ -8,7 +8,6 @@
 <script>
     $('#subs').on('click', function(e){
         e.preventDefault();
-        console.log(grecaptcha.getResponse());//eugenesm
         $.ajax({
             url: '{{ route('subscriber.new')  }}',
             data:{

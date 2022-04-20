@@ -64,14 +64,10 @@
                         <li><span class="text">Shipping:</span>
                             <div class="shipping">
                                 <form method="get" action="#" role="search">
-                                    <input type="radio" name="gender" value="Flat" id="radio1" checked="checked">
-                                    <label for="radio1">FLAT RATE: $12.00</label>
-                                    <input type="radio" name="gender" value="Free" id="radio2">
-                                    <label for="radio2">Free Shipping</label>
-                                    <input type="radio" name="gender" value="Delivery" id="radio3">
-                                    <label for="radio3">FLAT RATE: $60.00</label>
-                                    <input type="radio" name="gender" value="Local-Delivery" id="radio4">
-                                    <label for="radio4">LOCAL DELIVERY: $5.00</label>
+                                    @foreach($shippings as $shipping => $shippingData)
+                                        <input type="radio" name="{{$shipping}}" value="{{$shippingData['title']}}" id="{{$shipping}}">
+                                        <label for="{{$shipping}}">{{$shippingData['title']}}: {{$shippingData['cost']}}</label>
+                                    @endforeach
                                 </form>
                             </div>
                         </li>

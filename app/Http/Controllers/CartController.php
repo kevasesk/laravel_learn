@@ -59,7 +59,7 @@ class CartController extends \App\Http\Controllers\Controller
             $cartProducts ? $cart->products()->update($metaData) : $cart->products()->attach($product->id, $metaData);
             $cart->save();
         }
-        return back();
+        return back()->with('success', 'Product was added to cart');
     }
     public function getCurrentCart(Request $request)
     {
@@ -91,7 +91,7 @@ class CartController extends \App\Http\Controllers\Controller
         $currentCart = $this->getCurrentCart($request);
         $currentCart->products()->detach();
         $currentCart->save();
-        return back();
+        return back()->with('success', 'YOu have cleared the cart');
     }
     public function checkout(Request $request)
     {

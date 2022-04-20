@@ -21,10 +21,6 @@
             <form method="post" action="{{route('cart.create')}}">
                 @csrf
                 <div class="col-md-7">
-                    <div class="login-required">
-                        <p>Returning Custumer? CLICK <a href="#" title="" class="login">HERE</a> TO LOGIN</p>
-                        <p>Have a coupon? CLICK <a href="#" title="" class="coupon-code">HERE</a> TO ENTER YOUR CODE</p>
-                    </div>
                     <div class="billing-details">
                         <div class="billing-details-heading">
                             <h2 class="billing-title">
@@ -145,14 +141,10 @@
                             <li><span class="text">Shipping:</span>
                                 <div class="shipping">
                                     <form action="#">
-                                        <input type="radio" name="gender" value="Flat" id="radio1" checked="checked">
-                                        <label for="radio1">FLAT RATE: <span class="shipping-number">$12.00</span></label>
-                                        <input type="radio" name="gender" value="Free" id="radio2">
-                                        <label for="radio2">Free Shipping</label>
-                                        <input type="radio" name="gender" value="Delivery" id="radio3">
-                                        <label for="radio3">FLAT RATE: <span class="shipping-number">$60.00</span></label>
-                                        <input type="radio" name="gender" value="Local-Delivery" id="radio4">
-                                        <label for="radio4">LOCAL DELIVERY: <span class="shipping-number indent">$5.00</span></label>
+                                        @foreach($shippings as $shipping => $shippingData)
+                                            <input type="radio" name="{{$shipping}}" value="{{$shippingData['title']}}" id="{{$shipping}}">
+                                            <label for="{{$shipping}}">{{$shippingData['title']}}: {{$shippingData['cost']}}</label>
+                                        @endforeach
                                     </form>
                                 </div>
                                 <div class="clearfix"></div>
@@ -161,19 +153,17 @@
                         </ul>
                         <div class="order-transfer clearfix">
                             <ul class="tabs">
-                                <li class="active">
-                                    <i class="icon"></i>
-                                    <h4>Direct Bank Transfer
-                                        <span>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account. </span></h4>
-                                </li>
-                                <li>
-                                    <i class="icon"></i>
-                                    <h4>Check Payments</h4>
-                                </li>
-                                <li>
-                                    <i class="icon"></i>
-                                    <h4>Cash On Delivery</h4>
-                                </li>
+                                @foreach($payments as $payment => $paymentData)
+                                    <li>
+                                        <i class="icon"></i>
+                                        <h4>{{$paymentData['title']}}
+                                            @if(isset($paymentData['desc']))
+                                                <span>{{$paymentData['desc']}}</span>
+                                            @endif
+                                        </h4>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
                         <button type="submit" class="btn-order">place order</button>

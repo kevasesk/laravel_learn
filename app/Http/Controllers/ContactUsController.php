@@ -24,7 +24,7 @@ class ContactUsController extends Controller
         $data = $request->all();
         $ticket = new Ticket($data);
         $ticket->save();
-        return redirect()->route('contact-us');
+        return redirect()->route('contact-us')->with('success', 'Your ticket has been send');
 
     }
 }

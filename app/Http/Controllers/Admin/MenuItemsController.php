@@ -11,7 +11,7 @@ class MenuItemsController extends CrudController
     protected $modelTitle = 'Menu';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'title', 'title' => 'Title' ],
         [ 'column' => 'url', 'title' => 'Url' ],
         [ 'column' => 'parent_id', 'title' => 'Parent ID' ],

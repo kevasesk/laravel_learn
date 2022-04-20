@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\App;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index'])->name('/');
 
 #Admin
 Route::get('admin', [AdminController::class, 'index'])->name('admin')->middleware('admin.not.auth');

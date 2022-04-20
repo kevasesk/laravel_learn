@@ -15,7 +15,7 @@ class PagesController extends CrudController
     protected $modelTitle = 'Pages';
 
     protected $columns = [
-        [ 'column' => 'id', 'title' => 'Id', 'hidden' => true],
+        [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean'],
         [ 'column' => 'title', 'title' => 'Title'],
         [ 'column' => 'url', 'title' => 'Url'],
