@@ -9,7 +9,7 @@ class AdminMenuServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        View::composer('*', function ($view){//TODO improve only for admin views
+        View::composer('admin*', function ($view){
             $view->with('adminMenu', [
                 [
                     'title' => 'Dashboard',

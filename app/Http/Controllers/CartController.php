@@ -16,7 +16,7 @@ class CartController extends \App\Http\Controllers\Controller
         $products = $currentCart->products;
         $cartItems = CartItem::query()->where('cart_id','=', $currentCart->id)->get()->toArray();
         if(!count($products)){
-            return redirect('/');//todo add message that cart is empty
+            return redirect('/');
         }
         $cartData = [];
         $subtotal = 0;

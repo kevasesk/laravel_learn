@@ -5,7 +5,6 @@
 admin:
     - menu tree, category tree (vue)
 code:
-    - make input form fields abstract and divide it to files and re use it in forms
     - check TODOs in code and fix it
     - global urls conflicts
 db:
@@ -17,7 +16,7 @@ db:
 - fix email template, add new ones
 -+ add order data to review, add button to change status +++
 - adding images to content editor
-- add massaction to all cruds
+- add massaction to all cruds +++
 - remove empty cart from lost session (cron delete if to old)
 -+ build filter query on js and show results, filter by category
 
