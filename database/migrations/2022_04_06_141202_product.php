@@ -16,13 +16,13 @@ class Product extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('sku')->unique();
-            $table->integer('is_active');
-            $table->integer('is_in_stock');
+            $table->tinyInteger('is_active');
+            $table->tinyInteger('is_in_stock');
             $table->string('title');
-            $table->string('url');
-            $table->string('qty');
-            $table->string('price');
-            $table->string('sale_price')->nullable();
+            $table->string('url')->unique();
+            $table->integer('qty');
+            $table->float('price');
+            $table->float('sale_price')->nullable();
             $table->timestamp('sale_price_from')->nullable();
             $table->timestamp('sale_price_to')->nullable();
             $table->text('desc')->nullable();

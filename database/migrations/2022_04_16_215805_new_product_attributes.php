@@ -14,11 +14,11 @@ class NewProductAttributes extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->addColumn('integer', 'status')->default(0);
+            $table->addColumn('tinyInteger', 'status')->default(0);
             $table->addColumn('integer', 'color')->default(0);
-            $table->addColumn('integer', 'is_popular')->default(0);
-            $table->addColumn('integer', 'is_top_rated')->default(0);
-            $table->addColumn('integer', 'is_new')->default(0);
+            $table->addColumn('tinyInteger', 'is_popular')->default(0);
+            $table->addColumn('tinyInteger', 'is_top_rated')->default(0);
+            $table->addColumn('tinyInteger', 'is_new')->default(0);
             $table->addColumn('text',  'brand')->nullable();
         });
     }

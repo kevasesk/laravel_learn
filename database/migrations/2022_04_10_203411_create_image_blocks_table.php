@@ -15,7 +15,7 @@ class CreateImageBlocksTable extends Migration
     {
         Schema::create('image_blocks', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
+            $table->string('key')->unique();
             $table->string('first_title')->nullable();
             $table->string('second_title')->nullable();
             $table->string('url')->nullable();

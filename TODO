@@ -7,8 +7,6 @@ admin:
 code:
     - check TODOs in code and fix it
     - global urls conflicts
-db:
-    - check struct, relations, uniques +++
 
 -------------------
 

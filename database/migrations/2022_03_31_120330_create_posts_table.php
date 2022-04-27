@@ -17,9 +17,9 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('desc')->nullable();
             $table->string('title');
-            $table->string('url');
+            $table->string('url')->unique();
             $table->text('thumbnail')->nullable();
-            $table->integer('is_active');
+            $table->tinyInteger('is_active');
             $table->timestamps();
         });
     }

@@ -26,7 +26,7 @@ class CreateCustomersTable extends Migration
             $table->string('city')->nullable();
             $table->string('postcode')->nullable();
             $table->text('address')->nullable();
-            $table->integer('is_subscribed')->default(0);
+            $table->tinyInteger('is_subscribed')->default(0);
 
             $table->timestamps();
         });

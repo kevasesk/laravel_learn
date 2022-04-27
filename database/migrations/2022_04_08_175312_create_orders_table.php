@@ -15,10 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('cart_id');
-            $table->integer('status');
-            $table->integer('increment_id');
+            $table->bigInteger('cart_id')->unsigned();
+            $table->tinyInteger('status');
+            $table->integer('increment_id')->unique();
             $table->timestamps();
+            $table->foreign('cart_id')->references('id')->on('carts');
         });
     }
 

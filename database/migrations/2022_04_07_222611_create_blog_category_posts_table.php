@@ -20,6 +20,7 @@ class CreateBlogCategoryPostsTable extends Migration
             $table->integer('position')->default(0);
             $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('category_id')->references('id')->on('blog_categories');
+            $table->unique(['post_id', 'category_id']);
             $table->timestamps();
         });
     }

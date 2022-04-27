@@ -14,7 +14,7 @@ class AddCartStatus extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->addColumn('integer', 'is_active')->default(1);
+            $table->addColumn('tinyInteger', 'is_active')->default(1);
         });
     }
 
