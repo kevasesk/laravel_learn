@@ -22,10 +22,10 @@ Search Results
                                 <div class="item{{$number}}">
                                     <div class="product-item ver2">
                                         <div class="prod-item img">
-                                            <a href="{{url($item->url)}}"><img src="{{ Resizer::get($item->thumbnail, 370, 170) }}" alt="images" class="img-responsive"></a>
+                                            <a href="{{$item->getUrl()}}"><img src="{{ Resizer::get($item->thumbnail, 370, 170) }}" alt="images" class="img-responsive"></a>
                                         </div>
                                         <div class="prod-info-ver2">
-                                            <h6><a href="{{url($item->url)}}" title="">{{$item->title}}</a></h6>
+                                            <h6><a href="{{$item->getUrl()}}" title="">{{$item->title}}</a></h6>
                                         </div>
                                     </div>
                                 </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Redirect;
+
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
@@ -39,44 +41,15 @@ class MainController extends Controller
 
     public function show($url)
     {
-        #Search in pages
-        $page = Page::query()->where('url', '=', $url)->first();
-        if($page){
-            $breadcrumbs = [
-                ['url' => '/', 'title' => 'Home'],
-                ['title' => $page->title]
-            ];
-            return view('frontend.page.template', compact('page', 'breadcrumbs'));
+        $redirect = Redirect::query()->where('url', '=', $url)->first();
+        if(!$redirect){
+            return abort(404);
         }
-
-        #Search in products
-        $product = Product::query()->where('url', '=', $url)->first();
-        if($product){
-            $breadcrumbs = [
-                ['url' => '/', 'title' => 'Home'],
-                ['title' => $product->title]
-            ];
-            $addToCartAttribute = !$product->getIsInStock() ? 'disabled' : '';
-            return view('frontend.product.view', compact('product', 'breadcrumbs', 'addToCartAttribute'));
+        switch ($redirect->type){
+            case Redirect::TYPE_PAGE: return \App\Http\Controllers\Redirect\Page::process($redirect->entity_id);
+            case Redirect::TYPE_PRODUCT: return \App\Http\Controllers\Redirect\Product::process($redirect->entity_id);
+            case Redirect::TYPE_CATEGORY: return \App\Http\Controllers\Redirect\Category::process($redirect->entity_id);
+            case Redirect::TYPE_BLOG_POST: return \App\Http\Controllers\Redirect\Blog\Post::process($redirect->entity_id);
         }
-
-        #Search in categories
-        $result = \App\Http\Controllers\Catalog\Category::process($url);
-        if($result){
-            return $result;
-        }
-
-        #Search in blog posts
-        $post = Post::query()->where('url', '=', $url)->first();
-        if($post){
-            $breadcrumbs = [
-                ['url' => '/', 'title' => 'Home'],
-                ['url' => 'blog', 'title' => 'Blog'],
-                ['title' => $post->title]
-            ];
-            return view('frontend.blog.post.view', compact('post', 'breadcrumbs'));
-        }
-
-        return abort(404);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class CrudController extends Controller
 {
@@ -23,6 +25,8 @@ class CrudController extends Controller
 
     protected $relations = [];
 
+    protected $redirectType = null;
+
     public function index(Request $request)
     {
         $entities = $this->modelClass::query();
@@ -34,6 +38,19 @@ class CrudController extends Controller
             }
         }
         $entities = $entities->paginate(10);
+
+        if($this->redirectType){
+            $redirects = Redirect::query()->where('type','=', $this->redirectType)->get();
+            $mapped = [];
+            foreach ($redirects as $redirect){
+                $mapped[$redirect->entity_id] = $redirect->url;
+            }
+            foreach ($entities as $entity){
+                if(isset($mapped[$entity->id])){
+                    $entity->url = $mapped[$entity->id];
+                }
+            }
+        }
         $route = new $this->routeClass();
 
 //        $breadcrumbs = [
@@ -66,18 +83,16 @@ class CrudController extends Controller
     {
         $data = $request->all();
         $route = new $this->routeClass();
-        if(!$data['url']){
-            $data['url'] = \Illuminate\Support\Str::slug($data['title'], '-');
-        }
+
         $request->validate($this->validateRules);
-
-
         if(!$request->id){
             $entity = new $this->modelClass($data);
         }else{
             $entity = $this->modelClass::query()->where('id','=', $request->id)->first();
             $entity->fill($data);
         }
+
+
 
         foreach ($this->fileAttributes as $fileAttribute){
             if($request->file($fileAttribute)){
@@ -89,6 +104,24 @@ class CrudController extends Controller
         }
         $this->processRelationFields($request, $entity);
         $entity->save();
+        if($this->redirectType){
+            $url = !$request->url ? \Illuminate\Support\Str::slug($request->title, '-') : $request->url;
+
+            $redirect = Redirect::query()->where('url','=', $url)->first();
+            if(!$redirect){
+                $newRedirect = new Redirect();
+                $newRedirect->url = $url;
+                $newRedirect->entity_id = $entity->id;
+                $newRedirect->type = $this->redirectType;
+                $newRedirect->save();
+            }else{
+                if($redirect->entity_id != $entity->id || $redirect->type != $this->redirectType){
+                    $validator = Validator::make([], []);
+                    $validator->getMessageBag()->add('url', 'This url already in use!');
+                    return back()->withErrors($validator);
+                }
+            }
+        }
         return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
         //return back();
     }
@@ -172,6 +205,15 @@ class CrudController extends Controller
         $route = new $this->routeClass();
         $columns = $this->columns;
         $entity = $this->modelClass::query()->where('id','=', $id)->first();
+        if($this->redirectType){
+            $redirect = Redirect::query()
+                ->where('entity_id','=', $id)
+                ->where('type','=', $this->redirectType)
+                ->first();
+            if($redirect){
+                $entity->url = $redirect->url;
+            }
+        }
         $title = $this->modelTitle;
         $routeSuffix = $route->routeSuffixName;
         $breadcrumbs = [

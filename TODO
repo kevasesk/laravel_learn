@@ -1,12 +1,11 @@
 - fix minicart data
 - fix sessions and products
-- import categories and products from kiril data +++
+-+ import categories and products from kiril data +++
 
 admin:
     - menu tree, category tree (vue)
 code:
     - check TODOs in code and fix it
-    - global urls conflicts
 
 -------------------
 

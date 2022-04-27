@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $page['title'] }}</h5>
                 <p class="card-text">{{ $page['content'] }}</p>
-                <a href="{{ url($page['url']) }}" class="btn btn-primary">Go there</a>
+                <a href="{{ $page->getUrl() }}" class="btn btn-primary">Go there</a>
             </div>
         @endforeach
     </div>

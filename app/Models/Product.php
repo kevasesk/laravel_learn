@@ -14,7 +14,6 @@ class Product extends Model
     protected $fillable = [
         'title',
         'sku',
-        'url',
         'qty',
         'is_active',
         'is_featured',
@@ -122,5 +121,14 @@ class Product extends Model
     {
         $upsellIds = array_unique(array_column($this->upsells->toArray(), 'child_id'));
         return Product::query()->whereIn('id', $upsellIds)->get();;
+    }
+    public function getUrl()
+    {
+        $redirect = Redirect::query()
+            ->where('entity_id','=', $this->id)
+            ->where('type','=', Redirect::TYPE_PRODUCT)
+            ->first()
+        ;
+        return url($redirect->url);
     }
 }

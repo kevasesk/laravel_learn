@@ -13,7 +13,6 @@ class Page extends Model
     protected $fillable = [
         'title',
         'content',
-        'url',
         'is_active'
     ];
 
@@ -21,5 +20,14 @@ class Page extends Model
     {
         $formatted = substr(strip_tags($this->content), 0, 255 * 4);//TODO can be improved (remove spaces, tabs, new lines correctly)
         return $formatted . (strlen($formatted) > 255 * 4 ? '...' : '');
+    }
+    public function getUrl()
+    {
+        $redirect = Redirect::query()
+            ->where('entity_id','=', $this->id)
+            ->where('type','=', Redirect::TYPE_PAGE)
+            ->first()
+        ;
+        return url($redirect->url);
     }
 }

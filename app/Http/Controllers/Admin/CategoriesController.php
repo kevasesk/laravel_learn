@@ -14,6 +14,8 @@ class CategoriesController extends CrudController
 
     protected $modelTitle = 'Categories';
 
+    protected $redirectType = \App\Models\Redirect::TYPE_CATEGORY;
+
     protected $columns = [
         [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'title', 'title' => 'Title' ],
@@ -25,7 +27,6 @@ class CategoriesController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];

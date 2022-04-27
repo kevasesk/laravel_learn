@@ -9,13 +9,13 @@
                 @foreach($products as $product)
                     <div class="product-list-item">
                         <div class="product-item-img">
-                            <a href="{{ url($product->url) }}">
+                            <a href="{{ $product->getUrl() }}">
                                 <img src="{{Resizer::get($product->thumbnail, 370, 170)}}" alt="images" class="img-responsive">
                             </a>
                             <div class="label label-2 red label-top-20">Hot</div>
                         </div>
                         <div class="product-item-info">
-                            <h3><a href="{{ url($product->url) }}" title="">{{$product->title}} ({{$product->brand}})</a></h3>
+                            <h3><a href="{{ $product->getUrl() }}" title="">{{$product->title}} ({{$product->brand}})</a></h3>
                             <div class="prod-price">
                                 <span class="price black">${{$product->price}}</span>
                             </div>

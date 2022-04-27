@@ -18,14 +18,14 @@
                                 <div class="col-md-15 col-sm-4 col-xs-6">
                                     <div class="product-item ver2">
                                         <div class="prod-item-img bd-style-2">
-                                            <a href="{{url($product->url)}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
+                                            <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                                             <div class="button">
                                                 <a href="#" class="addcart">ADD TO CART (TODO)</a>
-                                                <a href="{{url($product->url)}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a href="{{$product->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="prod-info">
-                                            <h3><a href="{{url($product->url)}}">{{$product->title}}</a></h3>
+                                            <h3><a href="{{$product->getUrl()}}">{{$product->title}}</a></h3>
                                             <div class="prod-price">
                                                 <span class="price black">{{$product->price}}</span>
                                             </div>

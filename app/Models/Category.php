@@ -14,13 +14,21 @@ class Category extends Model
         'is_active',
         'parent_id',
         'title',
-        'url',
         'desc',
         'thumbnail',
     ];
     public function products()
     {
         return $this->belongsToMany(Product::class, 'category_products');
+    }
+    public function getUrl()
+    {
+        $redirect = Redirect::query()
+            ->where('entity_id','=', $this->id)
+            ->where('type','=', Redirect::TYPE_CATEGORY)
+            ->first()
+        ;
+        return url($redirect->url);
     }
 //    public function getProductIds()
 //    {

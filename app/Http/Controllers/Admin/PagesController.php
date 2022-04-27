@@ -14,6 +14,8 @@ class PagesController extends CrudController
 
     protected $modelTitle = 'Pages';
 
+    protected $redirectType = \App\Models\Redirect::TYPE_PAGE;
+
     protected $columns = [
         [ 'column' => 'id', 'title' => 'Id', 'hiddenInForm' => true],
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean'],
@@ -24,7 +26,6 @@ class PagesController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-//        'url' => 'required',
         'is_active' => 'required',
     ];
 }

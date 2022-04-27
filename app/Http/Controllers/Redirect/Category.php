@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Catalog;
+namespace App\Http\Controllers\Redirect;
 
 use App\Models\Category as CategoryModel;
 
 class Category
 {
-    public static function process($url)
+    public static function process($id)
     {
-        $category = CategoryModel::query()->where('url', '=', $url)->first();
+        $category = CategoryModel::query()->where('id', '=', $id)->first();
         if($category){
             $searchModel = new \App\Search\ElasticsearchRepository();
             $products = $searchModel->filterProducts($category)->paginate(6);

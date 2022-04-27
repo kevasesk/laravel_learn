@@ -13,7 +13,6 @@ class BlogCategory extends Model
     protected $fillable = [
         'is_active',
         'title',
-        'url',
         'desc',
         'thumbnail',
     ];

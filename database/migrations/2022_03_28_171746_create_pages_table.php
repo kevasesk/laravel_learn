@@ -17,7 +17,6 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->tinyInteger('is_active');
             $table->string('title');
-            $table->string('url')->unique();
             $table->text('content')->nullable();
             $table->timestamps();
         });

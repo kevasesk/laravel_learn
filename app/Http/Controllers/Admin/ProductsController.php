@@ -13,9 +13,10 @@ class ProductsController extends CrudController
 
     protected $modelTitle = 'Products';
 
+    protected $redirectType = \App\Models\Redirect::TYPE_PRODUCT;
+
     protected $validateRules = [
         'title' => 'required',
-//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];

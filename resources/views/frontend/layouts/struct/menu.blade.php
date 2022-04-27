@@ -9,7 +9,7 @@
                             <ul class="level0">
                                 @foreach($categoriesMenu as $category)
                                     <li>
-                                        <a href="{{ url($category['url']) }}">{{$category['title']}}</a>
+                                        <a href="{{ url($category['url'])}}">{{$category['title']}}</a>
                                         @isset($category['icon'])
                                             <span class="icon {{ $category['icon'] }}"></span>
                                         @endisset

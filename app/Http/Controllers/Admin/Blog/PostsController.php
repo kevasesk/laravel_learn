@@ -12,6 +12,8 @@ class PostsController extends CrudController
 
     protected $modelTitle = 'Blog Posts';
 
+    protected $redirectType = \App\Models\Redirect::TYPE_BLOG_POST;
+
     protected $columns = [
         [ 'column' => 'id', 'title' => 'Id'],
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
@@ -28,7 +30,6 @@ class PostsController extends CrudController
 
     protected $validateRules = [
         'title' => 'required',
-//        'url' => 'required',
         'is_active' => 'required',
         'thumbnail' => 'image|max:20000',
     ];

@@ -13,7 +13,6 @@ class Post extends Model
     protected $fillable = [
         'is_active',
         'title',
-        'url',
         'desc',
         'thumbnail',
     ];
@@ -21,5 +20,14 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(BlogCategory::class, 'blog_category_posts', 'post_id', 'post_id');
+    }
+    public function getUrl()
+    {
+        $redirect = Redirect::query()
+            ->where('entity_id','=', $this->id)
+            ->where('type','=', Redirect::TYPE_BLOG_POST)
+            ->first()
+        ;
+        return url($redirect->url);
     }
 }

@@ -19,7 +19,6 @@ class Product extends Migration
             $table->tinyInteger('is_active');
             $table->tinyInteger('is_in_stock');
             $table->string('title');
-            $table->string('url')->unique();
             $table->integer('qty');
             $table->float('price');
             $table->float('sale_price')->nullable();

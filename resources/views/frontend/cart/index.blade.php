@@ -33,12 +33,12 @@
                     @foreach($products as $product)
                         <tr class="cart_item">
                             <td class="product-thumbnail">
-                                <a href="{{url($product->url)}}">
+                                <a href="{{$product->getUrl()}}">
                                     <img src="{{ Resizer::get($product->thumbnail, 100, 75) }}" alt="{{$product->title}}" class="img-responsive">
                                 </a>
                             </td>
                             <td class="product-name">
-                                <a href="{{url($product->url)}}">{{$product->title}}</a>
+                                <a href="{{$product->getUrl()}}">{{$product->title}}</a>
                             </td>
                             <td class="product-price">
                                 <p class="price">{{$product->price}}</p>

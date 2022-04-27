@@ -21,7 +21,7 @@ class CreateProductUpsellsTable extends Migration
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('child_id')->references('id')->on('products');
-            $table->unique(['product_id', 'child_id'])
+            $table->unique(['product_id', 'child_id']);
             $table->timestamps();
         });
     }
