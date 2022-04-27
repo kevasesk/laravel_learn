@@ -1,4 +1,6 @@
+<script type="text/javascript" src="/js/jquery.js"></script>
 <div id="login-form">
+    @include('common.notifications')
     <form method="POST" action="{{ route('adminLogin') }}">
         @csrf
         <h1>Login</h1>
@@ -9,7 +11,6 @@
             <div class="input-field">
                 <input type="password" name="password" placeholder="Password" autocomplete="new-password" value="{{ old('password') }}">
             </div>
-            <a href="#" class="link">Forgot Your Password?</a>
         </div>
         <div class="action">
             <button>Sign in</button>
@@ -125,5 +126,15 @@
     }
     #login-form .action button:nth-child(2):hover {
         background: #3c4d6d;
+    }
+    #login-form .alert-error{
+        padding: 20px;
+        background-color: #e74747;
+        color: #383838;
+    }
+    #login-form .alert-success{
+        padding: 20px;
+        background-color: #579c2e;
+        color: #383838;
     }
 </style>

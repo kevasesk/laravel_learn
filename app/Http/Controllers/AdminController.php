@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admins;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -33,12 +35,13 @@ class AdminController extends Controller
         ]);
 
         $admin = Admins::query()->where('name','=', $request->name)->first();
-        if($admin){
+        if($admin && Hash::check($request->password, $admin->password)){
             $request->session()->put('loggedIn', $admin->id);
             return redirect()->route('dashboard');
-
         }else{
-            return redirect('admin');
+            $validator = Validator::make([], []);
+            $validator->getMessageBag()->add('password', 'There is no such admin or password is incorrect.');
+            return redirect('admin')->withErrors($validator);
         }
 
     }
@@ -56,12 +59,14 @@ class AdminController extends Controller
         try{
             $newAdmin = new Admins();
             $newAdmin->name = $request->name;
-            $newAdmin->password = $request->password;
+            $newAdmin->password = Hash::make($request->password);
             $newAdmin->email = $request->email;
             $newAdmin->save();
-            return redirect('admin');
+            return redirect('admin')->with('success', 'Admin was successfully created.');
         }catch (\Exception $e){
-            return redirect('register');
+            $validator = Validator::make([], []);
+            $validator->getMessageBag()->add('error', 'Something going wrong while creating admin');
+            return redirect('register')->withErrors($validator);
         }
 
     }

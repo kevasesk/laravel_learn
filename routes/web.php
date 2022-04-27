@@ -38,8 +38,8 @@ Route::get('/', [MainController::class, 'index'])->name('/');
 #Admin
 Route::get('admin', [AdminController::class, 'index'])->name('admin')->middleware('admin.not.auth');
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('admin.auth');
-Route::get('admin/register', [AdminController::class, 'register'])->middleware('admin.auth');
-Route::post('admin/create', [AdminController::class, 'create'])->name('admin.create')->middleware('admin.auth');
+Route::get('admin/register', [AdminController::class, 'register']);//->middleware('admin.auth'); TODO go to production
+Route::post('admin/create', [AdminController::class, 'create'])->name('admin.create');//->middleware('admin.auth');TODO go to production
 Route::post('admin/login', [AdminController::class, 'login'])->name('adminLogin');
 
 Route::middleware(['admin.auth'])->group(function () {
