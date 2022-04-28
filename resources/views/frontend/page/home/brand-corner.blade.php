@@ -9,7 +9,7 @@
                     <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600, 600)}}" alt="images" class="img-responsive"></a>
                 </div>
                 <div class="prod-info">
-                    <h3><a href="{{$product->geteUrl()}}">{{$product->title}}</a></h3>
+                    <h3><a href="{{$product->getUrl()}}">{{$product->title}}</a></h3>
                     <div class="p-price">
                         <span class="price black">{{$product->price}}</span>
                     </div>

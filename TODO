@@ -9,10 +9,8 @@ code:
 
 -------------------
 
-- split models, controllers to subdirs
-- fix email template, add new ones
+- fix email template, add new ones (need kiril)
 -+ add order data to review, add button to change status +++
-- adding images to content editor
 - add massaction to all cruds +++
 - remove empty cart from lost session (cron delete if to old)
 -+ build filter query on js and show results, filter by category

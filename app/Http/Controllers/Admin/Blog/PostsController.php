@@ -19,7 +19,7 @@ class PostsController extends CrudController
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
         [ 'column' => 'title', 'title' => 'Title' ],
         [ 'column' => 'url', 'title' => 'Url' ],
-        [ 'column' => 'desc', 'title' => 'Description', 'type' => 'text' ],
+        [ 'column' => 'desc', 'title' => 'Description', 'type' => 'text', 'hiddenInList' => true ],
         [ 'column' => 'thumbnail', 'title' => 'Thumbnail', 'type' => 'image' ],
         [ 'column' => 'categories', 'title' => 'Categories', 'type' => 'relation', 'hidden' => true, 'all' =>  [
             ['id' => 1, 'title' => 'cat1'],

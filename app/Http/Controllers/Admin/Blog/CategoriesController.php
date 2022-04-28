@@ -17,7 +17,7 @@ class CategoriesController extends CrudController
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean' ],
         [ 'column' => 'title', 'title' => 'Title' ],
         [ 'column' => 'url', 'title' => 'Url' ],
-        [ 'column' => 'desc', 'title' => 'Description', 'type' => 'text' ],
+        [ 'column' => 'desc', 'title' => 'Description', 'type' => 'text', 'hiddenInList' => true ],
         [ 'column' => 'thumbnail', 'title' => 'Thumbnail', 'type' => 'image' ],
     ];
 

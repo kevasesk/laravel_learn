@@ -21,7 +21,7 @@ class PagesController extends CrudController
         [ 'column' => 'is_active', 'title' => 'Is Active', 'type' => 'boolean'],
         [ 'column' => 'title', 'title' => 'Title'],
         [ 'column' => 'url', 'title' => 'Url'],
-        [ 'column' => 'content', 'title' => 'Content', 'type'=> 'text'],
+        [ 'column' => 'content', 'title' => 'Content', 'type'=> 'text', 'hiddenInList' => true],
     ];
 
     protected $validateRules = [

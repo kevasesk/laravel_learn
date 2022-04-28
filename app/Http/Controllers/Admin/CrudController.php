@@ -81,6 +81,26 @@ class CrudController extends Controller
 
     public function store(Request $request)
     {
+        $content = $request->get('content');
+        if (preg_match('/data:image\/(\w+);base64,/', $content, $type)) {
+            $data = substr($content, strpos($content, ',') + 1);
+            $type = strtolower($type[1]); // jpg, png, gif
+
+            if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
+                throw new \Exception('invalid image type');
+            }
+            $data = str_replace( ' ', '+', $data );
+            $data = base64_decode($data);
+
+            if ($data === false) {
+                throw new \Exception('base64_decode failed');
+            }
+            //TODO save image and insert it like link to content
+            //$res = \Illuminate\Support\Facades\Storage::put("public/media/qwerty11_img.$type", $data, 'public');
+            //$res = file_put_contents("/var/www/html/qwerty_img.$type", $data);
+        }
+
+
         $data = $request->all();
         $route = new $this->routeClass();
 
