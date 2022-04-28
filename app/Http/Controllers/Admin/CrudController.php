@@ -30,12 +30,18 @@ class CrudController extends Controller
     public function index(Request $request)
     {
         $entities = $this->modelClass::query();
+        $message = '';
         if($request->has('filter')){
             foreach ($request->all() as $column => $value){
                 if($column != 'filter' && $value){
                     $entities->where($column, 'like', '%'.$value.'%');
                 }
             }
+        }
+        if($request->has('mass_action') && $request->massaction){
+            $idsToDelete = array_keys($request->massaction);
+            $this->modelClass::query()->whereIn('id', $idsToDelete)->delete();
+            $message = 'Entities was removed';
         }
         $entities = $entities->paginate(10);
 
@@ -63,7 +69,7 @@ class CrudController extends Controller
             'title' => $this->modelTitle,
             'routeSuffix' => $route->routeSuffixName,
             //'breadcrumbs' => $breadcrumbs
-        ]);
+        ])->with('success', $message);
     }
 
     public function create()

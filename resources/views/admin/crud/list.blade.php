@@ -33,7 +33,9 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td></td>
+                                    <td>
+                                        <button type="submit" class="btn" name="mass_action">Remove</button>
+                                    </td>
                                     @foreach($columns as $column)
                                         @continue(isset($column['hiddenInList']) && $column['hiddenInList'])
                                         <td>
@@ -43,10 +45,9 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                @php $number = 1 @endphp
                                 @foreach($entities as $entity)
                                     <tr>
-                                        <td>{{$number}}</td>@php $number++ @endphp
+                                        <td> <input type="checkbox" name="massaction[{{$entity->id}}]"/> </td>
                                         @foreach($columns as $column)
                                             @continue(isset($column['hiddenInList']) && $column['hiddenInList'])
                                             @if(!isset($column['type']))

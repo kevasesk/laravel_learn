@@ -11,8 +11,8 @@ code:
 
 - fix email template, add new ones (need kiril)
 -+ add order data to review, add button to change status +++
-- add massaction to all cruds +++
 - remove empty cart from lost session (cron delete if to old)
 -+ build filter query on js and show results, filter by category
+- add delete on cascade
 
 
