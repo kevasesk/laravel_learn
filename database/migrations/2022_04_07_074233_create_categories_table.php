@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->tinyInteger('is_active');
             $table->integer('parent_id');
             $table->string('title');
-            $table->text('desc')->nullable();
+            $table->longText('desc')->nullable();
             $table->text('thumbnail')->nullable();
             $table->timestamps();
         });

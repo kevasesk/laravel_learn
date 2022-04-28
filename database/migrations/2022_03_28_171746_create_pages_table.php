@@ -17,7 +17,7 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->tinyInteger('is_active');
             $table->string('title');
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable();
             $table->timestamps();
         });
     }

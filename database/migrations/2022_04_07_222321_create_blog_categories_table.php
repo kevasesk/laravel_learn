@@ -17,7 +17,7 @@ class CreateBlogCategoriesTable extends Migration
             $table->id();
             $table->tinyInteger('is_active');
             $table->string('title');
-            $table->text('desc')->nullable();
+            $table->longText('desc')->nullable();
             $table->text('thumbnail')->nullable();
             $table->timestamps();
         });

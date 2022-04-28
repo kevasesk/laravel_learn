@@ -24,8 +24,8 @@ class Product extends Migration
             $table->float('sale_price')->nullable();
             $table->timestamp('sale_price_from')->nullable();
             $table->timestamp('sale_price_to')->nullable();
-            $table->text('desc')->nullable();
-            $table->text('short_desc')->nullable();
+            $table->longText('desc')->nullable();
+            $table->longText('short_desc')->nullable();
             $table->text('thumbnail')->nullable();
             $table->timestamps();
         });

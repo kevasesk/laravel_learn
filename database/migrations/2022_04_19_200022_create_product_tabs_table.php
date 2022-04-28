@@ -17,7 +17,7 @@ class CreateProductTabsTable extends Migration
             $table->id();
             $table->bigInteger('product_id')->unsigned();
             $table->string('title');
-            $table->text('content');
+            $table->longText('content');
             $table->integer('position');
             $table->timestamps();
 
