@@ -131,7 +131,7 @@
                                 <tr>
                                     <td class="product-name">{{$product->title}}</td>
                                     <td class="product-quantity">x {{$cart[$product->id]['qty']}}</td>
-                                    <td class="product-total">{{$cart[$product->id]['qty'] * $cart[$product->id]['price']}}</td>
+                                    <td class="product-total">{{ $currency }} {{$cart[$product->id]['qty'] * $cart[$product->id]['price']}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -143,13 +143,13 @@
                                     <form action="#">
                                         @foreach($shippings as $shipping => $shippingData)
                                             <input type="radio" name="{{$shipping}}" value="{{$shippingData['title']}}" id="{{$shipping}}">
-                                            <label for="{{$shipping}}">{{$shippingData['title']}}: {{$shippingData['cost']}}</label>
+                                            <label for="{{$shipping}}">{{$shippingData['title']}}: {{ $currency }} {{$shippingData['cost']}}</label>
                                         @endforeach
                                     </form>
                                 </div>
                                 <div class="clearfix"></div>
                             </li>
-                            <li><span class="text">Total:</span><span class="cart-number big-total-number pull-right">{{$subtotal}}</span></li>
+                            <li><span class="text">Total:</span><span class="cart-number big-total-number pull-right">{{ $currency }} {{$subtotal}}</span></li>
                         </ul>
                         <div class="order-transfer clearfix">
                             <ul class="tabs">

@@ -7,7 +7,7 @@
             <div class="price-range-holder">
                 <input type="text" class="price-slider" value="">
                 <span class="min-max">
-                    Price: {{$products[0]->getPriceFilter()['min']}} - {{$products[0]->getPriceFilter()['max']}}
+                    Price: {{ $currency }} {{$products[0]->getPriceFilter()['min']}} - {{ $currency }} {{$products[0]->getPriceFilter()['max']}}
                 </span>
                 <span class="filter-button">
                     <a href="#">Filter</a>

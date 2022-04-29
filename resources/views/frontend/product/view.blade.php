@@ -15,9 +15,9 @@
                     <h3>{{ $product->title }}</h3>
                     <div class="prod-price">
                         @if($product->getOldPrice())
-                            <span class="price old">{{$product->getOldPrice()}} $</span>
+                            <span class="price old">{{ $currency }} {{$product->getOldPrice()}}</span>
                         @endif
-                        <span class="price">{{$product->price}} $</span>
+                        <span class="price">{{ $currency }} {{$product->price}}</span>
                     </div>
                     @if($product->desc)
                         <div class="description">
@@ -46,7 +46,7 @@
                     <div class="product-feature">
                         <ul class="product-feature-1">
                             <li><strong>Instock:</strong> {{$product->getIsInStock() ? 'Yes' : 'No'}}</li>
-                            <li><strong>Vendor:</strong> Armani(hardcode)</li>
+                            <li><strong>Brand:</strong> {{$product->brand}}</li>
                         </ul>
                         <ul class="product-feature-2">
                             <li><strong>SKU:</strong> {{$product->sku}}</li>

@@ -20,8 +20,8 @@ class CreateCartItemsTable extends Migration
             $table->integer('qty');
             $table->float('price');
 
-            $table->foreign('cart_id')->references('id')->on('carts');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->unique(['cart_id', 'product_id']);
 
             $table->timestamps();

@@ -12,7 +12,7 @@ class CartController extends \App\Http\Controllers\Controller
 {
     public function index(Request $request)
     {
-        $currentCart = $this->getCurrentCart($request);
+        $currentCart = \App\Helpers\Cart::getCurrentCart();
         $products = $currentCart->products;
         $cartItems = CartItem::query()->where('cart_id','=', $currentCart->id)->get()->toArray();
         if(!count($products)){
@@ -61,41 +61,21 @@ class CartController extends \App\Http\Controllers\Controller
         }
         return back()->with('success', 'Product was added to cart');
     }
-    public function getCurrentCart(Request $request)
-    {
-        //TODO make global?
-        if(!$request->session()->exists('cart_id')) {
-            $cart = new Cart();
-            $cart->save();
-            $request->session()->put('cart_id', $cart->id);
-        }else{
-            $sessionCartId = $request->session()->get('cart_id');
-            $cart = Cart::query()
-                ->where('id','=', $sessionCartId)
-                ->where('is_active', '=', 1)
-                ->first();
-            if(!$cart){
-                $cart = new Cart();
-                $cart->save();
-                $request->session()->put('cart_id', $cart->id);
-            }
-        }
-        return $cart;
-    }
+
     public function back()
     {
 
     }
     public function clear(Request $request)
     {
-        $currentCart = $this->getCurrentCart($request);
+        $currentCart = \App\Helpers\Cart::getCurrentCart();
         $currentCart->products()->detach();
         $currentCart->save();
         return back()->with('success', 'YOu have cleared the cart');
     }
     public function checkout(Request $request)
     {
-        $currentCart = $this->getCurrentCart($request);
+        $currentCart = \App\Helpers\Cart::getCurrentCart();
         $products = $currentCart->products;
         $cartItems = CartItem::query()->where('cart_id','=', $currentCart->id)->get()->toArray();
         $cart = [];
@@ -119,7 +99,7 @@ class CartController extends \App\Http\Controllers\Controller
 //            'postcode' => 'required',
 //            'address' => 'required',
         ]);
-        $currentCart = $this->getCurrentCart($request);
+        $currentCart = \App\Helpers\Cart::getCurrentCart();
         $currentCart->fill($request->all());
         $currentCart->is_active = 0;
         $currentCart->save();
@@ -134,7 +114,7 @@ class CartController extends \App\Http\Controllers\Controller
     }
     public function success(Request $request)
     {
-        $currentCart = $this->getCurrentCart($request);
+        $currentCart = \App\Helpers\Cart::getCurrentCart();
         if(!$currentCart){
             return redirect()->route('/');
         }

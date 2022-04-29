@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('status');
             $table->integer('increment_id')->unique();
             $table->timestamps();
-            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
         });
     }
 

@@ -9,6 +9,7 @@
         <div class="col-md-12">
             <div class="card card-body printableArea">
                 <h3><b>Order</b> <span class="pull-right">#{{$order->increment_id}}</span></h3>
+                <h4><b>Status</b> <span class="pull-right {{$order->getStatusClass()}}">{{$order->getStatus()}}</span></h4>
                 <hr />
                 <div class="row">
                     <div class="col-md-12">
@@ -46,13 +47,13 @@
                                 </thead>
                                 <tbody>
                                 @php $total = 0 @endphp
-                                    @foreach($order->cart->products as $product)
+                                    @foreach($order->cart->getCartItems() as $product)
                                         <tr>
                                             <td class="text-center">1</td>
                                             <td>{{$product->title}}</td>
                                             <td class="text-end">{{$product->qty}}</td>
-                                            <td class="text-end">{{$product->price}}</td>
-                                            <td class="text-end">{{$product->price * $product->qty}}</td>
+                                            <td class="text-end">{{$currency}} {{$product->price}}</td>
+                                            <td class="text-end">{{$currency}} {{$product->price * $product->qty}}</td>
                                             @php $total = $total + ($product->price * $product->qty) @endphp
                                         </tr>
                                     @endforeach
@@ -62,10 +63,10 @@
                     </div>
                     <div class="col-md-12">
                         <div class="pull-right mt-4 text-end">
-                            <p>Sub - Total amount: {{$total }}</p>
+                            <p>Sub - Total amount: {{$currency}} {{$total }}</p>
 {{--                            TODO add shipping + payment or other--}}
                             <hr />
-                            <h3><b>Total :</b> {{$total}}</h3>
+                            <h3><b>Total :</b> {{$currency}} {{$total}}</h3>
                         </div>
                         <div class="clearfix"></div>
                         <hr />

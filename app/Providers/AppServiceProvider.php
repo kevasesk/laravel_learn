@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Slider;
@@ -55,6 +57,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('homeSlider', $homeSlider);
             $view->with('shippings', $shippings);
             $view->with('payments', $payments);
+            $view->with('globalCart', \App\Helpers\Cart::getCurrentCart());
+            $view->with('currency', '₴');
         });
     }
 }

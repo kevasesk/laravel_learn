@@ -17,7 +17,7 @@
                         <div class="product-item-info">
                             <h3><a href="{{ $product->getUrl() }}" title="">{{$product->title}} ({{$product->brand}})</a></h3>
                             <div class="prod-price">
-                                <span class="price black">${{$product->price}}</span>
+                                <span class="price black">{{ $currency }} {{$product->price}}</span>
                             </div>
                             {!! $product->short_desc !!}
                             <div class="button-ver2">

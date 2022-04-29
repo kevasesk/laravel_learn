@@ -21,7 +21,7 @@ class CreateProductTabsTable extends Migration
             $table->integer('position');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

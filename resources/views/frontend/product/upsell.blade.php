@@ -16,7 +16,7 @@
                     <div class="product-item-info-related">
                         <h3><a href="{{$childProduct->getUrl()}}">{{$childProduct->title}}</a></h3>
                         <div class="prod-price">
-                            <span class="price black">{{$childProduct->price}}</span>
+                            <span class="price black">{{ $currency }} {{$childProduct->price}}</span>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@
                                 <a href="{{$product->getUrl()}}">{{$product->title}}</a>
                             </td>
                             <td class="product-price">
-                                <p class="price">{{$product->price}}</p>
+                                <p class="price">{{ $currency }} {{$product->price}}</p>
                             </td>
                             <td class="product-quantity">
                                 <div class="quantity">
@@ -49,7 +49,7 @@
                                 </div>
                             </td>
                             <td class="product-price product-subtotal">
-                                <p class="price">{{$cart['items'][$product->id]['qty'] * $product->price}}</p>
+                                <p class="price">{{ $currency }} {{$cart['items'][$product->id]['qty'] * $product->price}}</p>
                             </td>
                         </tr>
                     @endforeach
@@ -60,13 +60,13 @@
                 <div class="aside-shopping-cart-total">
                     <h2>CART TOTALS</h2>
                     <ul>
-                        <li><span class="text">Subtotal:</span><span class="cart-number">{{$cart['subtotal']}}</span></li>
+                        <li><span class="text">Subtotal:</span><span class="cart-number">{{ $currency }} {{$cart['subtotal']}}</span></li>
                         <li><span class="text">Shipping:</span>
                             <div class="shipping">
                                 <form method="get" action="#" role="search">
                                     @foreach($shippings as $shipping => $shippingData)
                                         <input type="radio" name="{{$shipping}}" value="{{$shippingData['title']}}" id="{{$shipping}}">
-                                        <label for="{{$shipping}}">{{$shippingData['title']}}: {{$shippingData['cost']}}</label>
+                                        <label for="{{$shipping}}">{{$shippingData['title']}}: {{ $currency }} {{$shippingData['cost']}}</label>
                                     @endforeach
                                 </form>
                             </div>
@@ -74,7 +74,7 @@
                         <li><span class="text calculate">Calculate shipping</span>
                         </li>
                         {{--                                need to add shiping--}}
-                        <li><span class="text">Total:</span><span class="cart-number big-total-number">{{$cart['subtotal']}}</span></li>
+                        <li><span class="text">Total:</span><span class="cart-number big-total-number">{{ $currency }} {{$cart['subtotal']}}</span></li>
                     </ul>
                     <div class="process">
                         <form method="GET" action="{{route('cart.checkout')}}">

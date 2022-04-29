@@ -1,18 +1,8 @@
-- fix minicart data
-- fix sessions and products
 -+ import categories and products from kiril data +++
+- menu tree, category tree (vue)
+-+ build product filter query on js and show results, filter by category
 
-admin:
-    - menu tree, category tree (vue)
-code:
-    - check TODOs in code and fix it
-
--------------------
-
+------------------------
 - fix email template, add new ones (need kiril)
--+ add order data to review, add button to change status +++
-- remove empty cart from lost session (cron delete if to old)
--+ build filter query on js and show results, filter by category
-- add delete on cascade
-
+-+ add button to change status for order in admin (need kiril)
 
