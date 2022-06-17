@@ -13,12 +13,14 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\Admin\MenuController;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Admin\ConfigController;
+
 
 use Illuminate\Support\Facades\App;
 
@@ -57,6 +59,12 @@ Route::middleware(['admin.auth'])->group(function () {
 
     Route::get('admin/config', [ConfigController::class, 'config'])->name('admin.config');
     Route::post('admin/config/save', [ConfigController::class, 'save'])->name('admin.config.save');
+
+    Route::get('admin/menu-tree', [MenuController::class, 'index'])->name('admin.menu');
+    Route::get('admin/menu-tree/get', [MenuController::class, 'get'])->name('admin.menu.get');
+    Route::post('admin/menu-tree/save', [MenuController::class, 'save'])->name('admin.menu.save');
+    Route::post('admin/menu-tree/saveItem', [MenuController::class, 'saveItem'])->name('admin.menu.saveItem');
+    Route::post('admin/menu-tree/deleteItem', [MenuController::class, 'deleteItem'])->name('admin.menu.deleteItem');
 
 });
 

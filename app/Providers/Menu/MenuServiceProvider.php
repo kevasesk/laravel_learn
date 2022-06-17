@@ -19,10 +19,10 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view){
-            $mainMenu = MenuItem::query()->where('parent_id', '=', self::MAIN_MENU_ID)->get()->toArray();
-            $categories = MenuItem::query()->where('parent_id', '=', self::CATEGORIES_ID)->get()->toArray();
-            $helpMenu = MenuItem::query()->where('parent_id', '=', self::HELP_MENU_ID)->get()->toArray();
-            $usefullMenu = MenuItem::query()->where('parent_id', '=', self::USEFULL_MENU_ID)->get()->toArray();
+            $mainMenu = MenuItem::query()->where('parent_id', '=', self::MAIN_MENU_ID)->orderBy('position')->get()->toArray();
+            $categories = MenuItem::query()->where('parent_id', '=', self::CATEGORIES_ID)->orderBy('position')->get()->toArray();
+            $helpMenu = MenuItem::query()->where('parent_id', '=', self::HELP_MENU_ID)->orderBy('position')->get()->toArray();
+            $usefullMenu = MenuItem::query()->where('parent_id', '=', self::USEFULL_MENU_ID)->orderBy('position')->get()->toArray();
 
             $view->with('menu', $mainMenu);
             $view->with('categoriesMenu', $categories);

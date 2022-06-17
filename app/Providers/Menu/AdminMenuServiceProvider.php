@@ -36,8 +36,8 @@ class AdminMenuServiceProvider extends ServiceProvider
                     'icon' => 'mdi-hackernews'
                 ],
                 [
-                    'title' => 'Menu',
-                    'url' => '/admin/menu',
+                    'title' => 'Menus',
+                    'url' => '/admin/menu-tree',
                     'icon' => 'mdi-playlist-minus'
                 ],
                 [

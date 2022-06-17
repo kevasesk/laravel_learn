@@ -36,6 +36,20 @@
     <script src="/backend/assets/libs/select2/dist/js/select2.min.js"></script>
 
     <script src="/backend/assets/libs/tinymce_6.0.2/tinymce/js/tinymce/tinymce.min.js"></script>
+
+    <script type="text/javascript" src="/js/jquery.noty.packaged.min.js"></script>
+
+    <script>
+        var notify = function (text, type = 'success'){
+            noty({
+                text: text,
+                theme: 'relax',
+                type: type, // success, error, warning, information, notification
+                timeout: 3000,
+            });
+        }
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
