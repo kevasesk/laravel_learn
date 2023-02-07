@@ -18,7 +18,7 @@
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/img/favicon.png"
+        href="{{asset('img/favicon.png')}}"
     />
     <!-- Custom CSS -->
     <link href="/backend/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
