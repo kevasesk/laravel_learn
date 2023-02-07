@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Redirect;
 
 use App\Models\Category as CategoryModel;
+use App\Models\Product as ProductModel;
 
 class Category
 {
@@ -10,8 +11,7 @@ class Category
     {
         $category = CategoryModel::query()->where('id', '=', $id)->first();
         if($category){
-            $searchModel = new \App\Search\ElasticsearchRepository();
-            $products = $searchModel->filterProducts($category)->paginate(6);
+            $products = $category->products()->get();
             $breadcrumbs = [
                 ['url' => '/', 'title' => 'Home'],
                 ['title' => $category->title]
