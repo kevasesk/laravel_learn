@@ -178,8 +178,7 @@ return [
         App\Providers\Menu\AdminMenuServiceProvider::class,
         App\Providers\CategoriesServiceProvider::class,
         App\Providers\CustomerServiceProvider::class,
-        App\Providers\RecaptchaServiceProvider::class,
-        \Intervention\Image\ImageServiceProvider::class
+        App\Providers\RecaptchaServiceProvider::class
 
     ],
 
