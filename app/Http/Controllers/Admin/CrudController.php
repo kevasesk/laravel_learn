@@ -128,7 +128,8 @@ class CrudController extends Controller
             }
             $entity->{$fileAttribute} = $filePath;
         }
-        $this->processRelationFields($request, $entity);
+        $this->processOneToMany($request, $entity);
+        $this->processManyToMany($request, $entity);
         $entity->save();
         if($this->redirectType){
             $url = !$request->url ? \Illuminate\Support\Str::slug($request->title, '-') : $request->url;
@@ -148,10 +149,10 @@ class CrudController extends Controller
                 }
             }
         }
-        return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
-        //return back();
+        //return redirect()->route($route->routeSuffixName.'.list')->with('success', 'Changes Saved!');
+        return back()->with('success', 'Changes Saved!');
     }
-    public function processRelationFields($request, $entity)
+    public function processOneToMany($request, $entity)
     {
         if($this->relations){
             foreach ($this->relations as $relationType => $relationFields){
@@ -164,7 +165,6 @@ class CrudController extends Controller
                         $oldValues = $entity->{$relationField};
                         $entity->{$relationField}()->delete();// TODO remove unused images from file system
                         $relationItems = [];
-
 
                         $position = 0;
                         foreach ($oldValues as $oldValue){
@@ -221,11 +221,13 @@ class CrudController extends Controller
                 }
 
             }
-//            $entity->{$this->relations}()->detach();
-//            $entity->{$this->relations}()->attach($data[$this->relations]);
         }
     }
 
+    public function processManyToMany($request, $entity)
+    {
+
+    }
     public function edit($id)
     {
         $route = new $this->routeClass();

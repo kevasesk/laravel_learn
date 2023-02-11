@@ -48,10 +48,11 @@ class ProductsController extends CrudController
             [ 'column' => 'price', 'title' => 'Price' ],
 
             [ 'column' => 'sale_price', 'title' => 'Sale Price', 'hiddenInList' => true ],
-            [ 'column' => 'sale_price_from', 'title' => 'sale_price_from', 'hiddenInList' => true],//TODO add date field
-            [ 'column' => 'sale_price_to', 'title' => 'sale_price_to', 'hiddenInList' => true],
+            [ 'column' => 'sale_price_from', 'title' => 'Sale Price From', 'hiddenInList' => true],//TODO add date field
+            [ 'column' => 'sale_price_to', 'title' => 'Sale Price To', 'hiddenInList' => true],
 
             [ 'column' => 'qty', 'title' => 'Qty' ],
+            [ 'column' => 'categories', 'title' => 'Categories', 'type' => 'categories', 'options' => \App\Options\Categories::getOptions(), 'hiddenInList' => true],
             [ 'column' => 'brand', 'title' => 'Brand', 'hiddenInList' => true  ],
             [ 'column' => 'is_featured', 'title' => 'Is Featured', 'type' => 'boolean', 'hiddenInList' => true],
             [ 'column' => 'is_in_stock', 'title' => 'Is In Stock', 'type' => 'boolean', 'hiddenInList' => true],
@@ -71,8 +72,12 @@ class ProductsController extends CrudController
             [ 'column' => 'upsells', 'title' => 'Upsell Products', 'type' => 'container', 'hiddenInList' => true ,
                 'child' => 'upsells', 'contentType' => 'tabs', 'fields' => ['child_id']
             ],
-        ];;
+        ];
     }
 
-
+    public function processManyToMany($request, $entity)
+    {
+        $categories = $request->input('categories');
+        $entity->categories()->sync($categories);
+    }
 }

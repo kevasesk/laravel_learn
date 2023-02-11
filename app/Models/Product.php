@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Carbon\Traits\Options;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Search\Searchable;
 
 class Product extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $fillable = [
         'title',
@@ -29,7 +27,7 @@ class Product extends Model
         'color',
         'is_popular',
         'is_top_rated',
-        'is_new',
+        'is_new'
     ];
 
     public function categories()
@@ -87,6 +85,17 @@ class Product extends Model
     public function getColorOptions()
     {
         return \App\Options\Colors::getOptions();
+    }
+
+    // for admin multiselect
+    public function getSelectedCategories()
+    {
+        $result = [];
+        foreach ($this->categories as $category) {
+            $result[] = $category->id;
+        }
+
+        return $result;
     }
     public function getBrandOptions()
     {
