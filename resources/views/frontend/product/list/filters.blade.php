@@ -1,7 +1,7 @@
 <div class="filter-block">
     <div class="filter-block-shop filter-price">
         <div class="block-title">
-            <h3>FILTER BY PRICE</h3>
+            <h3>{{__('FILTER BY PRICE')}}</h3>
         </div>
         <div class="block-content">
             <div class="price-range-holder">
@@ -31,7 +31,7 @@
     @if(count($products[0]->getCategoriesFilter()))
         <div class="filter-block-shop filter-cate">
             <div class="block-title">
-                <h3>Categories</h3>
+                <h3>{{__('Categories')}}</h3>
             </div>
             <div class="block-content">
                 <ul>
@@ -48,7 +48,7 @@
     @if(count($products[0]->getBrandOptions()))
         <div class="filter-block-shop">
             <div class="block-title">
-                <h3>BRAND</h3>
+                <h3>{{__('BRAND')}}</h3>
             </div>
             <div class="block-content">
                 <form>
@@ -65,7 +65,7 @@
 
     <div class="filter-block-shop filter-color">
         <div class="block-title">
-            <h3>Color</h3>
+            <h3>{{__('Color')}}</h3>
         </div>
         <div class="block-content">
             <ul>

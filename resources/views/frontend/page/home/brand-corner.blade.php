@@ -1,6 +1,6 @@
 <aside class="widget brand-v1">
     <div class="heading-v1">
-        <h3>BRAND CORNER</h3>
+        <h3>{{__('BRAND CORNER')}}</h3>
     </div>
     <div class="brand-list-v1">
         @foreach($branded as $product)

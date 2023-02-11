@@ -4,9 +4,9 @@
             <div class="col-md-7 col-sm-7 col-xs-12">
                 <div class="heading-v2">
                     <ul class="breadcrumb-ver1">
-                        <li class="active"><a data-toggle="pill" href="#popular">popular</a></li>
-                        <li><a data-toggle="pill" href="#top">top rated</a></li>
-                        <li><a data-toggle="pill" href="#new">newest</a></li>
+                        <li class="active"><a data-toggle="pill" href="#popular">{{__('popular')}}</a></li>
+                        <li><a data-toggle="pill" href="#top">{{__('top rated')}}</a></li>
+                        <li><a data-toggle="pill" href="#new">{{__('newest')}}</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">

@@ -14,8 +14,7 @@
 
 
 - remove elasticsearch
-- config git ftp
-- translate to rus/ukr , add switcher?
-- fix listing elements
+- translate to rus/ukr
+- fix listing elements, filter,price, color etc.
 - images in admin on hosting
 

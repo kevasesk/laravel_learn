@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-4 col-xs-12">
                     @include('frontend.layouts.struct.subscriber')
-                    <h3 class="titles">FIND US ON:</h3>
+                    <h3 class="titles">{{__('FIND US ON:')}}</h3>
                     <ul class="social">
                         <li><a href="#"><i class="ion-social-facebook fa-3" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="ion-social-twitter fa-3" aria-hidden="true"></i></a></li>
@@ -57,7 +57,7 @@
     </div>
     <div class="top-footer">
         <div class="container">
-            <h1 class="heading-default">Top Categories & Brands</h1>
+            <h1 class="heading-default">{{__('Top Categories & Brands')}}</h1>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12 block-left">
                     <div class="block-footer">
