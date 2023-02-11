@@ -71,13 +71,6 @@ Route::middleware(['admin.auth'])->group(function () {
 #RabiitMQ
 Route::get('send/text', [\App\Http\Controllers\SendController::class, 'sendText']);//TODO remove
 
-#language switcher
-Route::get('language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
-});//TODO remove
-
 #Blog
 Route::get('blog', [BlogController::class, 'index']);
 
@@ -110,6 +103,14 @@ Route::get('search', [SearchController::class, 'search'])->name('search');
 
 #Cms
 Route::get('{url}', [MainController::class, 'show']);
+
+#Locale
+Route::get('/locale/{locale}', function ($locale) {
+    //$locale = $request->input('locale');
+    app()->setLocale($locale);
+    session(['locale' => $locale]);
+    return redirect()->back();
+})->name('locale');
 
 
 

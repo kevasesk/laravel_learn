@@ -7,11 +7,11 @@
             @endif
         </div>
         <p class="inform inform-cart">
-            <span class="strong">CART<br></span>
+            <span class="strong">{{__('CART')}}<br></span>
             @if($globalCart->getTotalQty())
                 <span class="price-cart">{{ $currency }} {{$globalCart->getSubtotal()}}</span>
             @else
-                <span class="price-cart">(empty)</span>
+                <span class="price-cart">{{__('(empty)')}}</span>
             @endif
         </p>
     </a>

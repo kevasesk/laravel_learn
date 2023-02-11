@@ -49,24 +49,14 @@
     <div class="top-nav hidden-xs hidden-sm">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="left-nav">
+                        @include('frontend.layouts.struct.local-switcher')
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="right-nav">
-                        <ul>
-                            <li><a href="{{route('customer.register')}}"><i class="ion-ios-personadd fa-1a" aria-hidden="true"></i>create account</a></li>
-                            <li>
-                                @if(isset($customer))
-                                    <a href="{{route('customer.logout')}}">
-                                        <i class="ion-log-in fa-1a" aria-hidden="true"></i>
-                                        Logout ( {{ $customer->email }})
-                                    </a>
-                                @else
-                                    <a href="{{route('customer.login')}}">
-                                        <i class="ion-log-in fa-1a" aria-hidden="true"></i>
-                                        Login
-                                    </a>
-                                @endif
-                            </li>
-                        </ul>
+                        @include('frontend.layouts.struct.customer-links')
                     </div>
                 </div>
             </div>
@@ -75,10 +65,10 @@
     <div class="bottom">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-8 col-xs-7 logo">
+                <div class="col-md-2 col-sm-8 col-xs-7 logo">
                     <a href="/" title="{{env('APP_NAME')}}"><img src="{{ Resizer::get($settings['logo'], 260, 87) }}" alt="images" class="img-reponsive"></a>
                 </div>
-                <div class="col-md-9 col-sm-4 col-xs-5 nextlogo">
+                <div class="col-md-10 col-sm-4 col-xs-5 nextlogo">
                     <div class="block block-2">
                         @include('frontend.layouts.struct.cart')
                     </div>
@@ -92,7 +82,7 @@
                                 </svg>
                             </div>
                             <p class="inform">
-                                <span class="strong">Infomation<br></span> Protected
+                                <span class="strong">{{__('Information')}}<br></span>{{__('Protected')}}
                             </p>
                         </div>
                         <div class="return">
@@ -104,14 +94,14 @@
                                 </svg>
                             </div>
                             <p class="inform">
-                                <span class="strong">Free<br></span> Return
+                                <span class="strong">{{__('Free')}}<br></span>{{__('Return')}}
                             </p>
                         </div>
                     </div>
                     <div class="search hidden-xs hidden-sm">
                         <form action="{{route('search')}}" class="search-form" method="GET">
                             @csrf
-                            <input type="text" name="query" class="form-control" placeholder="Search entrie store here">
+                            <input type="text" name="query" class="form-control" placeholder="{{__('Search entre store here')}}">
                             <button type="submit" class="search-icon"></button>
                         </form>
                     </div>

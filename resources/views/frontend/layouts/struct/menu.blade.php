@@ -4,7 +4,7 @@
             <div class="col-md-3 col-sm-4 col-xs-6 column-left">
                 <aside id="column-left">
                     <nav class="navbar-default">
-                        <div class="menu-heading js-nav-menu ">All Categories</div>
+                        <div class="menu-heading js-nav-menu ">{{__('All Categories')}}</div>
                         <div class="vertical-wrapper v3 js-dropdown-menu">
                             <ul class="level0">
                                 @foreach($categoriesMenu as $category)

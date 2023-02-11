@@ -32,7 +32,7 @@
     </section>
     <section class="bigdeal">
         <div class="container">
-            <div class="label label-1">ONSALE</div>
+            <div class="label label-1">{{__('ONSALE')}}</div>
             <div class="sale-list">
                 <div class="row">
                     <div class="col-md-7 col-sm-12">

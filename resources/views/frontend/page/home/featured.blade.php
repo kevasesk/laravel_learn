@@ -1,7 +1,7 @@
 <section class="featured-product">
     <div class="container">
         <div class="heading-v1">
-            <h3 class="pull-left">featured products</h3>
+            <h3 class="pull-left">{{__('featured products')}}</h3>
             <ul class="otherr-link pull-right">
                 @foreach($featuredMap as $brand => $products)
                     <li class="@if($loop->first) active @endif"><a data-toggle="pill" href="#{{$brand}}">{{$brand}}</a></li>
