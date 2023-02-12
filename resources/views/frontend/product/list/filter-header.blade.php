@@ -13,7 +13,7 @@
             <div class="box show pull-left">
                 <span>{{__('Show')}}</span>
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown">3</button>
-                <form action="{{ route('chunkSize') }}">
+                <form action="">
                     <ul class="dropdown-menu">
                         <li><a href="#" onclick="$(this).closest('form').submit();">1</a></li>
                         <li><a href="#">2</a></li>
