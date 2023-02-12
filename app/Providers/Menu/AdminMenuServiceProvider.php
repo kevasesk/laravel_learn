@@ -16,6 +16,22 @@ class AdminMenuServiceProvider extends ServiceProvider
                     'url' => '/admin/dashboard',
                 ],
                 [
+                    'title' => 'Catalog',
+                    'icon' => 'mdi-laptop',
+                    'children' => [
+                        [
+                            'title' => 'Products',
+                            'url' => '/admin/products',
+                            'icon' => 'mdi-laptop'
+                        ],
+                        [
+                            'title' => 'Categories',
+                            'url' => '/admin/categories',
+                            'icon' => 'mdi-receipt'
+                        ],
+                    ]
+                ],
+                [
                     'title' => 'Customers',
                     'url' => '/admin/customers',
                     'icon' => 'mdi-account'
@@ -68,23 +84,6 @@ class AdminMenuServiceProvider extends ServiceProvider
                             'title' => 'Categories',
                             'url' => '/admin/blog/categories',
                             'icon' => 'mdi-book-open-page-variant'
-                        ],
-                    ]
-                ],
-
-                [
-                    'title' => 'Catalog',
-                    'icon' => 'mdi-laptop',
-                    'children' => [
-                        [
-                            'title' => 'Products',
-                            'url' => '/admin/products',
-                            'icon' => 'mdi-laptop'
-                        ],
-                        [
-                            'title' => 'Categories',
-                            'url' => '/admin/categories',
-                            'icon' => 'mdi-receipt'
                         ],
                     ]
                 ],

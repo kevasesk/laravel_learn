@@ -21,6 +21,8 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Admin\ConfigController;
 
+use App\Http\Controllers\FilterController;
+
 
 use Illuminate\Support\Facades\App;
 
@@ -101,8 +103,9 @@ Route::post('subscriber/new', [SubscriberController::class, 'new'])->name('subsc
 #Search
 Route::get('search', [SearchController::class, 'search'])->name('search');
 
-#Cms
-Route::get('{url}', [MainController::class, 'show']);
+#filter
+Route::get('addFilter', [FilterController::class, 'add'])->name('addFilter');
+Route::get('removeFilter', [FilterController::class, 'remove'])->name('removeFilter');
 
 #Locale
 Route::get('/locale/{locale}', function ($locale) {
@@ -111,6 +114,14 @@ Route::get('/locale/{locale}', function ($locale) {
     session(['locale' => $locale]);
     return redirect()->back();
 })->name('locale');
+
+
+
+#Cms - MUST BE LAST----------------------------------------------------
+Route::get('{url}', [MainController::class, 'show']);
+
+
+
 
 
 

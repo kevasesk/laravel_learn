@@ -86,6 +86,11 @@ class Product extends Model
     {
         return \App\Options\Colors::getOptions();
     }
+    public function getColorData()
+    {
+        $colorOptions = $this->getColorOptions();
+        return $colorOptions[$this->color];
+    }
 
     // for admin multiselect
     public function getSelectedCategories()
@@ -97,11 +102,8 @@ class Product extends Model
 
         return $result;
     }
-    public function getBrandOptions()
-    {
-        return Product::query()->select('brand')->where('brand', '!=', null)->groupBy('brand')->get();
-    }
-    public function getCategoriesFilter()
+
+    public static function getCategoriesFilter()
     {
         $categories = Category::query()->where('id','!=', 1)->get();
         $result = [];
