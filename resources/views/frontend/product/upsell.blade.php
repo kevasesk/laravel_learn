@@ -9,7 +9,7 @@
                     <div class="product-item-img-related prod-item-img">
                         <a href="{{$childProduct->getUrl()}}"><img src="{{Resizer::get($childProduct->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                         <div class="button">
-                            <a href="#" class="addcart">ADD TO CART(TODO)</a>
+                            <a href="#" class="addcart">{{__('Add to cart')}} (TODO)</a>
                             <a href="{{$childProduct->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </div>
                     </div>

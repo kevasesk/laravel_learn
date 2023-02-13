@@ -25,5 +25,16 @@
     "Categories": "Категории",
     "BRAND": "Бренд",
     "Color": "Цвет",
+    "Showing": "Показываеться",
+    "of": "из",
+    "results": "результатов",
+    "Show per page": "Показать на странице",
+    "Sort by:": "Отсортировать по:",
+    "Lower to high price": "От низших до больших цен",
+    "High to lower price": "От больших до низших цен",
+    "Featured": "Избранное",
+    "clear": "очистить",
+    "Clear all filters": "Очистить все фильтры",
+    "Add to cart": "Добавить в корзину",
     "English locale": "Русский"
 }

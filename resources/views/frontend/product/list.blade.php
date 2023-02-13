@@ -21,7 +21,7 @@
                             </div>
                             {!! $product->short_desc !!}
                             <div class="button-ver2">
-                                <a href="#" class="addcart-ver2" title="Add to cart"><span class="icon"></span>ADD TO CART</a>
+                                <a href="#" class="addcart-ver2" title="{{__('Add to cart')}}"><span class="icon"></span>{{__('Add to cart')}}</a>
                                 <a href="#" class="wishlist" title="wishlist"><i class="ion-heart fa-4" aria-hidden="true"></i></a>
                             </div>
                         </div>

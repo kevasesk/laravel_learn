@@ -9,6 +9,12 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class Category
 {
+    public const SORT_MAPPING = [
+        'Featured',
+        'Lower to high price',
+        'High to lower price'
+    ];
+
     public static function process($id)
     {
         $category = CategoryModel::query()->where('id', '=', $id)->first();
@@ -17,6 +23,7 @@ class Category
         if($category){
             Session::put('current_category', $category);
             $filters = Session::get('filters') ?: [];
+            $sort = Session::get('sort') ?? 0;
             $products = ProductModel::query();
            // var_dump($filters);//ysemenov
 
@@ -29,8 +36,23 @@ class Category
                         $query->where($name, $value);
                     }
                 }
-                //TODO add orders
             });
+
+
+            //sort
+            if ($sort == 0) {
+                $products->orderBy('id');
+            }
+            if ($sort == 1) {
+                $products->orderBy('price', 'asc');
+            }
+            if ($sort == 2) {
+                $products->orderBy('price', 'desc');
+            }
+
+
+            $sortValue = __(self::SORT_MAPPING[$sort]) ?? self::SORT_MAPPING[0];
+
             $products = $products->get();
             $brandFilters = [];
             $colorFilters = [];
@@ -46,7 +68,7 @@ class Category
 
             $totalCount = count($products);
 
-            $chunkSize = 5;//TODO dymanic
+            $chunkSize = Session::get('chunk') ?? 3;
             $chunks = $products->chunk($chunkSize);
             $page = request('page', 1);
             $currentChunk = $chunks->get($page - 1);
@@ -72,7 +94,10 @@ class Category
                 'colorFilters',
                 'totalCount',
                 'showingStart',
-                'showingEnd'
+                'showingEnd',
+                'chunkSize',
+                'sort',
+                'sortValue'
             ));
         }
         return false;

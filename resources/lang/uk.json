@@ -25,5 +25,16 @@
     "Categories": "Категорії",
     "BRAND": "Бренд",
     "Color": "Колір",
+    "Showing": "Показує",
+    "of": "з",
+    "results": "результатів",
+    "Show per page": "Показати на сторінці",
+    "Sort by:": "Відсортувати за:",
+    "Lower to high price": "Від нижчої до високої ціни",
+    "High to lower price": "Від високої до нижчої ціни",
+    "Featured": "Вибрані",
+    "clear": "Очистити усі фільтри",
+    "Clear all filters": "Очистити усі фільтри",
+    "Add to cart": "Додати в корзину",
     "English locale": "Українська"
 }

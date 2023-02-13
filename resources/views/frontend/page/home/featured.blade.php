@@ -20,7 +20,7 @@
                                         <div class="prod-item-img bd-style-2">
                                             <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                                             <div class="button">
-                                                <a href="#" class="addcart">ADD TO CART (TODO)</a>
+                                                <a href="#" class="addcart">{{__('Add to cart')}} (TODO)</a>
                                                 <a href="{{$product->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                         </div>

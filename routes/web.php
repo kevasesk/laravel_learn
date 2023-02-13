@@ -106,6 +106,8 @@ Route::get('search', [SearchController::class, 'search'])->name('search');
 #filter
 Route::get('addFilter', [FilterController::class, 'add'])->name('addFilter');
 Route::get('removeFilter', [FilterController::class, 'remove'])->name('removeFilter');
+Route::get('changeChunk', [FilterController::class, 'changeChunk'])->name('changeChunk');
+Route::get('changeSort', [FilterController::class, 'changeSort'])->name('changeSort');
 
 #Locale
 Route::get('/locale/{locale}', function ($locale) {

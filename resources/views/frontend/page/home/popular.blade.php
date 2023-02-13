@@ -19,7 +19,7 @@
                                             <div class="prod-item-img bd-style-2">
                                                 <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                                                 <div class="button">
-                                                    <a href="#" class="addcart addcart-v2">ADD TO CART</a>
+                                                    <a href="#" class="addcart addcart-v2">{{__('Add to cart')}}</a>
                                                     <a href="{{$product->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
@@ -45,7 +45,7 @@
                                             <div class="prod-item-img bd-style-2">
                                                 <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                                                 <div class="button">
-                                                    <a href="#" class="addcart addcart-v2">ADD TO CART</a>
+                                                    <a href="#" class="addcart addcart-v2">{{__('Add to cart')}}</a>
                                                     <a href="{{$product->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@
                                             <div class="prod-item-img bd-style-2">
                                                 <a href="{{$product->getUrl()}}"><img src="{{Resizer::get($product->thumbnail, 600,600)}}" alt="images" class="img-responsive"></a>
                                                 <div class="button">
-                                                    <a href="#" class="addcart addcart-v2">ADD TO CART</a>
+                                                    <a href="#" class="addcart addcart-v2">{{__('Add to cart')}}</a>
                                                     <a href="{{$product->getUrl()}}" class="view"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </div>
                                             </div>

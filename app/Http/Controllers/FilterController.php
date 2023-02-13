@@ -32,6 +32,19 @@ class FilterController extends \App\Http\Controllers\Controller
         return back();
     }
 
+    public function changeChunk(Request $request)
+    {
+        Session::put('chunk', $request->get('chunk'));
+        return back();
+    }
+
+    public function changeSort(Request $request)
+    {
+        Session::put('sort', $request->get('sort'));
+        return back();
+    }
+
+
     public function remove(Request $request)
     {
         $filters = Session::get('filters');

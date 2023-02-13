@@ -38,7 +38,7 @@
                             </div>
                             <div class="button-ver2">
                                 <button class="link-ver1 addcart-ver2" data-field="" {{$addToCartAttribute}}>
-                                    Add to Cart
+                                    {{__('Add to Cart')}}
                                 </button>
                             </div>
                         </form>

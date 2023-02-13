@@ -11,26 +11,30 @@
         </div>
         <div class="col-md-7 margin-top3">
             <div class="box show pull-left">
-                <span>{{__('Show')}}</span>
-                <button class="dropdown-toggle" type="button" data-toggle="dropdown">3</button>
-                <form action="">
+                <span>{{__('Show per page')}}</span>
+                <form action="{{ route('changeChunk') }}">
+                    <input type="hidden" name="chunk" value="{{$chunkSize}}" id="chunk">
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{$chunkSize}}</button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" onclick="$(this).closest('form').submit();">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#" onclick="$('#chunk').val(5);$(this).closest('form').submit();">5</a></li>
+                        <li><a href="#" onclick="$('#chunk').val(10);$(this).closest('form').submit();">10</a></li>
+                        <li><a href="#" onclick="$('#chunk').val(15);$(this).closest('form').submit();">15</a></li>
                     </ul>
                 </form>
-                <span>{{__('per page')}}</span>
             </div>
             <div class="box sort pull-right">
                 <span>{{__('Sort by:')}}</span>
-                <button class="dropdown-toggle" type="button" data-toggle="dropdown" id="menu2">
-                    <span class="dropdown-label">Featured</span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-                    <li><a href="#" title="">{{__('Lower to high price')}}</a></li>
-                    <li><a href="#" title="">{{__('High to lower price')}}</a></li>
-                </ul>
+                <form action="{{ route('changeSort') }}">
+                    <input type="hidden" name="sort" value="{{$sort}}" id="sort">
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" id="menu2">
+                        <span class="dropdown-label">{{$sortValue}}</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                        <li><a href="#" title="" onclick="$('#sort').val(0);$(this).closest('form').submit();">{{__('Featured')}}</a></li>
+                        <li><a href="#" title="" onclick="$('#sort').val(1);$(this).closest('form').submit();">{{__('Lower to high price')}}</a></li>
+                        <li><a href="#" title="" onclick="$('#sort').val(2);$(this).closest('form').submit();">{{__('High to lower price')}}</a></li>
+                    </ul>
+                </form>
             </div>
             <div class="clearfix"></div>
         </div>
